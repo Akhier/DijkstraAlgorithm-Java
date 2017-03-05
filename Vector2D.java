@@ -1,3 +1,8 @@
+/**
+ * @author Akhier Dragonheart
+ * @version 1.0
+ */
+
 public class Vector2D {
 	public static int INFINITY = -1;
 	public int X, Y, aggregateCost;

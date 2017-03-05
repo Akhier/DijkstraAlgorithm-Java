@@ -1,3 +1,8 @@
+/**
+ * @author Akhier Dragonheart
+ * @version 1.0
+ */
+
 public class Edge {
 	public Integer cost;
 	private static int edgeIdCount = -1;
