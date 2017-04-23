@@ -1,4 +1,5 @@
 /**
+ * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
  * @version 1.0
  */
@@ -17,6 +18,10 @@ public class Graph {
 	public Vector2D sourceVector() {
 		return sourceNode;
 	}
+	/**
+	 * Sets the sourceNode which is were the map is calculated to travel to
+	 * @param value is the Vector2D you want to calculate routes to
+	 */
 	public void sourceVector(Vector2D value) {
 		for(int i = 0; i < listOfNodes.size(); i++) {
 			if(listOfNodes.get(i) == value) {
@@ -32,6 +37,9 @@ public class Graph {
 		sourceNode = null;
 	}
 
+	/**
+	 * Sets all .visited to false, .aggregateCost to Vector2D.INFINITY, and .edgeWithLowestCost to null
+	 */
 	private void reset() {
 		for(int i = 0; i < listOfNodes.size(); i++) {
 			listOfNodes.get(i).visited = false;
@@ -40,21 +48,40 @@ public class Graph {
 		}
 	}
 
+	/**
+	 * Adds the provided Edge to the listOfEdges then does reset()
+	 */
 	public void addEdge(Edge edge) {
 		listOfEdges.add(edge);
 		reset();
 	}
 
+	/**
+	 * Adds an Edge created from the provided Vector2Ds with cost and then does reset()
+	 * @param pointa is the Vector2D that is meant to be the 'first' point of this Edge
+	 * @param pointb is the Vector2D that is meant to be the 'second' point of this Edge
+	 * @param cost is how much traversing this edge costs
+	 */
 	public void addEdge(Vector2D pointa, Vector2D pointb, int cost) {
 		listOfEdges.add(new Edge(pointa, pointb, cost));
 		reset();
 	}
 
+	/**
+	 * Adds the provided Vector2D to the listOfNodes then does reset()
+	 * @param node
+	 */
 	public void addVector(Vector2D node) {
 		listOfNodes.add(node);
 		reset();
 	}
 
+	/**
+	 * Adds a Vector2D created from the provided x, y, and deadendedness then does reset()
+	 * @param x an int that represents it's position on the x axis
+	 * @param y an int that represents it's position on the y axis
+	 * @param deadend is a boolean of whether this point is a deadend
+	 */
 	public void addVector(int x, int y, boolean deadend) {
 		listOfNodes.add(new Vector2D(x, y, deadend));
 		reset();
@@ -107,6 +134,9 @@ public class Graph {
 		} while(moreVisitedNodes());
 	}
 
+	/**
+	 * @return boolean of if the calculation succeeded
+	 */
 	public boolean calculateShortestPath() {
 		boolean unreachable = false;
 		if(sourceNode == null) {
@@ -121,6 +151,11 @@ public class Graph {
 		return true;
 	}
 
+	/**
+	 * Gets the shortest path from targetnode to sourceNode
+	 * @param targetnode is the Vector2D to calculate the route to the sourceNode from
+	 * @return ArrayList<Vector2D> with the path to sourceNode from targetnode
+	 */
 	public ArrayList<Vector2D> retrieveShortestPath(Vector2D targetnode) {
 		ArrayList<Vector2D> shortestPath = new ArrayList<Vector2D>();
 		if(targetnode != null) {
