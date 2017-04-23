@@ -130,12 +130,14 @@ public class Graph {
 			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
 			while(connectedEdges.size() > 0) {
 				Edge connectedEdge = connectedEdges.remove();
-				if(connectedEdge.getOtherVector(visitedNode).aggregateCost == Vector2D.INFINITY || (visitedNode.aggregateCost + connectedEdge.cost) < connectedEdge.getOtherVector(visitedNode).aggregateCost) {
+				Vector2D otherNode = connectedEdge.getOtherVector(visitedNode);
+				if(otherNode.aggregateCost == Vector2D.INFINITY ||
+						(visitedNode.aggregateCost + connectedEdge.cost) < otherNode.aggregateCost) {
 					connectedEdge.getOtherVector(visitedNode).aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
 					connectedEdge.getOtherVector(visitedNode).edgeWithLowestCost = connectedEdge;
 				}
-				if(nextBestNode == null || connectedEdge.getOtherVector(visitedNode).aggregateCost < nextBestNode.aggregateCost) {
-					nextBestNode = connectedEdge.getOtherVector(visitedNode);
+				if(nextBestNode == null || otherNode.aggregateCost < nextBestNode.aggregateCost) {
+					nextBestNode = otherNode;
 				}
 			}
 		}
