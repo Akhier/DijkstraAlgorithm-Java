@@ -1,5 +1,6 @@
+package DijkstraAlgorithm;
 /**
- * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
+ * "GraphMaker" is to automatically make Graphs
  * @author Akhier Dragonheart
  * @version 1.1.1
  */
