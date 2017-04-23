@@ -1,13 +1,26 @@
 /**
  * "Vector2D" is a class to represent a point on a 2d map and it's connections to other points
  * @author Akhier Dragonheart
- * @version 1.0
+ * @version 1.0.1
  */
 public class Vector2D {
 	public static int INFINITY = -1;
 	public int X, Y, aggregateCost;
-	public boolean deadend, visited;
+	public boolean deadend;
+	private boolean visited;
+	public boolean visited() {
+		return visited;
+	}
+	public void setVisited() {
+		totalVisited++;
+		visited = true;
+	}
+	public void resetVisited() {
+		visited = false;
+	}
+
 	private static int vectorIdCount = -1;
+	public static int totalVisited = 0;
 	public Edge edgeWithLowestCost;
 
 	private int vectorId;

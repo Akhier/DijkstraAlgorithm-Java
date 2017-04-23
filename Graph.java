@@ -1,7 +1,7 @@
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
- * @version 1.0
+ * @version 1.0.1
  */
 
 import java.util.ArrayList;
@@ -12,9 +12,17 @@ public class Graph {
 	private Vector2D sourceNode;
 	private ArrayList<Vector2D> listOfNodes;
 	private ArrayList<Edge> listOfEdges;
+	/**
+	 * getter for listOfNodes
+	 * @return ArrayList<Vector2D>
+	 */
 	public ArrayList<Vector2D> allNodes() {
 		return listOfNodes;
 	}
+	/**
+	 * getter for sourceNode
+	 * @return Vector2D
+	 */
 	public Vector2D sourceVector() {
 		return sourceNode;
 	}
@@ -31,6 +39,9 @@ public class Graph {
 		}
 	}
 
+	/**
+	 * init for Graph
+	 */
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
@@ -39,13 +50,15 @@ public class Graph {
 
 	/**
 	 * Sets all .visited to false, .aggregateCost to Vector2D.INFINITY, and .edgeWithLowestCost to null
+	 * Then sets Vector2D.totalVisited to 0
 	 */
 	private void reset() {
 		for(int i = 0; i < listOfNodes.size(); i++) {
-			listOfNodes.get(i).visited = false;
+			listOfNodes.get(i).resetVisited();
 			listOfNodes.get(i).aggregateCost = Vector2D.INFINITY;
 			listOfNodes.get(i).edgeWithLowestCost = null;
 		}
+		Vector2D.totalVisited = 0;
 	}
 
 	/**
@@ -90,21 +103,18 @@ public class Graph {
 	private ArrayList<Vector2D> getListOfVisitedNodes() {
 		ArrayList<Vector2D> listOfVisitedNodes = new ArrayList<Vector2D>();
 		for(Vector2D node : listOfNodes) {
-			if(node.visited) {
+			if(node.visited()) {
 				listOfVisitedNodes.add(node);
 			}
 		}
 		return listOfVisitedNodes;
 	}
 
-	private boolean ifMoreUnvisitedNodes() {
-		return getListOfVisitedNodes().size() < listOfNodes.size();
-	}
-
 	private PriorityQueue<Edge> getConnectedEdges(Vector2D startnode) {
 		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(int i = 0; i < listOfEdges.size(); i++) {
-			if(listOfEdges.get(i).getOtherVector(startnode) != null && !listOfEdges.get(i).getOtherVector(startnode).visited) {
+			Vector2D otherNode = listOfEdges.get(i).getOtherVector(startnode);
+			if(otherNode != null && !otherNode.visited()) {
 				connectedEdges.add(listOfEdges.get(i));
 			}
 		}
@@ -113,25 +123,31 @@ public class Graph {
 
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = sourceNode;
-		currentNode.visited = true;
+		currentNode.setVisited();
 		do {
-			Vector2D nextBestNode = null;
-			for(Vector2D visitedNode : getListOfVisitedNodes()) {
-				PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
-				while(connectedEdges.size() > 0) {
-					Edge connectedEdge = connectedEdges.remove();
-					if(connectedEdge.getOtherVector(visitedNode).aggregateCost == Vector2D.INFINITY || (visitedNode.aggregateCost + connectedEdge.cost) < connectedEdge.getOtherVector(visitedNode).aggregateCost) {
-						connectedEdge.getOtherVector(visitedNode).aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
-						connectedEdge.getOtherVector(visitedNode).edgeWithLowestCost = connectedEdge;
-					}
-					if(nextBestNode == null || connectedEdge.getOtherVector(visitedNode).aggregateCost < nextBestNode.aggregateCost) {
-						nextBestNode = connectedEdge.getOtherVector(visitedNode);
-					}
+			currentNode = getNextBestNode();
+			currentNode.setVisited();
+		} while(Vector2D.totalVisited < listOfNodes.size());
+	}
+
+	private Vector2D getNextBestNode() {
+		Vector2D nextBestNode = null;
+		for(Vector2D visitedNode : getListOfVisitedNodes()) {
+			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
+			while(connectedEdges.size() > 0) {
+				Edge connectedEdge = connectedEdges.remove();
+				Vector2D otherNode = connectedEdge.getOtherVector(visitedNode);
+				if(otherNode.aggregateCost == Vector2D.INFINITY ||
+						(visitedNode.aggregateCost + connectedEdge.cost) < otherNode.aggregateCost) {
+					otherNode.aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
+					otherNode.edgeWithLowestCost = connectedEdge;
+				}
+				if(nextBestNode == null || otherNode.aggregateCost < nextBestNode.aggregateCost) {
+					nextBestNode = otherNode;
 				}
 			}
-			currentNode = nextBestNode;
-			currentNode.visited = true;
-		} while(ifMoreUnvisitedNodes());
+		}
+		return nextBestNode;
 	}
 
 	/**

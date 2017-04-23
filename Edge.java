@@ -1,7 +1,7 @@
 /**
  * "Edge" represents a connection between one point to another including the cost of traversing this connection
  * @author Akhier Dragonheart
- * @version 1.0
+ * @version 1.0.1
  */
 
 public class Edge {
