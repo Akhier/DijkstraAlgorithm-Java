@@ -11,7 +11,6 @@ import DijkstraAlgorithm.Graph;
 
 /**
  * @author Dragonheart
- *
  */
 public class testGraph {
 	private static Vector2D a, b, c, d, e;
