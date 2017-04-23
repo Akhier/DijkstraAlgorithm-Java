@@ -97,7 +97,7 @@ public class Graph {
 		return listOfVisitedNodes;
 	}
 
-	private boolean ifMoreUnvisitedNodes1() {
+	private boolean ifMoreUnvisitedNodes() {
 		return getListOfVisitedNodes().size() < listOfNodes.size();
 	}
 
@@ -119,10 +119,9 @@ public class Graph {
 
 	private void visitAllNodes(Vector2D currentNode) {
 		do {
-			Vector2D nextBestNode = getNextBestNode();
-			currentNode = nextBestNode;
+			currentNode = getNextBestNode();
 			currentNode.visited = true;
-		} while(ifMoreUnvisitedNodes1());
+		} while(ifMoreUnvisitedNodes());
 	}
 
 	private Vector2D getNextBestNode() {
