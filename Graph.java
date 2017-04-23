@@ -114,6 +114,10 @@ public class Graph {
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = sourceNode;
 		currentNode.visited = true;
+		performCalculationForAllNodesII(currentNode);
+	}
+
+	private void performCalculationForAllNodesII(Vector2D currentNode) {
 		do {
 			Vector2D nextBestNode = null;
 			for(Vector2D visitedNode : getListOfVisitedNodes()) {
