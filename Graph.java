@@ -119,23 +119,28 @@ public class Graph {
 
 	private void performCalculationForAllNodesII(Vector2D currentNode) {
 		do {
-			Vector2D nextBestNode = null;
-			for(Vector2D visitedNode : getListOfVisitedNodes()) {
-				PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
-				while(connectedEdges.size() > 0) {
-					Edge connectedEdge = connectedEdges.remove();
-					if(connectedEdge.getOtherVector(visitedNode).aggregateCost == Vector2D.INFINITY || (visitedNode.aggregateCost + connectedEdge.cost) < connectedEdge.getOtherVector(visitedNode).aggregateCost) {
-						connectedEdge.getOtherVector(visitedNode).aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
-						connectedEdge.getOtherVector(visitedNode).edgeWithLowestCost = connectedEdge;
-					}
-					if(nextBestNode == null || connectedEdge.getOtherVector(visitedNode).aggregateCost < nextBestNode.aggregateCost) {
-						nextBestNode = connectedEdge.getOtherVector(visitedNode);
-					}
-				}
-			}
+			Vector2D nextBestNode = performCalculationForAllNodesIII();
 			currentNode = nextBestNode;
 			currentNode.visited = true;
 		} while(moreVisitedNodes());
+	}
+
+	private Vector2D performCalculationForAllNodesIII() {
+		Vector2D nextBestNode = null;
+		for(Vector2D visitedNode : getListOfVisitedNodes()) {
+			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
+			while(connectedEdges.size() > 0) {
+				Edge connectedEdge = connectedEdges.remove();
+				if(connectedEdge.getOtherVector(visitedNode).aggregateCost == Vector2D.INFINITY || (visitedNode.aggregateCost + connectedEdge.cost) < connectedEdge.getOtherVector(visitedNode).aggregateCost) {
+					connectedEdge.getOtherVector(visitedNode).aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
+					connectedEdge.getOtherVector(visitedNode).edgeWithLowestCost = connectedEdge;
+				}
+				if(nextBestNode == null || connectedEdge.getOtherVector(visitedNode).aggregateCost < nextBestNode.aggregateCost) {
+					nextBestNode = connectedEdge.getOtherVector(visitedNode);
+				}
+			}
+		}
+		return nextBestNode;
 	}
 
 	/**
