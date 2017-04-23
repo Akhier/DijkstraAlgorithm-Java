@@ -117,10 +117,6 @@ public class Graph {
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = sourceNode;
 		currentNode.setVisited();
-		visitAllNodes(currentNode);
-	}
-
-	private void visitAllNodes(Vector2D currentNode) {
 		do {
 			currentNode = getNextBestNode();
 			currentNode.setVisited();
