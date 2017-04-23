@@ -1,7 +1,7 @@
 /**
  * "Vector2D" is a class to represent a point on a 2d map and it's connections to other points
  * @author Akhier Dragonheart
- * @version 1.0.1
+ * @version 1.1.0
  */
 public class Vector2D {
 	public static int INFINITY = -1;

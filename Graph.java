@@ -1,7 +1,7 @@
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 import java.util.ArrayList;
