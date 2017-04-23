@@ -97,7 +97,7 @@ public class Graph {
 		return listOfVisitedNodes;
 	}
 
-	private boolean moreVisitedNodes() {
+	private boolean ifMoreUnvisitedNodes() {
 		return getListOfVisitedNodes().size() < listOfNodes.size();
 	}
 
@@ -131,7 +131,7 @@ public class Graph {
 			}
 			currentNode = nextBestNode;
 			currentNode.visited = true;
-		} while(moreVisitedNodes());
+		} while(ifMoreUnvisitedNodes());
 	}
 
 	/**
