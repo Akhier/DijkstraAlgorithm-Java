@@ -2,10 +2,10 @@ package DijkstraAlgorithm;
 /**
  * "Edge" represents a connection between one point to another including the cost of traversing this connection
  * @author Akhier Dragonheart
- * @version 1.1.0
+ * @version 1.2.0
  */
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
 	public Integer cost;
 	private static int edgeIdCount = -1;
 

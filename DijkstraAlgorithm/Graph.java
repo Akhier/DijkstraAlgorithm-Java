@@ -2,7 +2,7 @@ package DijkstraAlgorithm;
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 import java.util.ArrayList;
@@ -155,16 +155,12 @@ public class Graph {
 	 * @return boolean of if the calculation succeeded
 	 */
 	public boolean calculateShortestPath() {
-		boolean unreachable = false;
 		if(sourceNode == null) {
 			return false;
 		}
 		reset();
 		sourceNode.aggregateCost = 0;
 		performCalculationForAllNodes();
-		if(unreachable) {
-			return false;
-		}
 		return true;
 	}
 

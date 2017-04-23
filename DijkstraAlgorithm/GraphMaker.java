@@ -2,7 +2,7 @@ package DijkstraAlgorithm;
 /**
  * "GraphMaker" is to automatically make Graphs
  * @author Akhier Dragonheart
- * @version 1.1.1
+ * @version 1.2.0
  */
 
 public class GraphMaker {
