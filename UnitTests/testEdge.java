@@ -12,15 +12,15 @@ import DijkstraAlgorithm.Vector2D;
  */
 public class testEdge {
 	private Edge testEdge;
-	private static Vector2D a, b;
+	private static Vector2D vectorA, vectorB;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		a = new Vector2D(0, 0, false);
-		b = new Vector2D(1, 1, false);
+		vectorA = new Vector2D(0, 0, false);
+		vectorB = new Vector2D(1, 1, false);
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class testEdge {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testEdge = new Edge(a, b, 1);
+		testEdge = new Edge(vectorA, vectorB, 1);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class testEdge {
 	@Test
 	public final void testEdgeId() {
 		int firstid = testEdge.edgeId();
-		testEdge = new Edge(a, b, 1);
+		testEdge = new Edge(vectorA, vectorB, 1);
 		assertNotEquals(firstid, testEdge.edgeId());
 		assertEquals(firstid + 1, testEdge.edgeId());
 	}
@@ -47,7 +47,7 @@ public class testEdge {
 	 */
 	@Test
 	public final void testPointA() {
-		assertEquals(a.vectorId(), testEdge.pointA().vectorId());
+		assertEquals(vectorA.vectorId(), testEdge.pointA().vectorId());
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class testEdge {
 	 */
 	@Test
 	public final void testPointB() {
-		assertEquals(b.vectorId(), testEdge.pointB().vectorId());
+		assertEquals(vectorB.vectorId(), testEdge.pointB().vectorId());
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class testEdge {
 	public final void testGetOtherVector() {
 		Vector2D c = new Vector2D(5, 5, false);
 		assertNull(testEdge.getOtherVector(c));
-		assertEquals(b.vectorId(), testEdge.getOtherVector(a).vectorId());
-		assertEquals(a.vectorId(), testEdge.getOtherVector(b).vectorId());
+		assertEquals(vectorB.vectorId(), testEdge.getOtherVector(vectorA).vectorId());
+		assertEquals(vectorA.vectorId(), testEdge.getOtherVector(vectorB).vectorId());
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class testEdge {
 	 */
 	@Test
 	public final void testCompareTo() {
-		Edge otherEdge = new Edge(a, b, 1);
+		Edge otherEdge = new Edge(vectorA, vectorB, 1);
 		assertEquals(0, testEdge.compareTo(otherEdge));
 		otherEdge.cost = 2;
 		assertTrue(testEdge.compareTo(otherEdge) < 0);
