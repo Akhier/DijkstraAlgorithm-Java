@@ -99,10 +99,6 @@ public class Graph {
 		return listOfVisitedNodes;
 	}
 
-	private boolean ifMoreUnvisitedNodes() {
-		return Vector2D.totalVisited < listOfNodes.size();
-	}
-
 	private PriorityQueue<Edge> getConnectedEdges(Vector2D startnode) {
 		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(int i = 0; i < listOfEdges.size(); i++) {
@@ -120,7 +116,7 @@ public class Graph {
 		do {
 			currentNode = getNextBestNode();
 			currentNode.setVisited();
-		} while(ifMoreUnvisitedNodes());
+		} while(Vector2D.totalVisited < listOfNodes.size());
 	}
 
 	private Vector2D getNextBestNode() {
