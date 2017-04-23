@@ -97,7 +97,7 @@ public class Graph {
 		return listOfVisitedNodes;
 	}
 
-	private boolean moreVisitedNodes() {
+	private boolean moreUnvisitedNodes() {
 		return getListOfVisitedNodes().size() < listOfNodes.size();
 	}
 
@@ -114,18 +114,18 @@ public class Graph {
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = sourceNode;
 		currentNode.visited = true;
-		performCalculationForAllNodesII(currentNode);
+		visitAllNodes(currentNode);
 	}
 
-	private void performCalculationForAllNodesII(Vector2D currentNode) {
+	private void visitAllNodes(Vector2D currentNode) {
 		do {
-			Vector2D nextBestNode = performCalculationForAllNodesIII();
+			Vector2D nextBestNode = getNextBestNode();
 			currentNode = nextBestNode;
 			currentNode.visited = true;
-		} while(moreVisitedNodes());
+		} while(moreUnvisitedNodes());
 	}
 
-	private Vector2D performCalculationForAllNodesIII() {
+	private Vector2D getNextBestNode() {
 		Vector2D nextBestNode = null;
 		for(Vector2D visitedNode : getListOfVisitedNodes()) {
 			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedNode);
