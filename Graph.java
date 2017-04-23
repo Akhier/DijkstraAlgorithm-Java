@@ -104,7 +104,8 @@ public class Graph {
 	private PriorityQueue<Edge> getConnectedEdges(Vector2D startnode) {
 		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(int i = 0; i < listOfEdges.size(); i++) {
-			if(listOfEdges.get(i).getOtherVector(startnode) != null && !listOfEdges.get(i).getOtherVector(startnode).visited) {
+			Vector2D otherNode = listOfEdges.get(i).getOtherVector(startnode);
+			if(otherNode != null && !otherNode.visited) {
 				connectedEdges.add(listOfEdges.get(i));
 			}
 		}
