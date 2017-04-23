@@ -39,6 +39,7 @@ public class Graph {
 
 	/**
 	 * Sets all .visited to false, .aggregateCost to Vector2D.INFINITY, and .edgeWithLowestCost to null
+	 * Then sets Vector2D.totalVisited to 0
 	 */
 	private void reset() {
 		for(int i = 0; i < listOfNodes.size(); i++) {
