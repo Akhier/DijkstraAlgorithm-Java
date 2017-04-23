@@ -12,9 +12,17 @@ public class Graph {
 	private Vector2D sourceNode;
 	private ArrayList<Vector2D> listOfNodes;
 	private ArrayList<Edge> listOfEdges;
+	/**
+	 * getter for listOfNodes
+	 * @return ArrayList<Vector2D>
+	 */
 	public ArrayList<Vector2D> allNodes() {
 		return listOfNodes;
 	}
+	/**
+	 * getter for sourceNode
+	 * @return Vector2D
+	 */
 	public Vector2D sourceVector() {
 		return sourceNode;
 	}
@@ -31,6 +39,9 @@ public class Graph {
 		}
 	}
 
+	/**
+	 * init for Graph
+	 */
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
