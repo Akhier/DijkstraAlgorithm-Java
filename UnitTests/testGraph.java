@@ -2,7 +2,6 @@ package UnitTests;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -93,23 +92,6 @@ public class testGraph {
 		graph.addVector(a);
 		graph.sourceVector(a);
 		assertEquals(graph.sourceVector().vectorId(), a.vectorId());
-	}
-
-	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#getConnectedEdges(Vector2D)}
-	 */
-	@Test
-	public final void testGetConnectedEdgesVector2D() {
-		graph.addVector(a);
-		graph.addVector(b);
-		graph.addEdge(A);
-		PriorityQueue<Edge> temp = graph.getConnectedEdges(a);
-		assertTrue(temp.remove().compareTo(A) == 0);
-		graph.addVector(c);
-		graph.addEdge(B);
-		temp = graph.getConnectedEdges(a);
-		assertTrue(temp.remove().compareTo(A) == 0);
-		assertTrue(temp.remove().compareTo(B) == 0);
 	}
 
 	/**
