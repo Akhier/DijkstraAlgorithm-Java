@@ -5,7 +5,7 @@ package DijkstraAlgorithm;
  * @version 1.2.0
  */
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
 	public Integer cost;
 	private static int edgeIdCount = -1;
 

@@ -24,7 +24,7 @@ public class testVector2D {
 	 */
 	@Test
 	public final void testVisited() {
-		assertEquals(false, testVector.visited());
+		assertFalse(testVector.visited());
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class testVector2D {
 	@Test
 	public final void testSetVisited() {
 		testVector.setVisited();
-		assertEquals(true, testVector.visited());
+		assertTrue(testVector.visited());
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class testVector2D {
 	public final void testResetVisited() {
 		testVector.setVisited();
 		testVector.resetVisited();
-		assertEquals(false, testVector.visited());
+		assertFalse(testVector.visited());
 	}
 
 	/**

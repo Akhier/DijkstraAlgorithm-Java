@@ -43,4 +43,8 @@ public class Vector2D {
 	public String toString() {
 		return "Vector ID: " + vectorId + " X: " + X + " Y: " + Y + ";";
 	}
+
+	public boolean compareTo(Vector2D othervector) {
+		return vectorId() == othervector.vectorId();
+	}
 }

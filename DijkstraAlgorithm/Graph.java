@@ -155,16 +155,12 @@ public class Graph {
 	 * @return boolean of if the calculation succeeded
 	 */
 	public boolean calculateShortestPath() {
-		boolean unreachable = false;
 		if(sourceNode == null) {
 			return false;
 		}
 		reset();
 		sourceNode.aggregateCost = 0;
 		performCalculationForAllNodes();
-		if(unreachable) {
-			return false;
-		}
 		return true;
 	}
 
