@@ -1,6 +1,3 @@
-/**
- * 
- */
 package UnitTests;
 
 import static org.junit.Assert.*;
