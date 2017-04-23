@@ -6,8 +6,21 @@
 public class Vector2D {
 	public static int INFINITY = -1;
 	public int X, Y, aggregateCost;
-	public boolean deadend, visited;
+	public boolean deadend;
+	private boolean visited;
+	public boolean visited() {
+		return visited;
+	}
+	public void setVisited() {
+		totalVisited++;
+		visited = true;
+	}
+	public void resetVisited() {
+		visited = false;
+	}
+
 	private static int vectorIdCount = -1;
+	public static int totalVisited = 0;
 	public Edge edgeWithLowestCost;
 
 	private int vectorId;

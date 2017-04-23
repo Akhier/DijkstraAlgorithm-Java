@@ -42,10 +42,11 @@ public class Graph {
 	 */
 	private void reset() {
 		for(int i = 0; i < listOfNodes.size(); i++) {
-			listOfNodes.get(i).visited = false;
+			listOfNodes.get(i).resetVisited();
 			listOfNodes.get(i).aggregateCost = Vector2D.INFINITY;
 			listOfNodes.get(i).edgeWithLowestCost = null;
 		}
+		Vector2D.totalVisited = 0;
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class Graph {
 	private ArrayList<Vector2D> getListOfVisitedNodes() {
 		ArrayList<Vector2D> listOfVisitedNodes = new ArrayList<Vector2D>();
 		for(Vector2D node : listOfNodes) {
-			if(node.visited) {
+			if(node.visited()) {
 				listOfVisitedNodes.add(node);
 			}
 		}
@@ -98,14 +99,14 @@ public class Graph {
 	}
 
 	private boolean ifMoreUnvisitedNodes() {
-		return getListOfVisitedNodes().size() < listOfNodes.size();
+		return Vector2D.totalVisited < listOfNodes.size();
 	}
 
 	private PriorityQueue<Edge> getConnectedEdges(Vector2D startnode) {
 		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(int i = 0; i < listOfEdges.size(); i++) {
 			Vector2D otherNode = listOfEdges.get(i).getOtherVector(startnode);
-			if(otherNode != null && !otherNode.visited) {
+			if(otherNode != null && !otherNode.visited()) {
 				connectedEdges.add(listOfEdges.get(i));
 			}
 		}
@@ -114,14 +115,14 @@ public class Graph {
 
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = sourceNode;
-		currentNode.visited = true;
+		currentNode.setVisited();
 		visitAllNodes(currentNode);
 	}
 
 	private void visitAllNodes(Vector2D currentNode) {
 		do {
 			currentNode = getNextBestNode();
-			currentNode.visited = true;
+			currentNode.setVisited();
 		} while(ifMoreUnvisitedNodes());
 	}
 
