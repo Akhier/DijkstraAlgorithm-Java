@@ -133,8 +133,8 @@ public class Graph {
 				Vector2D otherNode = connectedEdge.getOtherVector(visitedNode);
 				if(otherNode.aggregateCost == Vector2D.INFINITY ||
 						(visitedNode.aggregateCost + connectedEdge.cost) < otherNode.aggregateCost) {
-					connectedEdge.getOtherVector(visitedNode).aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
-					connectedEdge.getOtherVector(visitedNode).edgeWithLowestCost = connectedEdge;
+					otherNode.aggregateCost = visitedNode.aggregateCost + connectedEdge.cost;
+					otherNode.edgeWithLowestCost = connectedEdge;
 				}
 				if(nextBestNode == null || otherNode.aggregateCost < nextBestNode.aggregateCost) {
 					nextBestNode = otherNode;
