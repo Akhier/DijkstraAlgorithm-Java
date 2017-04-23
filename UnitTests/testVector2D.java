@@ -11,7 +11,6 @@ import DijkstraAlgorithm.Vector2D;
 
 /**
  * @author Dragonheart
- *
  */
 public class testVector2D {
 	private Vector2D testVector;
