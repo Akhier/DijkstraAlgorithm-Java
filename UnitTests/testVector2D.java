@@ -1,7 +1,6 @@
 package UnitTests;
 
 import static org.junit.Assert.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import DijkstraAlgorithm.Vector2D;
@@ -18,14 +17,6 @@ public class testVector2D {
 	@Before
 	public void setUp() throws Exception {
 		testVector = new Vector2D(0, 0, true);
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		testVector = null;
 	}
 
 	/**

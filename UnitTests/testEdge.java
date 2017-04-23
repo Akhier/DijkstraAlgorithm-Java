@@ -1,8 +1,6 @@
 package UnitTests;
 
 import static org.junit.Assert.*;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,26 +26,9 @@ public class testEdge {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		a = null;
-		b = null;
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
 	public void setUp() throws Exception {
 		testEdge = new Edge(a, b, 1);
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		testEdge = null;
 	}
 
 	/**
