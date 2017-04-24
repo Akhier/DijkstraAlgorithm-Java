@@ -74,11 +74,11 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector()}.
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors()}.
 	 */
 	@Test
-	public final void testSourceVector() {
-		assertNull(graph.sourceVector());
+	public final void testSourceVectors() {
+		assertNull(graph.sourceVectors());
 	}
 
 	/**
@@ -87,10 +87,26 @@ public class testGraph {
 	@Test
 	public final void testSourceVectorVector2D() {
 		graph.sourceVector(a);
-		assertNull(graph.sourceVector());
+		assertTrue(graph.sourceVectors().isEmpty());
 		graph.addVector(a);
 		graph.sourceVector(a);
-		assertEquals(graph.sourceVector().vectorId(), a.vectorId());
+		assertEquals(graph.sourceVectors().get(0), a);
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)
+	 */
+	@Test
+	public final void testSourceVectorsArrayList() {
+		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
+		nodes.add(a);
+		nodes.add(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		assertEquals(graph.sourceVectors().get(0), a);
 	}
 
 	/**

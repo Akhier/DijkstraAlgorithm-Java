@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Graph {
-	private Vector2D sourceNode;
 	private ArrayList<Vector2D> listOfNodes, sourceNodes;
 	private ArrayList<Edge> listOfEdges;
 	/**
@@ -19,13 +18,6 @@ public class Graph {
 	 */
 	public ArrayList<Vector2D> allNodes() {
 		return listOfNodes;
-	}
-	/**
-	 * getter for sourceNode
-	 * @return Vector2D
-	 */
-	public Vector2D sourceVector() {
-		return sourceNode;
 	}
 	/**
 	 * getter for sourceNodes
@@ -39,19 +31,16 @@ public class Graph {
 	 * @param value is the Vector2D you want to calculate routes to
 	 */
 	public void sourceVector(Vector2D value) {
-		for(int i = 0; i < listOfNodes.size(); i++) {
-			if(listOfNodes.get(i) == value) {
-				sourceNode = value;
-				break;
-			}
-		}
+		ArrayList<Vector2D> temp = new ArrayList<Vector2D>();
+		temp.add(value);
+		sourceVectors(temp);
 	}
 	/**
 	 * Sets the sourceNodes were the map is calculated to travel to
 	 * @param values is a list of Vector2D
 	 */
 	public void sourceVectors(ArrayList<Vector2D> values) {
-		sourceNodes.clear();
+		sourceNodes = new ArrayList<Vector2D>();
 		for(int i = 0; i < listOfNodes.size(); i++) {
 			Vector2D node = listOfNodes.get(i);
 			if(values.contains(node)) {
@@ -67,7 +56,6 @@ public class Graph {
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
-		sourceNode = null;
 		sourceNodes = null;
 	}
 
@@ -145,8 +133,10 @@ public class Graph {
 	}
 
 	private void performCalculationForAllNodes() {
-		Vector2D currentNode = sourceNode;
-		currentNode.setVisited();
+		Vector2D currentNode = null;
+		for(Vector2D node : sourceNodes) {
+			node.setVisited();
+		}
 		do {
 			currentNode = getNextBestNode();
 			currentNode.setVisited();
@@ -177,11 +167,13 @@ public class Graph {
 	 * @return boolean of if the calculation succeeded
 	 */
 	public boolean calculateShortestPath() {
-		if(sourceNode == null) {
+		if(sourceNodes == null) {
 			return false;
 		}
 		reset();
-		sourceNode.aggregateCost = 0;
+		for(Vector2D node : sourceNodes) {
+			node.aggregateCost = 0;
+		}
 		performCalculationForAllNodes();
 		return true;
 	}
