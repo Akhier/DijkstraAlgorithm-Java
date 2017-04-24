@@ -161,6 +161,7 @@ public class testGraph {
 		nodes.add(a);
 		nodes.add(b);
 		graph.sourceVectors(nodes);
+		graph.sourceSetVectorsValue(b, 1);
 		assertTrue(graph.calculateShortestPath());
 	}
 
