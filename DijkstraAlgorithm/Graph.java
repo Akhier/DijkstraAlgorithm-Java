@@ -53,6 +53,21 @@ public class Graph {
 		sourceVectors(temp);
 	}
 	/**
+	 * Sets sourceVector to first node at (x,y)
+	 * @param x
+	 * @param y
+	 * @param value is the sources starting value
+	 */
+	public void sourceVector(int x, int y, int value) {
+		sourceNodes = new HashMap<Vector2D, Integer>();
+		for(Vector2D node : listOfNodes) {
+			if(node.X == x && node.Y == y) {
+				sourceNodes.put(node, value);
+				break;
+			}
+		}
+	}
+	/**
 	 * Sets the sourceNodes were the map is calculated to travel to
 	 * @param values is a list of Vector2D
 	 */

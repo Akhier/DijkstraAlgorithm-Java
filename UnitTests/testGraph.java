@@ -96,6 +96,20 @@ public class testGraph {
 	}
 
 	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector(int, int, int)}.
+	 */
+	@Test
+	public final void testSourceVectorXYValue() {
+		graph.sourceVector(3, 0, 1);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.sourceVector(3, 0, 1);
+		HashMap<Vector2D, Integer> sources = graph.sourceVectorMap();
+		assertTrue(sources.containsKey(a));
+		assertTrue(sources.get(a) == 1);
+	}
+
+	/**
 	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)}.
 	 */
 	@Test
