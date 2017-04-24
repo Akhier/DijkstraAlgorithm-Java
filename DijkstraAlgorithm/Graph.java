@@ -40,9 +40,6 @@ public class Graph {
 		}
 	}
 
-	/**
-	 * init for Graph
-	 */
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
