@@ -46,7 +46,7 @@ public class Graph {
 	 * @param values is a list of Vector2D
 	 */
 	public void sourceVectors(ArrayList<Vector2D> values) {
-		sourceNodes = new ArrayList<Vector2D>();
+		sourceNodes = new HashMap<Vector2D, Integer>();
 		for(int i = 0; i < listOfNodes.size(); i++) {
 			Vector2D node = listOfNodes.get(i);
 			if(values.contains(node)) {
