@@ -19,14 +19,14 @@ public class testGraphMaker {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		map = new boolean[7][];
-		map[0] = new boolean[]{true, true, false, true, true, true, true};
-		map[1] = new boolean[]{false, true, false, false, true, false, true};
-		map[2] = new boolean[]{true, true, true, false, true, false, true};
-		map[3] = new boolean[]{true, false, true, false, true, false, true};
-		map[4] = new boolean[]{true, false, true, true, true, false, true};
-		map[5] = new boolean[]{true, true, true, false, false, true, true};
-		map[6] = new boolean[]{false, false, false, false, false, false, true};
+		map = new boolean[7][7];
+		map[0][0] = true; map[1][0] = true; map[2][0] = false; map[3][0] = true; map[4][0] = true; map[5][0] = true; map[6][0] = true;
+		map[0][1] = false; map[1][1] = true; map[2][1] = false; map[3][1] = false; map[4][1] = true; map[5][1] = false; map[6][1] = true;
+		map[0][2] = true; map[1][2] = true; map[2][2] = true; map[3][2] = false; map[4][2] = true; map[5][2] = false; map[6][2] = true;
+		map[0][3] = true; map[1][3] = false; map[2][3] = true; map[3][3] = false; map[4][3] = true; map[5][3] = false; map[6][3] = true;
+		map[0][4] = true; map[1][4] = false; map[2][4] = true; map[3][4] = true; map[4][4] = true; map[5][4] = false; map[6][4] = true;
+		map[0][5] = true; map[1][5] = true; map[2][5] = true; map[3][5] = false; map[4][5] = false; map[5][5] = true; map[6][5] = true;
+		map[0][6] = false; map[1][6] = false; map[2][6] = false; map[3][6] = false; map[4][6] = false; map[5][6] = false; map[6][6] = true;
 	}
 
 	/**
