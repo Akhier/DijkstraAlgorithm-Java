@@ -24,6 +24,13 @@ public class Graph {
 	}
 	/**
 	 * getter for sourceNodes
+	 * @return HashMap<Vector2D, Integer>
+	 */
+	public HashMap<Vector2D, Integer> sourceVectorMap() {
+		return sourceNodes;
+	}
+	/**
+	 * getter for sourceNodes keys
 	 * @return ArrayList<Vector2D>
 	 */
 	public ArrayList<Vector2D> sourceVectors() {
@@ -77,6 +84,16 @@ public class Graph {
 			if(values.isEmpty()) {
 				break;
 			}
+		}
+	}
+	/**
+	 * Sets the value for a sourceNode
+	 * @param node is a Vector2D you want to set the value for
+	 * @param value is the value to set node to
+	 */
+	public void sourceSetVectorsValue(Vector2D node, Integer value) {
+		if(sourceNodes.containsKey(node)) {
+			sourceNodes.put(node, value);
 		}
 	}
 
