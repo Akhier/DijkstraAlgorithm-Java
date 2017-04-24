@@ -2,16 +2,18 @@ package DijkstraAlgorithm;
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
- * @version 1.2.0
+ * @version 1.2.2
  */
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Graph {
-	private Vector2D sourceNode;
 	private ArrayList<Vector2D> listOfNodes;
+	private HashMap<Vector2D, Integer> sourceNodes;
 	private ArrayList<Edge> listOfEdges;
 	/**
 	 * getter for listOfNodes
@@ -21,29 +23,84 @@ public class Graph {
 		return listOfNodes;
 	}
 	/**
-	 * getter for sourceNode
-	 * @return Vector2D
+	 * getter for sourceNodes
+	 * @return HashMap<Vector2D, Integer>
 	 */
-	public Vector2D sourceVector() {
-		return sourceNode;
+	public HashMap<Vector2D, Integer> sourceVectorMap() {
+		return sourceNodes;
+	}
+	/**
+	 * getter for sourceNodes keys
+	 * @return ArrayList<Vector2D>
+	 */
+	public ArrayList<Vector2D> sourceVectors() {
+		if(sourceNodes == null) {
+			return null;
+		}
+		ArrayList<Vector2D> output = new ArrayList<Vector2D>();
+		for(Vector2D key : sourceNodes.keySet()) {
+			output.add(key);
+		}
+		return output;
 	}
 	/**
 	 * Sets the sourceNode which is were the map is calculated to travel to
 	 * @param value is the Vector2D you want to calculate routes to
 	 */
 	public void sourceVector(Vector2D value) {
+		ArrayList<Vector2D> temp = new ArrayList<Vector2D>();
+		temp.add(value);
+		sourceVectors(temp);
+	}
+	/**
+	 * Sets the sourceNodes were the map is calculated to travel to
+	 * @param values is a list of Vector2D
+	 */
+	public void sourceVectors(ArrayList<Vector2D> values) {
+		sourceNodes = new HashMap<Vector2D, Integer>();
 		for(int i = 0; i < listOfNodes.size(); i++) {
-			if(listOfNodes.get(i) == value) {
-				sourceNode = value;
+			Vector2D node = listOfNodes.get(i);
+			if(values.contains(node)) {
+				sourceNodes.put(node, 0);
+				values.remove(node);
+			}
+			if(values.isEmpty()) {
 				break;
 			}
+		}
+	}
+	/**
+	 * Sets the sourceNodes and starting values were the map is calculated to travel to
+	 * @param values is a HashMap<Vector2D, Integer>
+	 */
+	public void sourceVectors(HashMap<Vector2D, Integer> values) {
+		sourceNodes = new HashMap<Vector2D, Integer>();
+		for(int i = 0; i < listOfNodes.size(); i++) {
+			Vector2D node = listOfNodes.get(i);
+			if(values.containsKey(node)) {
+				sourceNodes.put(node, values.get(node));
+				values.remove(node);
+			}
+			if(values.isEmpty()) {
+				break;
+			}
+		}
+	}
+	/**
+	 * Sets the value for a sourceNode
+	 * @param node is a Vector2D you want to set the value for
+	 * @param value is the value to set node to
+	 */
+	public void sourceSetVectorsValue(Vector2D node, Integer value) {
+		if(sourceNodes.containsKey(node)) {
+			sourceNodes.put(node, value);
 		}
 	}
 
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
-		sourceNode = null;
+		sourceNodes = null;
 	}
 
 	/**
@@ -120,8 +177,10 @@ public class Graph {
 	}
 
 	private void performCalculationForAllNodes() {
-		Vector2D currentNode = sourceNode;
-		currentNode.setVisited();
+		Vector2D currentNode = null;
+		for(Vector2D node : sourceNodes.keySet()) {
+			node.setVisited();
+		}
 		do {
 			currentNode = getNextBestNode();
 			currentNode.setVisited();
@@ -152,11 +211,13 @@ public class Graph {
 	 * @return boolean of if the calculation succeeded
 	 */
 	public boolean calculateShortestPath() {
-		if(sourceNode == null) {
+		if(sourceNodes == null) {
 			return false;
 		}
 		reset();
-		sourceNode.aggregateCost = 0;
+		for(Map.Entry<Vector2D, Integer> node : sourceNodes.entrySet()) {
+			node.getKey().aggregateCost = node.getValue();
+		}
 		performCalculationForAllNodes();
 		return true;
 	}

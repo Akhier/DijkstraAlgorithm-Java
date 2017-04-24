@@ -2,6 +2,8 @@ package UnitTests;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -74,11 +76,11 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector()}.
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors()}.
 	 */
 	@Test
-	public final void testSourceVector() {
-		assertNull(graph.sourceVector());
+	public final void testSourceVectors() {
+		assertNull(graph.sourceVectors());
 	}
 
 	/**
@@ -87,10 +89,45 @@ public class testGraph {
 	@Test
 	public final void testSourceVectorVector2D() {
 		graph.sourceVector(a);
-		assertNull(graph.sourceVector());
+		assertTrue(graph.sourceVectors().isEmpty());
 		graph.addVector(a);
 		graph.sourceVector(a);
-		assertEquals(graph.sourceVector().vectorId(), a.vectorId());
+		assertEquals(graph.sourceVectors().get(0), a);
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)}.
+	 */
+	@Test
+	public final void testSourceVectorsArrayList() {
+		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
+		nodes.add(a);
+		nodes.add(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().contains(a));
+		assertTrue(graph.sourceVectors().contains(b));
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(java.util.HashMap)}.
+	 */
+	@Test
+	public final void testSourceVectorsHashMap() {
+		HashMap<Vector2D, Integer> nodes = new HashMap<Vector2D, Integer>();
+		nodes.put(a, 0);
+		nodes.put(b, 1);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		HashMap<Vector2D, Integer> sources = graph.sourceVectorMap();
+		assertTrue(sources.get(a) == 0);
+		assertTrue(sources.get(b) == 1);
 	}
 
 	/**
@@ -106,6 +143,25 @@ public class testGraph {
 		assertTrue(graph.calculateShortestPath());
 		graph.addVector(c);
 		graph.addEdge(B);
+		assertTrue(graph.calculateShortestPath());
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#calculateShortestPath()}.
+	 */
+	@Test
+	public final void testCalculateShortestPathWithMultipleSources() {
+		assertFalse(graph.calculateShortestPath());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.addVector(c);
+		graph.addEdge(A);
+		graph.addEdge(B);
+		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
+		nodes.add(a);
+		nodes.add(b);
+		graph.sourceVectors(nodes);
+		graph.sourceSetVectorsValue(b, 1);
 		assertTrue(graph.calculateShortestPath());
 	}
 
