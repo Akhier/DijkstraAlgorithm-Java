@@ -140,7 +140,7 @@ public class Graph {
 
 	private void performCalculationForAllNodes() {
 		Vector2D currentNode = null;
-		for(Vector2D node : sourceNodes) {
+		for(Vector2D node : sourceNodes.keySet()) {
 			node.setVisited();
 		}
 		do {
