@@ -96,6 +96,20 @@ public class testGraph {
 	}
 
 	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector(int, int, int)}.
+	 */
+	@Test
+	public final void testSourceVectorXYValue() {
+		graph.sourceVector(3, 0, 1);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.sourceVector(3, 0, 1);
+		HashMap<Vector2D, Integer> sources = graph.sourceVectorMap();
+		assertTrue(sources.containsKey(a));
+		assertTrue(sources.get(a) == 1);
+	}
+
+	/**
 	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)}.
 	 */
 	@Test
@@ -103,6 +117,24 @@ public class testGraph {
 		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
 		nodes.add(a);
 		nodes.add(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().contains(a));
+		assertTrue(graph.sourceVectors().contains(b));
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(int[][])}.
+	 */
+	@Test
+	public final void testSourceVectorsIntArray() {
+		int[][] nodes = new int[][]{{0, 0}};
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		nodes = new int[][]{{3, 0, 1}, {0, 3, 1}};
 		graph.sourceVectors(nodes);
 		assertTrue(graph.sourceVectors().isEmpty());
 		graph.addVector(a);
