@@ -2,7 +2,7 @@ package DijkstraAlgorithm;
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart
- * @version 1.2.1
+ * @version 1.2.2
  */
 
 import java.util.ArrayList;
