@@ -62,6 +62,23 @@ public class Graph {
 			}
 		}
 	}
+	/**
+	 * Sets the sourceNodes and starting values were the map is calculated to travel to
+	 * @param values is a HashMap<Vector2D, Integer>
+	 */
+	public void sourceVectors(HashMap<Vector2D, Integer> values) {
+		sourceNodes = new HashMap<Vector2D, Integer>();
+		for(int i = 0; i < listOfNodes.size(); i++) {
+			Vector2D node = listOfNodes.get(i);
+			if(values.containsKey(node)) {
+				sourceNodes.put(node, values.get(node));
+				values.remove(node);
+			}
+			if(values.isEmpty()) {
+				break;
+			}
+		}
+	}
 
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
