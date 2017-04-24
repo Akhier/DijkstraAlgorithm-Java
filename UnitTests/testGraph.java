@@ -125,8 +125,9 @@ public class testGraph {
 		graph.addVector(a);
 		graph.addVector(b);
 		graph.sourceVectors(nodes);
-		assertTrue(graph.sourceVectors().contains(a));
-		assertTrue(graph.sourceVectors().contains(b));
+		HashMap<Vector2D, Integer> sources = graph.sourceVectorMap();
+		assertTrue(sources.get(a) == 0);
+		assertTrue(sources.get(b) == 1);
 	}
 
 	/**
