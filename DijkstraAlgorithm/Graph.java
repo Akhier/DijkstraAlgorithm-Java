@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
 
 public class Graph {
 	private Vector2D sourceNode;
-	private ArrayList<Vector2D> listOfNodes;
+	private ArrayList<Vector2D> listOfNodes, sourceNodes;
 	private ArrayList<Edge> listOfEdges;
 	/**
 	 * getter for listOfNodes
@@ -28,6 +28,13 @@ public class Graph {
 		return sourceNode;
 	}
 	/**
+	 * getter for sourceNodes
+	 * @return ArrayList<Vector2D>
+	 */
+	public ArrayList<Vector2D> sourceVectors() {
+		return sourceNodes;
+	}
+	/**
 	 * Sets the sourceNode which is were the map is calculated to travel to
 	 * @param value is the Vector2D you want to calculate routes to
 	 */
@@ -39,11 +46,29 @@ public class Graph {
 			}
 		}
 	}
+	/**
+	 * Sets the sourceNodes were the map is calculated to travel to
+	 * @param values is a list of Vector2D
+	 */
+	public void sourceVectors(ArrayList<Vector2D> values) {
+		sourceNodes.clear();
+		for(int i = 0; i < listOfNodes.size(); i++) {
+			Vector2D node = listOfNodes.get(i);
+			if(values.contains(node)) {
+				sourceNodes.add(node);
+				values.remove(node);
+			}
+			if(values.isEmpty()) {
+				break;
+			}
+		}
+	}
 
 	public Graph() {
 		listOfEdges = new ArrayList<Edge>();
 		listOfNodes = new ArrayList<Vector2D>();
 		sourceNode = null;
+		sourceNodes = null;
 	}
 
 	/**
