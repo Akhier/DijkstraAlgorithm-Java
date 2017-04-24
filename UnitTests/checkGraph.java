@@ -40,10 +40,14 @@ public class checkGraph {
 		graph2.calculateShortestPath();
 		int[][] test = new int[7][7];
 		int[][] test2 = new int[7][7];
+		int[][] test3 = new int[7][7];
+		int[][] test4 = new int[7][7];
 		for(int y = 0; y < 7; y++) {
 			for(int x = 0; x < 7; x++) {
 				test[x][y] = -1;
 				test2[x][y] = -1;
+				test3[x][y] = -1;
+				test4[x][y] = -1;
 			}
 		}
 		for(Vector2D node : nodes) {
@@ -52,7 +56,23 @@ public class checkGraph {
 		for(Vector2D node2 : nodes2) {
 			test2[node2.X][node2.Y] = node2.aggregateCost;
 		}
-		System.out.printf("┌──┬──┬──┬──┬──┬──┬──┐   ┌──┬──┬──┬──┬──┬──┬──┐\n");
+		ArrayList<Vector2D> sources = new ArrayList<Vector2D>();
+		sources.add(nodes.get(0));
+		sources.add(nodes.get(nodes.size() - 1));
+		graph.sourceVectors(sources);
+		graph.calculateShortestPath();
+		for(Vector2D node : nodes) {
+			test3[node.X][node.Y] = node.aggregateCost;
+		}
+		sources = new ArrayList<Vector2D>();
+		sources.add(nodes2.get(0));
+		sources.add(nodes2.get(nodes2.size() - 1));
+		graph2.sourceVectors(sources);
+		graph2.calculateShortestPath();
+		for(Vector2D node : nodes2) {
+			test4[node.X][node.Y] = node.aggregateCost;
+		}
+		System.out.printf("┌──┬──┬──┬──┬──┬──┬──┐   ┌──┬──┬──┬──┬──┬──┬──┐   ┌──┬──┬──┬──┬──┬──┬──┐   ┌──┬──┬──┬──┬──┬──┬──┐\n");
 		for(int y = 0; y < 7; y++) {
 			System.out.printf("│");
 			for(int x = 0; x < 7; x++) {
@@ -70,10 +90,26 @@ public class checkGraph {
 					System.out.printf("%2d│", test2[x][y]);
 				}
 			}
+			System.out.printf("   │");
+			for(int x = 0; x < 7; x++) {
+				if(test3[x][y] == -1) {
+					System.out.printf("▓▓│");
+				} else {
+					System.out.printf("%2d│", test3[x][y]);
+				}
+			}
+			System.out.printf("   │");
+			for(int x = 0; x < 7; x++) {
+				if(test4[x][y] == -1) {
+					System.out.printf("▓▓│");
+				} else {
+					System.out.printf("%2d│", test4[x][y]);
+				}
+			}
 			if(y < 6) {
-				System.out.printf("\n├──┼──┼──┼──┼──┼──┼──┤   ├──┼──┼──┼──┼──┼──┼──┤\n");
+				System.out.printf("\n├──┼──┼──┼──┼──┼──┼──┤   ├──┼──┼──┼──┼──┼──┼──┤   ├──┼──┼──┼──┼──┼──┼──┤   ├──┼──┼──┼──┼──┼──┼──┤\n");
 			} else {
-				System.out.printf("\n└──┴──┴──┴──┴──┴──┴──┘   └──┴──┴──┴──┴──┴──┴──┘\n");
+				System.out.printf("\n└──┴──┴──┴──┴──┴──┴──┘   └──┴──┴──┴──┴──┴──┴──┘   └──┴──┴──┴──┴──┴──┴──┘   └──┴──┴──┴──┴──┴──┴──┘\n");
 			}
 		}
 	}
