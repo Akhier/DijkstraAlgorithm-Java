@@ -10,7 +10,8 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Graph {
-	private ArrayList<Vector2D> listOfNodes, sourceNodes;
+	private ArrayList<Vector2D> listOfNodes;
+	private ArrayList<Vector2D> sourceNodes;
 	private ArrayList<Edge> listOfEdges;
 	/**
 	 * getter for listOfNodes
