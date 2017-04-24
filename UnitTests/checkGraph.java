@@ -1,6 +1,8 @@
 package UnitTests;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 import DijkstraAlgorithm.Graph;
@@ -56,18 +58,18 @@ public class checkGraph {
 		for(Vector2D node2 : nodes2) {
 			test2[node2.X][node2.Y] = node2.aggregateCost;
 		}
-		ArrayList<Vector2D> sources = new ArrayList<Vector2D>();
-		sources.add(nodes.get(0));
-		sources.add(nodes.get(nodes.size() - 1));
+		HashMap<Vector2D, Integer> sources = new HashMap<Vector2D, Integer>();
+		sources.put(nodes.get(0), 0);
+		sources.put(nodes.get(nodes.size() - 1), 3);
 		graph.sourceVectors(sources);
 		graph.calculateShortestPath();
 		for(Vector2D node : nodes) {
 			test3[node.X][node.Y] = node.aggregateCost;
 		}
-		sources = new ArrayList<Vector2D>();
-		sources.add(nodes2.get(0));
-		sources.add(nodes2.get(nodes2.size() - 1));
-		graph2.sourceVectors(sources);
+		ArrayList<Vector2D> sources2 = new ArrayList<Vector2D>();
+		sources2.add(nodes2.get(0));
+		sources2.add(nodes2.get(nodes2.size() - 1));
+		graph2.sourceVectors(sources2);
 		graph2.calculateShortestPath();
 		for(Vector2D node : nodes2) {
 			test4[node.X][node.Y] = node.aggregateCost;
