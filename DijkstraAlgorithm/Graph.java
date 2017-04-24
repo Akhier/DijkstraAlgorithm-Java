@@ -27,6 +27,9 @@ public class Graph {
 	 * @return ArrayList<Vector2D>
 	 */
 	public ArrayList<Vector2D> sourceVectors() {
+		if(sourceNodes == null) {
+			return null;
+		}
 		ArrayList<Vector2D> output = new ArrayList<Vector2D>();
 		for(Vector2D key : sourceNodes.keySet()) {
 			output.add(key);
