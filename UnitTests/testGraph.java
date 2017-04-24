@@ -2,6 +2,8 @@ package UnitTests;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -94,13 +96,30 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)}.
 	 */
 	@Test
 	public final void testSourceVectorsArrayList() {
 		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
 		nodes.add(a);
 		nodes.add(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().contains(a));
+		assertTrue(graph.sourceVectors().contains(b));
+	}
+
+	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(java.util.HashMap)}.
+	 */
+	@Test
+	public final void testSourceVectorsHashMap() {
+		HashMap<Vector2D, Integer> nodes = new HashMap<Vector2D, Integer>();
+		nodes.put(a, 0);
+		nodes.put(b, 1);
 		graph.sourceVectors(nodes);
 		assertTrue(graph.sourceVectors().isEmpty());
 		graph.addVector(a);
