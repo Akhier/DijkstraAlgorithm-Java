@@ -8,6 +8,7 @@ package DijkstraAlgorithm;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Graph {
@@ -177,8 +178,8 @@ public class Graph {
 			return false;
 		}
 		reset();
-		for(Vector2D node : sourceNodes) {
-			node.aggregateCost = 0;
+		for(Map.Entry<Vector2D, Integer> node : sourceNodes.entrySet()) {
+			node.getKey().aggregateCost = node.getValue();
 		}
 		performCalculationForAllNodes();
 		return true;
