@@ -50,7 +50,7 @@ public class Graph {
 		for(int i = 0; i < listOfNodes.size(); i++) {
 			Vector2D node = listOfNodes.get(i);
 			if(values.contains(node)) {
-				sourceNodes.add(node);
+				sourceNodes.put(node, 0);
 				values.remove(node);
 			}
 			if(values.isEmpty()) {
