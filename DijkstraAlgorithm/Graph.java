@@ -7,11 +7,12 @@ package DijkstraAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class Graph {
 	private ArrayList<Vector2D> listOfNodes;
-	private ArrayList<Vector2D> sourceNodes;
+	private HashMap<Vector2D, Integer> sourceNodes;
 	private ArrayList<Edge> listOfEdges;
 	/**
 	 * getter for listOfNodes
@@ -25,7 +26,11 @@ public class Graph {
 	 * @return ArrayList<Vector2D>
 	 */
 	public ArrayList<Vector2D> sourceVectors() {
-		return sourceNodes;
+		ArrayList<Vector2D> output = new ArrayList<Vector2D>();
+		for(Vector2D key : sourceNodes.keySet()) {
+			output.add(key);
+		}
+		return output;
 	}
 	/**
 	 * Sets the sourceNode which is were the map is calculated to travel to
