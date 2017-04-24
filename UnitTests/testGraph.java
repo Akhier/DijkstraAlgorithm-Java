@@ -126,6 +126,24 @@ public class testGraph {
 	}
 
 	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#calculateShortestPath()}.
+	 */
+	@Test
+	public final void testCalculateShortestPathWithMultipleSources() {
+		assertFalse(graph.calculateShortestPath());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.addVector(c);
+		graph.addEdge(A);
+		graph.addEdge(B);
+		ArrayList<Vector2D> nodes = new ArrayList<Vector2D>();
+		nodes.add(a);
+		nodes.add(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.calculateShortestPath());
+	}
+
+	/**
 	 * Test method for {@link DijkstraAlgorithm.Graph#retrieveShortestPath(DijkstraAlgorithm.Vector2D)}.
 	 */
 	@Test
