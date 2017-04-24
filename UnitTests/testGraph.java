@@ -127,6 +127,24 @@ public class testGraph {
 	}
 
 	/**
+	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(int[][])}.
+	 */
+	@Test
+	public final void testSourceVectorsIntArray() {
+		int[][] nodes = new int[][]{{0, 0}};
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		nodes = new int[][]{{3, 0, 1}, {0, 3, 1}};
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().isEmpty());
+		graph.addVector(a);
+		graph.addVector(b);
+		graph.sourceVectors(nodes);
+		assertTrue(graph.sourceVectors().contains(a));
+		assertTrue(graph.sourceVectors().contains(b));
+	}
+
+	/**
 	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(java.util.HashMap)}.
 	 */
 	@Test
