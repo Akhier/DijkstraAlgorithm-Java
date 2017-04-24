@@ -106,7 +106,8 @@ public class testGraph {
 		graph.addVector(a);
 		graph.addVector(b);
 		graph.sourceVectors(nodes);
-		assertEquals(graph.sourceVectors().get(0), a);
+		assertTrue(graph.sourceVectors().contains(a));
+		assertTrue(graph.sourceVectors().contains(b));
 	}
 
 	/**
