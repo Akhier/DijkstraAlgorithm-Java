@@ -3,6 +3,9 @@
 .metadata
 bin/
 tmp/
+gen/
+build/
+obj/
 *.tmp
 *.bak
 *.swp
@@ -50,6 +53,11 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+# Android Studio
+*.iml
+.idea
+.gradle
 
 ### Java ###
 *.class
