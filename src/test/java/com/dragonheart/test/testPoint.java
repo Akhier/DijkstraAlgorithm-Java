@@ -18,7 +18,7 @@ public class testPoint {
 	 * Test method for {@link com.dragonheart.dijkstra.Point#pointId}
 	 */
 	@Test
-	public final void testIdIncrement() {
+	public final void testPointIdIncrement() {
 		assertTrue(a.pointId == b.pointId - 1);
 	}
 
