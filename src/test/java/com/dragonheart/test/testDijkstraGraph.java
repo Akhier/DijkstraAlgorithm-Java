@@ -53,13 +53,13 @@ public class testDijkstraGraph {
 
 	@Test
 	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
-		graph.setSourceNode(a);
+		graph.setSource(a, 0.0);
 		assertTrue(graph.processGraph());
 	}
 
 	@Test
 	public final void testGetPathFrom_WithSingleSourceNode() {
-		graph.setSourceNode(e);
+		graph.setSource(e, 0.0);
 		graph.processGraph();
 		ArrayList<Point> path = graph.getPathFrom(a);
 		assertTrue(path.get(0) == a);
@@ -73,7 +73,7 @@ public class testDijkstraGraph {
 		ArrayList<Point> nodes = new ArrayList<Point>();
 		nodes.add(e);
 		nodes.add(f);
-		graph.setSourceNodes(nodes);
+		graph.setSources(nodes, 0.0);
 		graph.processGraph();
 		ArrayList<Point> path = graph.getPathFrom(a);
 		assertTrue(path.get(0) == a);
