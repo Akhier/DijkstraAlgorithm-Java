@@ -36,7 +36,7 @@ public class testPoint {
 	 * Test method for {@link com.dragonheart.dijkstra.Point#compareTo(Point)}
 	 */
 	@Test
-	public final void testCompareTo() {
+	public final void testPointCompareTo() {
 		assertTrue(a.compareTo(a) == 0);
 		assertTrue(a.compareTo(b) < 0);
 		assertTrue(b.compareTo(a) > 0);
