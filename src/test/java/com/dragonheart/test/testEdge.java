@@ -20,18 +20,18 @@ public class testEdge {
 
 	@Test
 	public final void testEdgeIdIncrement() {
-		asserTrue(A.edgeId == B.edgeId - 1);
+		assertTrue(A.edgeId == B.edgeId - 1);
 	}
 
 	@Test
-	public final void testOtherEdge_WhenGivenPointNotOnEdge_ReturnNull() {
+	public final void testOtherPoint_WhenGivenPointNotOnEdge_ReturnNull() {
 		Point c = new Point(0, 0);
-		assertNull(A.otherEdge(c));
+		assertNull(A.otherPoint(c));
 	}
 
 	@Test
-	public final void testOtherEdge_ReturnOtherEdge() {
-		assertTrue(A.otherEdge(a) == b);
+	public final void testOtherPoint_ReturnOtherEdge() {
+		assertTrue(A.otherPoint(a) == b);
 	}
 
 	@Test
