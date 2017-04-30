@@ -13,6 +13,16 @@ public class Edge implements Comparable<Edge>{
 		this.edgeId = ++edgeIdCount;
 	}
 
+	public Point otherPoint(Point basepoint) {
+		if(basepoint == A) {
+			return B;
+		} else if (basepoint == B) {
+			return A;
+		} else {
+			return null;
+		}
+	}
+
 	@Override
 	public int compareTo(Edge otheredge) {
 		return cost.compareTo(otheredge.cost);
