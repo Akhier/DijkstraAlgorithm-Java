@@ -7,8 +7,16 @@ public class DijkstraGraph {
 	private ArrayList<Point> listOfPoints, sourceNodes;
 
 	public DijkstraGraph() {
-		listOfEdges = new ArrayList<Edge>();
-		listOfPoints = new ArrayList<Point>();
-		sourceNodes = new ArrayList<Point>();
+		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfPoints = new ArrayList<Point>();
+		this.sourceNodes = new ArrayList<Point>();
+	}
+
+	public void addPoint(Point point) {
+		listOfPoints.add(point);
+	}
+
+	public void addEdge(Edge edge) {
+		listOfEdges.add(edge);
 	}
 }
