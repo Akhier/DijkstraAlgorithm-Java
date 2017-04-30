@@ -33,4 +33,11 @@ public class testEdge {
 	public final void testOtherEdge_ReturnOtherEdge() {
 		assertTrue(A.otherEdge(a) == b);
 	}
+
+	@Test
+	public final void testEdgeCompareTo() {
+		assertTrue(A.compareTo(A) == 0);
+		assertTrue(A.compareTo(B) < 0);
+		assertTrue(B.compareTo(A) > 0);
+	}
 }
