@@ -35,3 +35,4 @@ This could be bad from a performance stand point.
 * Aggregate Cost as a Double
 * toString override
 * compareTo override
+* edgeWithLowestCost

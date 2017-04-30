@@ -10,6 +10,7 @@ public class Point implements Comparable<Point>{
 	public final int pointId;
 	public static int TotalVisited = 0;
 	private static int pointIdCount = -1;
+	public Edge edgeWithLowestCost;
 	private boolean visited;
 	public boolean isVisited() {
 		return visited;
@@ -29,6 +30,7 @@ public class Point implements Comparable<Point>{
 		this.aggregateCost = null;
 		this.pointId = ++pointIdCount;
 		this.visited = false;
+		this.edgeWithLowestCost = null;
 	}
 
 	public Point(int x, int y) {
