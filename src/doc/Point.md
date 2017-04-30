@@ -24,6 +24,11 @@ Minor changes to note is that the Id will be final.
 Also the compareTo will actual be the proper use of it.
 Anyway what this class needs is as follows.
 
+While building the tests I realized I could finally make the costs be Doubles.
+This way you can have the diagonal movement cost 1.2 instead of multiplying all costs by 10 to make it 12.
+Also it will be Doubles not doubles so it can be null and you can have negative numbers.
+This could be bad from a performance stand point.
+
 * An ID
 * X, Y, and Z
 * Count of total visited
