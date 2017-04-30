@@ -32,6 +32,6 @@ This could be bad from a performance stand point.
 * An ID
 * X, Y, and Z
 * Count of total visited
-* Aggregate Cost
+* Aggregate Cost as a Double
 * toString override
 * compareTo override
