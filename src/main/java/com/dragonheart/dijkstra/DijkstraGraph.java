@@ -1,6 +1,7 @@
 package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -109,5 +110,19 @@ public class DijkstraGraph {
 		performCalculationForAllPoints();
 		Point.TotalVisited = 0;
 		return true;
+	}
+
+	public List<Point> getPathFrom(Point targetpoint) {
+		ArrayList<Point> shortestPath = new ArrayList<Point>();
+		if(targetpoint != null) {
+			Point currentPoint = targetpoint;
+			shortestPath.add(currentPoint);
+			while(currentPoint.edgeWithLowestCost != null) {
+				currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
+				shortestPath.add(currentPoint);
+			}
+		}
+		Collections.reverse(shortestPath);
+		return shortestPath;
 	}
 }
