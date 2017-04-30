@@ -2,17 +2,15 @@ plugins {
     id 'java'
 }
 
+defaultTasks 'clean', 'build'
+
+version = '3.0.3'
+group = 'com.dragonheart'
+
 repositories {
     mavenCentral()
     jcenter()
 }
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-group = 'com.akhier.djikstra'
-version = '0.1'
-
 
 dependencies {
     testCompile 'junit:junit:4.12'
