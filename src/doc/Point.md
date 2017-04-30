@@ -1,4 +1,4 @@
-#### Point Class (original Vector2D)
+#### Point Class (originaly Vector2D)
 
 The only thing this actually has to do is store an aggregate cost and if it was visited.
 To allow for an easier use though this class from what I have seen generally ends up with things like the (x,y) coords and an Id.
