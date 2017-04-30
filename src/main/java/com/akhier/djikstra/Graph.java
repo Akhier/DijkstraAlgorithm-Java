@@ -1,4 +1,4 @@
-package DijkstraAlgorithm;
+package com.akhier.djikstra;
 /**
  * "Graph" is the actual Dijkstra map combined with the logic to calculate the path
  * @author Akhier Dragonheart

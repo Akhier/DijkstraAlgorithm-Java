@@ -1,12 +1,9 @@
-package UnitTests;
+package com.akhier.djikstra;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import DijkstraAlgorithm.Graph;
-import DijkstraAlgorithm.GraphMaker;
-import DijkstraAlgorithm.Vector2D;
 
 /**
  * @author Dragonheart
@@ -30,7 +27,7 @@ public class testGraphMaker {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.GraphMaker#rectangularMap(boolean[][], int, int)}.
+	 * Test method for {@link com.akhier.djikstra.GraphMaker#rectangularMap(boolean[][], int, int)}.
 	 */
 	@Test
 	public final void testRectangularMap() {

@@ -1,4 +1,4 @@
-package DijkstraAlgorithm;
+package com.akhier.djikstra;
 /**
  * "Edge" represents a connection between one point to another including the cost of traversing this connection
  * @author Akhier Dragonheart

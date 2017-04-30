@@ -1,4 +1,4 @@
-package DijkstraAlgorithm;
+package com.akhier.djikstra;
 /**
  * "GraphMaker" is to automatically make Graphs
  * @author Akhier Dragonheart
