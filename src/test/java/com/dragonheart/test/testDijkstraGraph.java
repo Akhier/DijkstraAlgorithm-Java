@@ -74,7 +74,7 @@ public class testDijkstraGraph {
 		nodes.add(e);
 		nodes.add(f);
 		graph.setSourceNodes(nodes);
-		graph.processGraph()
+		graph.processGraph();
 		ArrayList<Point> path = graph.getPathFrom(a);
 		assertTrue(path.get(0) == a);
 		assertTrue(path.get(1) == b);
