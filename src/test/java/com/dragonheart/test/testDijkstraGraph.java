@@ -1,6 +1,7 @@
 package com.dragonheart.test;
 
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import com.dragonheart.dijkstra.Point;
@@ -48,7 +49,18 @@ public class testDijkstraGraph {
 
 	@Test
 	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
-		graph.sourceNodes.add(a);
+		graph.setSourceNode(a);
 		assertTrue(graph.processGraph());
+	}
+
+	@Test
+	public final void testGetPathFrom_WithSingleSourceNode() {
+		graph.setSourceNode(e);
+		graph.processGraph();
+		ArrayList<Point> path = graph.getPathFrom(a);
+		assertTrue(path.get(0) == a);
+		assertTrue(path.get(1) == b);
+		assertTrue(path.get(2) == c);
+		assertTrue(path.get(3) == e);
 	}
 }
