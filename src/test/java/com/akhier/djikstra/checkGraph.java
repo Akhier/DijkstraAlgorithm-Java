@@ -1,13 +1,10 @@
-package UnitTests;
+package com.akhier.djikstra;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
-import DijkstraAlgorithm.Graph;
-import DijkstraAlgorithm.GraphMaker;
-import DijkstraAlgorithm.Vector2D;
 
 /**
  * @author Dragonheart

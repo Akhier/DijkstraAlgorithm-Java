@@ -1,4 +1,4 @@
-package DijkstraAlgorithm;
+package com.akhier.djikstra;
 /**
  * "Vector2D" is a class to represent a point on a 2d map and it's connections to other points
  * @author Akhier Dragonheart

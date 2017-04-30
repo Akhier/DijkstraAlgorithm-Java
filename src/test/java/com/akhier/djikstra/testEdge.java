@@ -1,11 +1,10 @@
-package UnitTests;
+package com.akhier.djikstra;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import DijkstraAlgorithm.Edge;
-import DijkstraAlgorithm.Vector2D;
+
 
 /**
  * @author Dragonheart
@@ -32,7 +31,7 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Edge#edgeId()}.
+	 * Test method for {@link Edge#edgeId()}.
 	 */
 	@Test
 	public final void testEdgeId() {
@@ -43,7 +42,7 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Edge#pointA()}.
+	 * Test method for {@link Edge#pointA()}.
 	 */
 	@Test
 	public final void testPointA() {
@@ -51,7 +50,7 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Edge#pointB()}.
+	 * Test method for {@link Edge#pointB()}.
 	 */
 	@Test
 	public final void testPointB() {
@@ -59,7 +58,7 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Edge#getOtherVector(DijkstraAlgorithm.Vector2D)}.
+	 * Test method for {@link Edge#getOtherVector(Vector2D)}.
 	 */
 	@Test
 	public final void testGetOtherVector() {
@@ -70,7 +69,7 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Edge#compareTo(DijkstraAlgorithm.Edge)}.
+	 * Test method for {@link Edge#compareTo(Edge)}.
 	 */
 	@Test
 	public final void testCompareTo() {

@@ -1,4 +1,4 @@
-package UnitTests;
+package com.akhier.djikstra;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
@@ -7,9 +7,6 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import DijkstraAlgorithm.Vector2D;
-import DijkstraAlgorithm.Edge;
-import DijkstraAlgorithm.Graph;
 
 /**
  * @author Dragonheart
@@ -47,7 +44,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#allNodes()}.
+	 * Test method for {@link Graph#allNodes()}.
 	 */
 	@Test
 	public final void testAllNodes() {
@@ -57,7 +54,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#addVector(DijkstraAlgorithm.Vector2D)}.
+	 * Test method for {@link Graph#addVector(Vector2D)}.
 	 */
 	@Test
 	public final void testAddVectorVector2D() {
@@ -66,7 +63,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#addVector(int, int, boolean)}.
+	 * Test method for {@link Graph#addVector(int, int, boolean)}.
 	 */
 	@Test
 	public final void testAddVectorIntIntBoolean() {
@@ -76,7 +73,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors()}.
+	 * Test method for {@link Graph#sourceVectors()}.
 	 */
 	@Test
 	public final void testSourceVectors() {
@@ -84,7 +81,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector(DijkstraAlgorithm.Vector2D)}.
+	 * Test method for {@link Graph#sourceVector(Vector2D)}.
 	 */
 	@Test
 	public final void testSourceVectorVector2D() {
@@ -96,7 +93,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVector(int, int, int)}.
+	 * Test method for {@link Graph#sourceVector(int, int, int)}.
 	 */
 	@Test
 	public final void testSourceVectorXYValue() {
@@ -110,7 +107,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(ArrayList)}.
+	 * Test method for {@link Graph#sourceVectors(ArrayList)}.
 	 */
 	@Test
 	public final void testSourceVectorsArrayList() {
@@ -127,7 +124,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(int[][])}.
+	 * Test method for {@link Graph#sourceVectors(int[][])}.
 	 */
 	@Test
 	public final void testSourceVectorsIntArray() {
@@ -145,7 +142,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#sourceVectors(java.util.HashMap)}.
+	 * Test method for {@link Graph#sourceVectors(java.util.HashMap)}.
 	 */
 	@Test
 	public final void testSourceVectorsHashMap() {
@@ -163,7 +160,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#calculateShortestPath()}.
+	 * Test method for {@link Graph#calculateShortestPath()}.
 	 */
 	@Test
 	public final void testCalculateShortestPath() {
@@ -179,7 +176,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#calculateShortestPath()}.
+	 * Test method for {@link Graph#calculateShortestPath()}.
 	 */
 	@Test
 	public final void testCalculateShortestPathWithMultipleSources() {
@@ -198,7 +195,7 @@ public class testGraph {
 	}
 
 	/**
-	 * Test method for {@link DijkstraAlgorithm.Graph#retrieveShortestPath(DijkstraAlgorithm.Vector2D)}.
+	 * Test method for {@link Graph#retrieveShortestPath(Vector2D)}.
 	 */
 	@Test
 	public final void testRetrieveShortestPath() {
