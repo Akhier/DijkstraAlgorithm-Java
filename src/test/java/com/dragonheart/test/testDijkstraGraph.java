@@ -42,8 +42,7 @@ public class testDijkstraGraph {
 	}
 
 	@Test
-	public final void test() {
-		fail("Not yet implemented"); // TODO
+	public final void testProcessGraph_WhenNoSourcesNodes_ReturnFalse() {
+		assertFalse(graph.processGraph);
 	}
-
 }
