@@ -14,8 +14,8 @@ public class testEdge {
 	public void setUp() throws Exception {
 		a = new Point(0, 0);
 		b = new Point(1, 1);
-		A = new Edge(a, b, 1);
-		B = new Edge(a, b, 2);
+		A = new Edge(a, b, 1.0);
+		B = new Edge(a, b, 2.0);
 	}
 
 	@Test
