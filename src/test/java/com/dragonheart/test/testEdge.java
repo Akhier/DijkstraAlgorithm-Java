@@ -28,4 +28,9 @@ public class testEdge {
 		Point c = new Point(0, 0);
 		assertNull(A.otherEdge(c));
 	}
+
+	@Test
+	public final void testOtherEdge_ReturnOtherEdge() {
+		assertTrue(A.otherEdge(a) == b);
+	}
 }
