@@ -2,6 +2,7 @@ package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class DijkstraGraph {
 	private ArrayList<Edge> listOfEdges;
@@ -42,6 +43,47 @@ public class DijkstraGraph {
 	public void setSources(List<Point> points, Double cost) {
 		sourcePoints = new ArrayList<Point>();
 		addSources(points, cost);
+	}
+
+	private List<Point> getListOfVisitedPoints() {
+		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
+		for(Point point : listOfPoints) {
+			if(point.isVisited()) {
+				listOfVisitedPoints.add(point);
+			}
+		}
+		return listOfVisitedPoints;
+	}
+
+	private PriorityQueue<Edge> getConnectedEdges(Point startpoint) {
+		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
+		for(Edge edge : listOfEdges) {
+			Point otherPoint = edge.getOtherPoint(startpoint);
+			if(otherPoint != null && !otherPoint.isVisited()) {
+				connectedEdges.add(edge);
+			}
+		}
+		return connectedEdges;
+	}
+
+	private Point getNextBestPoint() {
+		Point nextBestPoint = null;
+		for(Point visitedPoint : getListOfVisitedPoints()) {
+			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedPoint);
+			while(connectedEdges.size() > 0) {
+				Edge connectedEdge = connectedEdges.remove();
+				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
+				if(otherPoint.aggregateCost == null ||
+						(visitedPoint.aggregateCost + connectedEdge.cost) < otherPoint.aggregateCost) {
+					otherPoint.aggregateCost = visitedPoint.aggregateCost + connectedEdge.cost;
+					otherPoint.edgeWithLowestCost = connectedEdge;
+				}
+				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {
+					nextBestPoint = otherPoint;
+				}
+			}
+		}
+		return nextBestPoint;
 	}
 
 	private void performCalculationForAllPoints() {
