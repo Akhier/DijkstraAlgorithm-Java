@@ -1,5 +1,9 @@
 package com.dragonheart.dijkstra;
 
+/**
+ * "Edge" is a class made to represent the connection between 2 nodes in a dijkstra map
+ * @author Akhier Dragonheart
+ */
 public class Edge implements Comparable<Edge>{
 	public Point A, B;
 	public Double cost;
@@ -13,6 +17,11 @@ public class Edge implements Comparable<Edge>{
 		this.edgeId = ++edgeIdCount;
 	}
 
+	/**
+	 * Returns the other Point on the Edge or null if given a Point not on the Edge
+	 * @param basepoint
+	 * @return either null if given a Point not on the Edge or the other Point of the given one
+	 */
 	public Point otherPoint(Point basepoint) {
 		if(basepoint == A) {
 			return B;
