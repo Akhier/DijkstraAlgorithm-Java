@@ -48,7 +48,12 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
-		
+		for(Point point : listOfPoints) {
+			point.resetVisited();
+			point.aggregateCost = null;
+			point.edgeWithLowestCost = null;
+		}
+		Point.TotalVisited = 0;
 		return true;
 	}
 }
