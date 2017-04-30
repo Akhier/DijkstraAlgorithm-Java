@@ -22,4 +22,10 @@ public class testEdge {
 	public final void testEdgeIdIncrement() {
 		asserTrue(A.edgeId == B.edgeId - 1);
 	}
+
+	@Test
+	public final void testOtherEdge_WhenGivenPointNotOnEdge_ReturnNull() {
+		Point c = new Point(0, 0);
+		assertNull(A.otherEdge(c));
+	}
 }
