@@ -43,6 +43,12 @@ public class testDijkstraGraph {
 
 	@Test
 	public final void testProcessGraph_WhenNoSourcesNodes_ReturnFalse() {
-		assertFalse(graph.processGraph);
+		assertFalse(graph.processGraph());
+	}
+
+	@Test
+	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
+		graph.sourceNodes.add(a);
+		assertTrue(graph.processGraph());
 	}
 }
