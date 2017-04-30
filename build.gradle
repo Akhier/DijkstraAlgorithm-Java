@@ -1,5 +1,10 @@
 apply plugin: 'java-library'
 
+defaultTasks 'clean', 'build'
+
+version = '3.0.0'
+group = 'com.dragonheart'
+
 repositories {
     jcenter()
 }
@@ -7,5 +12,3 @@ repositories {
 dependencies {
     testImplementation 'junit:junit:4.12'
 }
-
-defaultTasks 'clean', 'build'
