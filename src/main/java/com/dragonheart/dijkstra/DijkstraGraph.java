@@ -126,7 +126,6 @@ public class DijkstraGraph {
 				shortestPath.add(currentPoint);
 			}
 		}
-		Collections.reverse(shortestPath);
 		return shortestPath;
 	}
 }
