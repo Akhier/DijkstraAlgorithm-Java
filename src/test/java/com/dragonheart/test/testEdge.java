@@ -27,20 +27,20 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Edge#otherPoint(Point)}
+	 * Test method for {@link com.dragonheart.dijkstra.Edge#getOtherPoint(Point)}
 	 */
 	@Test
 	public final void testOtherPoint_WhenGivenPointNotOnEdge_ReturnNull() {
 		Point c = new Point(0, 0);
-		assertNull(A.otherPoint(c));
+		assertNull(A.getOtherPoint(c));
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Edge#otherPoint(Point)}
+	 * Test method for {@link com.dragonheart.dijkstra.Edge#getOtherPoint(Point)}
 	 */
 	@Test
 	public final void testOtherPoint_ReturnOtherEdge() {
-		assertTrue(A.otherPoint(a) == b);
+		assertTrue(A.getOtherPoint(a) == b);
 	}
 
 	/**

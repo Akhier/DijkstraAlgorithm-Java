@@ -22,7 +22,7 @@ public class Edge implements Comparable<Edge>{
 	 * @param basepoint
 	 * @return either null if given a Point not on the Edge or the other Point of the given one
 	 */
-	public Point otherPoint(Point basepoint) {
+	public Point getOtherPoint(Point basepoint) {
 		if(basepoint == A) {
 			return B;
 		} else if (basepoint == B) {
