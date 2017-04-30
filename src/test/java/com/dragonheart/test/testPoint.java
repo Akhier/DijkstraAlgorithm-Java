@@ -10,8 +10,8 @@ public class testPoint {
 
 	@Before
 	public void setUp() throws Exception {
-		a = new Point(0, 0, 0.0);
-		b = new Point(0, 0, 1.0);
+		a = new Point(0, 0);
+		b = new Point(0, 0);
 	}
 
 	/**
@@ -37,6 +37,8 @@ public class testPoint {
 	 */
 	@Test
 	public final void testPointCompareTo() {
+		a.aggregateCost = 0.0;
+		b.aggregateCost = 1.0;
 		assertTrue(a.compareTo(a) == 0);
 		assertTrue(a.compareTo(b) < 0);
 		assertTrue(b.compareTo(a) > 0);

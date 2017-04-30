@@ -22,25 +22,17 @@ public class Point implements Comparable<Point>{
 		visited = false;
 	}
 
-	public Point(int x, int y, int z, Double cost) {
+	public Point(int x, int y, int z) {
 		this.X = x;
 		this.Y = y;
 		this.Z = z;
-		this.aggregateCost = cost;
+		this.aggregateCost = null;
 		this.pointId = ++pointIdCount;
 		this.visited = false;
 	}
 
-	public Point(int x, int y, int z) {
-		this(x, y, z, null);
-	}
-
-	public Point(int x, int y, Double cost) {
-		this(x, y, 0, cost);
-	}
-
 	public Point(int x, int y) {
-		this(x, y, 0, null);
+		this(x, y, 0);
 	}
 
 	@Override
