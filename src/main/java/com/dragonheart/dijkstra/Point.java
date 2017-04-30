@@ -3,10 +3,7 @@ package com.dragonheart.dijkstra;
 public class Point implements Comparable<Point>{
 	public final int X, Y, Z;
 	public Double aggregateCost;
-	private final int Id;
-	public int pointId() {
-		return Id;
-	}
+	public final int pointId;
 	public static int TotalVisited = 0;
 	private static int pointIdCount = -1;
 	private boolean visited;
@@ -26,7 +23,7 @@ public class Point implements Comparable<Point>{
 		this.Y = y;
 		this.Z = z;
 		this.aggregateCost = cost;
-		this.Id = ++pointIdCount;
+		this.pointId = ++pointIdCount;
 		this.visited = false;
 	}
 
@@ -49,6 +46,6 @@ public class Point implements Comparable<Point>{
 
 	@Override
 	public String toString() {
-		return String.format("Point Id: %d, X: %d, Y: %d, Z: %d, Aggregate Cost: %f, Total Visited: %d;", pointId(), X, Y, Z, aggregateCost, TotalVisited);
+		return String.format("Point Id: %d, X: %d, Y: %d, Z: %d, Aggregate Cost: %f, Total Visited: %d;", pointId, X, Y, Z, aggregateCost, TotalVisited);
 	}
 }

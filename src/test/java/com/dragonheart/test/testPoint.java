@@ -16,7 +16,7 @@ public class testPoint {
 
 	@Test
 	public final void testIdIncrement() {
-		assertTrue(a.pointId() == b.pointId() - 1);
+		assertTrue(a.pointId == b.pointId - 1);
 	}
 
 	@Test
