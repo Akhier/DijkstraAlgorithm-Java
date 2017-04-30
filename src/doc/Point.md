@@ -1,8 +1,8 @@
-#### Point Class (originaly Vector2D)
+#### Point Class (originally Vector2D)
 
 The only thing this actually has to do is store an aggregate cost and if it was visited.
 To allow for an easier use though this class from what I have seen generally ends up with things like the (x,y) coords and an Id.
-One of the things I did add before this startover was a static count of how many had been visited.
+One of the things I did add before this start over was a static count of how many had been visited.
 This was to allow an easier check on if there were more to visit.
 
 One of the things about this class that has bugged me is what to call it.
