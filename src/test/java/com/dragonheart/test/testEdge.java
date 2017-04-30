@@ -20,6 +20,6 @@ public class testEdge {
 
 	@Test
 	public final void testEdgeIdIncrement() {
-		adderTrue(A.edgeId == B.edgeId - 1);
+		asserTrue(A.edgeId == B.edgeId - 1);
 	}
 }
