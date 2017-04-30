@@ -44,6 +44,17 @@ public class DijkstraGraph {
 		addSources(points, cost);
 	}
 
+	private void performCalculationForAllPoints() {
+		for(Point point : sourcePoints) {
+			point.setVisited();
+		}
+		Point currentPoint = null;
+		do {
+			currentPoint = getNextBestPoint();
+			currentPoint.setVisited();
+		} while(Point.TotalVisited < listOfPoints.size());
+	}
+
 	public boolean processGraph() {
 		if(sourcePoints.isEmpty()) {
 			return false;
@@ -53,6 +64,7 @@ public class DijkstraGraph {
 			point.aggregateCost = null;
 			point.edgeWithLowestCost = null;
 		}
+		performCalculationForAllPoints();
 		Point.TotalVisited = 0;
 		return true;
 	}
