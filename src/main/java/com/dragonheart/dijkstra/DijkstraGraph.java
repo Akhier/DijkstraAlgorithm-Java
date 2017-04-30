@@ -43,4 +43,12 @@ public class DijkstraGraph {
 		sourcePoints = new ArrayList<Point>();
 		addSources(points, cost);
 	}
+
+	public boolean processGraph() {
+		if(sourcePoints.isEmpty()) {
+			return false;
+		}
+		
+		return true;
+	}
 }
