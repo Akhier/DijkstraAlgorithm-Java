@@ -22,6 +22,11 @@ public class DijkstraGraph {
 		listOfEdges.add(edge);
 	}
 
+	/**
+	 * Add a Point onto the list of sources with a starting cost
+	 * @param point is a Point that is the source you want to add
+	 * @param cost is a Double with what this source starts at
+	 */
 	public void addSource(Point point, Double cost) {
 		if(listOfPoints.contains(point)) {
 			point.aggregateCost = cost;
@@ -29,17 +34,32 @@ public class DijkstraGraph {
 		}
 	}
 
+	/**
+	 * Add a list of Points to the list of sources all with the specified starting cost
+	 * @param points is a List<Point> containing the points you want to add to your sources
+	 * @param cost is a Double with what these sources start at
+	 */
 	public void addSources(List<Point> points, Double cost) {
 		for(Point point : points) {
 			addSource(point, cost);
 		}
 	}
 
+	/**
+	 * Sets your source Points to this Point and cost
+	 * @param point is the Point that is the source you want
+	 * @param cost is a Double with what this source starts at
+	 */
 	public void setSource(Point point, Double cost) {
 		sourcePoints = new ArrayList<Point>();
 		addSource(point, cost);
 	}
 
+	/**
+	 * Sets your source Points to these Points and cost
+	 * @param points is a List<Point> containing the points you want to set your sources to
+	 * @param cost is a Double with what these sources start at
+	 */
 	public void setSources(List<Point> points, Double cost) {
 		sourcePoints = new ArrayList<Point>();
 		addSources(points, cost);
@@ -106,6 +126,10 @@ public class DijkstraGraph {
 		} while(Point.TotalVisited < listOfPoints.size());
 	}
 
+	/**
+	 * processes the whole graph
+	 * @return If no sourcePoints return false, otherwise return true
+	 */
 	public boolean processGraph() {
 		if(sourcePoints.isEmpty()) {
 			return false;
@@ -115,6 +139,11 @@ public class DijkstraGraph {
 		return true;
 	}
 
+	/**
+	 * Gets the path from the target to the closest source
+	 * @param targetpoint is the Point you want the path to go from
+	 * @return List<Point> with the path to the closest source
+	 */
 	public List<Point> getPathFrom(Point targetpoint) {
 		ArrayList<Point> shortestPath = new ArrayList<Point>();
 		if(targetpoint != null) {

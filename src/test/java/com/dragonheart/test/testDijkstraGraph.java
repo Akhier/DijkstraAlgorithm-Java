@@ -47,17 +47,26 @@ public class testDijkstraGraph {
 		graph.addEdge(H);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 */
 	@Test
 	public final void testProcessGraph_WhenNoSourcesNodes_ReturnFalse() {
 		assertFalse(graph.processGraph());
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 */
 	@Test
 	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
 		graph.setSource(a, 0.0);
 		assertTrue(graph.processGraph());
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(Point)}
+	 */
 	@Test
 	public final void testGetPathFrom_WithSingleSourceNode() {
 		graph.setSource(e, 0.0);
@@ -69,6 +78,9 @@ public class testDijkstraGraph {
 		assertTrue(path.get(3) == e);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(Point)}
+	 */
 	@Test
 	public final void testGetPathFrom_WithMultipleSourceNodes() {
 		ArrayList<Point> nodes = new ArrayList<Point>();
