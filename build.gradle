@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 
 defaultTasks 'clean', 'build'
 
-version = '3.0.0'
+version = '3.0.1'
 group = 'com.dragonheart'
 
 repositories {

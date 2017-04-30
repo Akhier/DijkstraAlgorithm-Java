@@ -1,5 +1,9 @@
 package com.dragonheart.dijkstra;
 
+/**
+ * "Point" is a class made to represent a node on a dijkstra map
+ * @author Akhier Dragonheart
+ */
 public class Point implements Comparable<Point>{
 	public final int X, Y, Z;
 	public Double aggregateCost;

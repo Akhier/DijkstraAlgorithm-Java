@@ -14,11 +14,17 @@ public class testPoint {
 		b = new Point(0, 0, 1.0);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.Point#pointId}
+	 */
 	@Test
 	public final void testIdIncrement() {
 		assertTrue(a.pointId == b.pointId - 1);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.Point#TotalVisited}
+	 */
 	@Test
 	public final void testTotalVisited() {
 		int temp = Point.TotalVisited;
@@ -26,6 +32,9 @@ public class testPoint {
 		assertTrue(temp == Point.TotalVisited - 1);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.Point#compareTo(Point)}
+	 */
 	@Test
 	public final void testCompareTo() {
 		assertTrue(a.compareTo(a) == 0);
