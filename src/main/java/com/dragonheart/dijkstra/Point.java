@@ -1,9 +1,9 @@
 package com.dragonheart.dijkstra;
 
 public class Point implements Comparable<Point>{
-	public int X, Y, Z;
+	public final int X, Y, Z;
 	public Double aggregateCost;
-	final private int Id;
+	private final int Id;
 	public int pointId() {
 		return Id;
 	}
