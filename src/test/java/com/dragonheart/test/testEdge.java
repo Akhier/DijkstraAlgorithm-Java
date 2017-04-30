@@ -19,7 +19,7 @@ public class testEdge {
 	}
 
 	@Test
-	public final void test() {
-		fail("Not yet implemented"); // TODO
+	public final void testEdgeIdIncrement() {
+		adderTrue(A.edgeId == B.edgeId - 1);
 	}
 }
