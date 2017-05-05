@@ -84,6 +84,9 @@ public class testDijkstraGraph {
 		graph.processGraph();
 		graph.processGraph(1.0);
 		List<Point> path = graph.getPathFrom(a);
+		for(Point p : path) {
+			System.out.println(p);
+		}
 		assertTrue(path.get(0).aggregateCost == 6);
 	}
 

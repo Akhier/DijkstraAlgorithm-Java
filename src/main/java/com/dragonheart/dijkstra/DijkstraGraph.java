@@ -140,6 +140,30 @@ public class DijkstraGraph {
 	}
 
 	/**
+	 * processes the whole graph while keeping any pre-existing aggregateCosts
+	 * @param multiplierforaggregatecosts will be a value that the aggregateCost of all points will be multiplied by
+	 * @return If no sourcePoints return false, otherwise return true
+	 */
+	public boolean processGraph(double multiplierforaggregatecosts) {
+		if(sourcePoints.isEmpty()) {
+			return false;
+		}
+		for(Point point : listOfPoints) {
+			point.resetVisited();
+			point.edgeWithLowestCost = null;
+		}
+		for(Point point : sourcePoints) {
+			point.setVisited();
+		}
+		for(Point point : listOfPoints) {
+			point.aggregateCost = point.aggregateCost * multiplierforaggregatecosts;
+		}
+		performCalculationForAllPoints();
+		Point.TotalVisited = 0;
+		return true;
+	}
+
+	/**
 	 * Gets the path from the target to the closest source
 	 * @param targetpoint is the Point you want the path to go from
 	 * @return List<Point> with the path to the closest source
