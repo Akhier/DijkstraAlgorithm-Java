@@ -82,6 +82,7 @@ public class testDijkstraGraph {
 	public final void testProcessGraph_StackingResults() {
 		graph.setSource(e, 0.0);
 		graph.processGraph();
+		System.out.println("---");
 		graph.processGraph(1.0);
 		List<Point> path = graph.getPathFrom(a);
 		for(Point p : path) {

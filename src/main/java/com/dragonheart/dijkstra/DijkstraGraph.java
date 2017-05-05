@@ -93,8 +93,10 @@ public class DijkstraGraph {
 			while(connectedEdges.size() > 0) {
 				Edge connectedEdge = connectedEdges.remove();
 				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
+				System.out.println("vP" + visitedPoint.aggregateCost + " + cE" + connectedEdge.cost + " = " + (visitedPoint.aggregateCost + connectedEdge.cost) + " < oP" + otherPoint.aggregateCost);
 				if(otherPoint.aggregateCost == null ||
 						(visitedPoint.aggregateCost + connectedEdge.cost) < otherPoint.aggregateCost) {
+					System.out.println("TEST");
 					otherPoint.aggregateCost = visitedPoint.aggregateCost + connectedEdge.cost;
 					otherPoint.edgeWithLowestCost = connectedEdge;
 				}
