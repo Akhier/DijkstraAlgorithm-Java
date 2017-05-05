@@ -65,6 +65,17 @@ public class testDijkstraGraph {
 	}
 
 	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 */
+	@Test
+	public final void testProcessGraph_BasicResults() {
+		graph.setSource(e, 0.0);
+		graph.processGraph();
+		List<Point> path = graph.getPathFrom(a);
+		assertTrue(path.get(0).aggregateCost == 3);
+	}
+
+	/**
 	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(Point)}
 	 */
 	@Test
