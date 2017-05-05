@@ -80,11 +80,11 @@ public class testDijkstraGraph {
 	 */
 	@Test
 	public final void testProcessGraph_StackingResults() {
-		graph.setSource(e, 0.0);
+		graph.setSource(a, 0.0);
 		graph.processGraph();
 		System.out.println("---");
-		graph.processGraph(1.0);
-		List<Point> path = graph.getPathFrom(a);
+		graph.processGraph(2.0);
+		List<Point> path = graph.getPathFrom(f);
 		for(Point p : path) {
 			System.out.println(p);
 		}
