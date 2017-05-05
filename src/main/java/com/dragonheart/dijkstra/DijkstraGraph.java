@@ -107,18 +107,6 @@ public class DijkstraGraph {
 	}
 
 	private void performCalculationForAllPoints() {
-		for(Point point : listOfPoints) {
-			point.resetVisited();
-			point.edgeWithLowestCost = null;
-		}
-		for(Point point : sourcePoints) {
-			point.setVisited();
-		}
-		for(Point point : listOfPoints) {
-			if(!point.isVisited()) {
-				point.aggregateCost = null;
-			}
-		}
 		Point currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
@@ -133,6 +121,18 @@ public class DijkstraGraph {
 	public boolean processGraph() {
 		if(sourcePoints.isEmpty()) {
 			return false;
+		}
+		for(Point point : listOfPoints) {
+			point.resetVisited();
+			point.edgeWithLowestCost = null;
+		}
+		for(Point point : sourcePoints) {
+			point.setVisited();
+		}
+		for(Point point : listOfPoints) {
+			if(!point.isVisited()) {
+				point.aggregateCost = null;
+			}
 		}
 		performCalculationForAllPoints();
 		Point.TotalVisited = 0;
