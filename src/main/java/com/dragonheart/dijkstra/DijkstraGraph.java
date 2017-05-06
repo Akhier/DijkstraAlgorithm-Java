@@ -46,6 +46,15 @@ public class DijkstraGraph {
 	}
 
 	/**
+	 * Sets your source Points to this Point
+	 * @param point is the Point that is the source you want
+	 */
+	public void setSource(Point point) {
+		sourcePoints = new ArrayList<Point>();
+		addSource(point, point.aggregateCost);
+	}
+
+	/**
 	 * Sets your source Points to this Point and cost
 	 * @param point is the Point that is the source you want
 	 * @param cost is a Double with what this source starts at
