@@ -1,11 +1,14 @@
 package com.dragonheart.test;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.dragonheart.dijkstra.DijkstraGraph;
+import com.dragonheart.dijkstra.*;
 
-public class testDijkstraGraphFactory {
+public class testDijkstraGraphFrom2DBoolArray {
 	private boolean[][] boolMap;
 
 	@Before
@@ -23,10 +26,30 @@ public class testDijkstraGraphFactory {
 
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
-		DijkstraGraph graph = dijkstraMapFrom2DBoolArray(boolMap, 1.0);
-		graph.setSource(0, 0, 0.0);
+		DijkstraGraph graph = dijkstraGraphFrom2DBoolArray(boolMap, 1.0);
+		graph.setSource(6, 6, 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(6, 6);
+		List<Point> path = graph.getPathFrom(0, 0);
+		Point temp = path.get(1);
+		assertTrue(temp.X == 1 && temp.Y == 0);
+		temp = path.get(2);
+		assertTrue(temp.X == 1 && temp.Y == 1);
+		temp = path.get(path.size() - 2);
+		assertTrue(temp.X == 6 && temp.Y == 5);
+	}
+
+	@Test
+	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
+		DijkstraGraph graph = dijkstraGraphFrom2DBoolArray(boolMap, 1.0, 1.0);
+		graph.setSource(6, 6, 0.0);
+		graph.processGraph();
+		List<Point> path = graph.getPathFrom(0, 0);
+		Point temp = path.get(1);
+		assertTrue(temp.X == 1 && temp.Y == 0);
+		temp = path.get(2);
+		assertTrue(temp.X == 2 && temp.Y == 2);
+		temp = path.get(path.size() - 2);
+		assertTrue(temp.X == 5 && temp.Y == 5);
 	}
 
 }
