@@ -159,6 +159,7 @@ public class DijkstraGraph {
 		}
 		Point.TotalVisited = 0;
 		for(Point point : listOfPoints) {
+			point.edgeWithLowestCost = null;
 			point.resetVisited();
 			if(sourcePoints.contains(point)) {
 				point.setVisited();
