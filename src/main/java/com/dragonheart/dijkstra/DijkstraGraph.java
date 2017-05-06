@@ -182,19 +182,6 @@ public class DijkstraGraph {
 		if(targetpoint != null) {
 			Point currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
-			while(currentPoint.edgeWithLowestCost != null) {
-				currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
-				shortestPath.add(currentPoint);
-			}
-		}
-		return shortestPath;
-	}
-
-	public List<Point> getPathFrom(Point targetpoint, boolean nomatterwhat) {
-		ArrayList<Point> shortestPath = new ArrayList<Point>();
-		if(targetpoint != null) {
-			Point currentPoint = targetpoint;
-			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
 				if(currentPoint.edgeWithLowestCost != null) {
 					currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
