@@ -79,16 +79,37 @@ public class testDijkstraGraph {
 	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
 	 */
 	@Test
-	public final void testProcessGraph_StackingResults() {
-		graph.setSource(a, 0.0);
-		graph.processGraph();
-		System.out.println("---");
-		graph.processGraph(2.0);
-		List<Point> path = graph.getPathFrom(f);
-		for(Point p : path) {
-			System.out.println(p);
+	public final void testProcessGraph_GenericFleeResults() {
+		graph = new DijkstraGraph();
+		int width = 7, height = 7;
+		Point[][] points = new Point[width][height];
+		for(int y = 0; y < height; y++) {
+			for(int x = 0; x < width; x++) {
+				points[x][y] = new Point(x, y);
+				graph.addPoint(points[x][y]);
+				if(x != 0) { graph.addEdge(new Edge(points[x][y], points[x - 1][y], 1.0)); }
+				if(y != 0) { graph.addEdge(new Edge(points[x][y], points[x][y - 1], 1.0)); }
+				if(x != 0 && y != 0) {
+					graph.addEdge(new Edge(points[x][y], points[x - 1][y - 1], 1.2));
+				}
+				if(x != width - 1 && y != 0) {
+					graph.addEdge(new Edge(points[x][y], points[x + 1][y - 1], 1.2));
+				}
+			}
 		}
-		assertTrue(path.get(0).aggregateCost == 6);
+		graph.setSource(points[width - 1][0], 0.0);
+		graph.processGraph();
+		graph.setSource(points[0][0]);
+		graph.processGraph(-1.2);
+		int x = 6, y = 6;
+		List<Point> path = graph.getPathFrom(points[width - 1][height - 1]);
+		for(Point p : path) {
+			assertTrue(p.X == x-- && p.Y == y);
+			if(x < 0) {
+				x = 0;
+				y--;
+			}
+		}
 	}
 
 	/**
