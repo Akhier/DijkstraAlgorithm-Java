@@ -25,6 +25,8 @@ public class testDijkstraGraphFactory {
 	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
 		DijkstraGraph graph = dijkstraMapFrom2DBoolArray(boolMap, 1.0);
 		graph.setSource(0, 0, 0.0);
+		graph.processGraph();
+		List<Point> path = graph.getPathFrom(6, 6);
 	}
 
 }
