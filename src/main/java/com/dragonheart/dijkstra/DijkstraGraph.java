@@ -191,36 +191,35 @@ public class DijkstraGraph {
 	}
 
 	public List<Point> getPathFrom(Point targetpoint, boolean nomatterwhat) {
-		if (!nomatterwhat) {
-			return getPathFrom(targetpoint);
-		}
 		ArrayList<Point> shortestPath = new ArrayList<Point>();
-		Point currentPoint = targetpoint;
-		shortestPath.add(currentPoint);
-		while(!sourcePoints.contains(currentPoint)) {
-			if(currentPoint.edgeWithLowestCost != null) {
-				currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
-				shortestPath.add(currentPoint);
-			} else {
-				ArrayList<Point> connectedPoints = new ArrayList<Point>();
-				for(Edge edge : listOfEdges) {
-					Point otherPoint = edge.getOtherPoint(currentPoint);
-					if(otherPoint != null && !shortestPath.contains(otherPoint)) {
-						connectedPoints.add(otherPoint);
+		if(targetpoint != null) {
+			Point currentPoint = targetpoint;
+			shortestPath.add(currentPoint);
+			while(!sourcePoints.contains(currentPoint)) {
+				if(currentPoint.edgeWithLowestCost != null) {
+					currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
+					shortestPath.add(currentPoint);
+				} else {
+					ArrayList<Point> connectedPoints = new ArrayList<Point>();
+					for(Edge edge : listOfEdges) {
+						Point otherPoint = edge.getOtherPoint(currentPoint);
+						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
+							connectedPoints.add(otherPoint);
+						}
 					}
-				}
-				if(connectedPoints.isEmpty()) {
-					break;
-				}
-				Point newPoint = connectedPoints.get(0);
-				connectedPoints.remove(0);
-				for(Point point : connectedPoints) {
-					if(point.aggregateCost < newPoint.aggregateCost) {
-						newPoint = point;
+					if(connectedPoints.isEmpty()) {
+						break;
 					}
+					Point newPoint = connectedPoints.get(0);
+					connectedPoints.remove(0);
+					for(Point point : connectedPoints) {
+						if(point.aggregateCost < newPoint.aggregateCost) {
+							newPoint = point;
+						}
+					}
+					currentPoint = newPoint;
+					shortestPath.add(currentPoint);
 				}
-				currentPoint = newPoint;
-				shortestPath.add(currentPoint);
 			}
 		}
 		return shortestPath;
