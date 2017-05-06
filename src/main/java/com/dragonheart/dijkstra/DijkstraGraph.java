@@ -157,18 +157,17 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
+		Point.TotalVisited = 0;
 		for(Point point : listOfPoints) {
 			point.resetVisited();
-			point.edgeWithLowestCost = null;
-		}
-		for(Point point : sourcePoints) {
-			point.setVisited();
+			if(sourcePoints.contains(point)) {
+				point.setVisited();
+			}
 		}
 		for(Point point : listOfPoints) {
 			point.aggregateCost = point.aggregateCost * multiplierforaggregatecosts;
 		}
 		performCalculationForAllPoints();
-		Point.TotalVisited = 0;
 		return true;
 	}
 
