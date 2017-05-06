@@ -3,9 +3,10 @@ package com.dragonheart.test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import com.dragonheart.dijkstra.DijkstraGraph;
 
 public class testDijkstraGraphFactory {
-	boolean[][] boolMap;
+	private boolean[][] boolMap;
 
 	@Before
 	public void setUp() throws Exception {
@@ -21,8 +22,9 @@ public class testDijkstraGraphFactory {
 	}
 
 	@Test
-	public final void test() {
-		fail("Not yet implemented"); // TODO
+	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
+		DijkstraGraph graph = dijkstraMapFrom2DBoolArray(boolMap, 1.0);
+		graph.setSource(0, 0, 0.0);
 	}
 
 }
