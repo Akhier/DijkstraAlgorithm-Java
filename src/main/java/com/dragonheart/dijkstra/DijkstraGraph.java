@@ -46,6 +46,15 @@ public class DijkstraGraph {
 	}
 
 	/**
+	 * Sets your source Points to this Point
+	 * @param point is the Point that is the source you want
+	 */
+	public void setSource(Point point) {
+		sourcePoints = new ArrayList<Point>();
+		addSource(point, point.aggregateCost);
+	}
+
+	/**
 	 * Sets your source Points to this Point and cost
 	 * @param point is the Point that is the source you want
 	 * @param cost is a Double with what this source starts at
@@ -107,18 +116,6 @@ public class DijkstraGraph {
 	}
 
 	private void performCalculationForAllPoints() {
-		for(Point point : listOfPoints) {
-			point.resetVisited();
-			point.edgeWithLowestCost = null;
-		}
-		for(Point point : sourcePoints) {
-			point.setVisited();
-		}
-		for(Point point : listOfPoints) {
-			if(!point.isVisited()) {
-				point.aggregateCost = null;
-			}
-		}
 		Point currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
@@ -134,8 +131,44 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
-		performCalculationForAllPoints();
+		for(Point point : listOfPoints) {
+			point.resetVisited();
+			point.edgeWithLowestCost = null;
+		}
 		Point.TotalVisited = 0;
+		for(Point point : sourcePoints) {
+			point.setVisited();
+		}
+		for(Point point : listOfPoints) {
+			if(!point.isVisited()) {
+				point.aggregateCost = null;
+			}
+		}
+		performCalculationForAllPoints();
+		return true;
+	}
+
+	/**
+	 * processes the whole graph while keeping any pre-existing aggregateCosts
+	 * @param multiplierforaggregatecosts will be a value that the aggregateCost of all points will be multiplied by
+	 * @return If no sourcePoints return false, otherwise return true
+	 */
+	public boolean processGraph(double multiplierforaggregatecosts) {
+		if(sourcePoints.isEmpty()) {
+			return false;
+		}
+		Point.TotalVisited = 0;
+		for(Point point : listOfPoints) {
+			point.edgeWithLowestCost = null;
+			point.resetVisited();
+			if(sourcePoints.contains(point)) {
+				point.setVisited();
+			}
+		}
+		for(Point point : listOfPoints) {
+			point.aggregateCost = point.aggregateCost * multiplierforaggregatecosts;
+		}
+		performCalculationForAllPoints();
 		return true;
 	}
 
@@ -149,9 +182,31 @@ public class DijkstraGraph {
 		if(targetpoint != null) {
 			Point currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
-			while(currentPoint.edgeWithLowestCost != null) {
-				currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
-				shortestPath.add(currentPoint);
+			while(!sourcePoints.contains(currentPoint)) {
+				if(currentPoint.edgeWithLowestCost != null) {
+					currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
+					shortestPath.add(currentPoint);
+				} else {
+					ArrayList<Point> connectedPoints = new ArrayList<Point>();
+					for(Edge edge : listOfEdges) {
+						Point otherPoint = edge.getOtherPoint(currentPoint);
+						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
+							connectedPoints.add(otherPoint);
+						}
+					}
+					if(connectedPoints.isEmpty()) {
+						break;
+					}
+					Point newPoint = connectedPoints.get(0);
+					connectedPoints.remove(0);
+					for(Point point : connectedPoints) {
+						if(point.aggregateCost < newPoint.aggregateCost) {
+							newPoint = point;
+						}
+					}
+					currentPoint = newPoint;
+					shortestPath.add(currentPoint);
+				}
 			}
 		}
 		return shortestPath;
