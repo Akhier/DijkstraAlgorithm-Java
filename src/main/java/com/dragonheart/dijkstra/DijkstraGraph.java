@@ -189,4 +189,34 @@ public class DijkstraGraph {
 		}
 		return shortestPath;
 	}
+
+	public List<Point> getPathFrom(Point targetpoint, boolean nomatterwhat) {
+		if (!nomatterwhat) {
+			return getPathFrom(targetpoint);
+		}
+		ArrayList<Point> shortestPath = new ArrayList<Point>();
+		Point currentPoint = targetpoint;
+		shortestPath.add(targetpoint);
+		while(!sourcePoints.contains(currentPoint)) {
+			ArrayList<Point> connectedPoints = new ArrayList<Point>();
+			for(Edge edge : listOfEdges) {
+				Point otherPoint = edge.getOtherPoint(currentPoint);
+				if(otherPoint != null && !shortestPath.contains(otherPoint)) {
+					connectedPoints.add(otherPoint);
+				}
+			}
+			if(connectedPoints.isEmpty()) {
+				break;
+			}
+			Point newPoint = connectedPoints.get(0);
+			for(Point point : connectedPoints) {
+				if(point.aggregateCost < newPoint.aggregateCost) {
+					newPoint = point;
+				}
+			}
+			currentPoint = newPoint;
+			shortestPath.add(currentPoint);
+		}
+		return shortestPath;
+	}
 }
