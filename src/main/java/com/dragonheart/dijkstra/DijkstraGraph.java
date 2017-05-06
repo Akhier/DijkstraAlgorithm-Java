@@ -135,6 +135,7 @@ public class DijkstraGraph {
 			point.resetVisited();
 			point.edgeWithLowestCost = null;
 		}
+		Point.TotalVisited = 0;
 		for(Point point : sourcePoints) {
 			point.setVisited();
 		}
@@ -144,7 +145,6 @@ public class DijkstraGraph {
 			}
 		}
 		performCalculationForAllPoints();
-		Point.TotalVisited = 0;
 		return true;
 	}
 
