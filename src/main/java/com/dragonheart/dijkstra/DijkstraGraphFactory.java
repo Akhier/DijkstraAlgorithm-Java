@@ -1,6 +1,13 @@
 package com.dragonheart.dijkstra;
 
 public class DijkstraGraphFactory {
+	/**
+	 * Create a dijkstra graph from a boolean[][] where true is walkable tiles and you can move diagonally
+	 * @param boolmap is a boolean[][] containing data on what tiles are walkable
+	 * @param cardinalcost is a positive Double that represents the cost to move in a cardinal direction
+	 * @param diagonalcost is a positive Double that represents the cost to move in a diagonal direction
+	 * @return DijkstraGraph
+	 */
 	public static DijkstraGraph dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double cardinalcost, Double diagonalcost) {
 		DijkstraGraph output = new DijkstraGraph();
 		if(cardinalcost > 0) {
@@ -32,6 +39,12 @@ public class DijkstraGraphFactory {
 		return output;
 	}
 
+	/**
+	 * Create a dijkstra graph from a boolean[][] where true is walkable tiles and you can't move diagonally
+	 * @param boolmap is a boolean[][] containing data on what tiles are walkable
+	 * @param cardinalcost is a positive Double that represents the cost to move in a cardinal direction
+	 * @return DijkstraGraph
+	 */
 	public static DijkstraGraph dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double cardinalcost) {
 		return dijkstraGraphFrom2DBoolArray(boolmap, cardinalcost, -1.0);
 	}

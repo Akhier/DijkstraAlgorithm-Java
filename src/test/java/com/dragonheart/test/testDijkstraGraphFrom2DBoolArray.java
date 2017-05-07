@@ -1,9 +1,7 @@
 package com.dragonheart.test;
 
 import static org.junit.Assert.*;
-
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import com.dragonheart.dijkstra.*;
@@ -24,6 +22,9 @@ public class testDijkstraGraphFrom2DBoolArray {
 		boolMap[0][6] = false; boolMap[1][6] = false; boolMap[2][6] = false; boolMap[3][6] = false; boolMap[4][6] = false; boolMap[5][6] = false; boolMap[6][6] = true;
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DBoolArray(boolean[][], Double)}
+	 */
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
 		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0);
@@ -38,6 +39,9 @@ public class testDijkstraGraphFrom2DBoolArray {
 		assertTrue(temp.X == 6 && temp.Y == 5);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DBoolArray(boolean[][], Double, Double)}
+	 */
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
 		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, 1.0);
