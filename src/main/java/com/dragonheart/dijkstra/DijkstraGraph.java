@@ -311,4 +311,19 @@ public class DijkstraGraph {
 		}
 		return shortestPath;
 	}
+
+	public List<Point> getPathFrom(int x, int y, int z) {
+		Point targetpoint = null;
+		for(Point p : listOfPoints) {
+			if(p.X == x && p.Y == y && p.Z == z) {
+				targetpoint = p;
+				break;
+			}
+		}
+		return getPathFrom(targetpoint);
+	}
+
+	public List<Point> getPathFrom(int x, int y) {
+		return getPathFrom(x, y, 0);
+	}
 }
