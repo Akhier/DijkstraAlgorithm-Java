@@ -8,7 +8,6 @@ public class Point implements Comparable<Point>{
 	public final int X, Y, Z;
 	public Double aggregateCost;
 	public final int pointId;
-	public static int TotalVisited = 0;
 	private static int pointIdCount = -1;
 	public Edge edgeWithLowestCost;
 	private boolean visited;
@@ -17,7 +16,6 @@ public class Point implements Comparable<Point>{
 	}
 	public void setVisited() {
 		visited = true;
-		TotalVisited++;
 	}
 	public void resetVisited() {
 		visited = false;
@@ -44,6 +42,6 @@ public class Point implements Comparable<Point>{
 
 	@Override
 	public String toString() {
-		return String.format("Point Id: %d, X: %d, Y: %d, Z: %d, Aggregate Cost: %f, Total Visited: %d;", pointId, X, Y, Z, aggregateCost, TotalVisited);
+		return String.format("Point Id: %d, X: %d, Y: %d, Z: %d, Aggregate Cost: %f;", pointId, X, Y, Z, aggregateCost);
 	}
 }

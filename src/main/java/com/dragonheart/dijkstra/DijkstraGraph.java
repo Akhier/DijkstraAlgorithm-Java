@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 public class DijkstraGraph {
 	private ArrayList<Edge> listOfEdges;
 	private ArrayList<Point> listOfPoints, sourcePoints;
+	private int totalVisited = 0;
 
 	public DijkstraGraph() {
 		this.listOfEdges = new ArrayList<Edge>();
@@ -220,7 +221,8 @@ public class DijkstraGraph {
 		do {
 			currentPoint = getNextBestPoint();
 			currentPoint.setVisited();
-		} while(Point.TotalVisited < listOfPoints.size());
+			totalVisited++;
+		} while(totalVisited < listOfPoints.size());
 	}
 
 	/**
@@ -235,9 +237,10 @@ public class DijkstraGraph {
 			point.resetVisited();
 			point.edgeWithLowestCost = null;
 		}
-		Point.TotalVisited = 0;
+		totalVisited = 0;
 		for(Point point : sourcePoints) {
 			point.setVisited();
+			totalVisited++;
 		}
 		for(Point point : listOfPoints) {
 			if(!point.isVisited()) {
@@ -257,12 +260,13 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
-		Point.TotalVisited = 0;
+		totalVisited = 0;
 		for(Point point : listOfPoints) {
 			point.edgeWithLowestCost = null;
 			point.resetVisited();
 			if(sourcePoints.contains(point)) {
 				point.setVisited();
+				totalVisited++;
 			}
 		}
 		for(Point point : listOfPoints) {
@@ -312,6 +316,13 @@ public class DijkstraGraph {
 		return shortestPath;
 	}
 
+	/**
+	 * Gets the path from the target to the closest source
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return List<Point> with the path to the closest source
+	 */
 	public List<Point> getPathFrom(int x, int y, int z) {
 		Point targetpoint = null;
 		for(Point p : listOfPoints) {
@@ -323,6 +334,12 @@ public class DijkstraGraph {
 		return getPathFrom(targetpoint);
 	}
 
+	/**
+	 * Gets the path from the target to the closest source
+	 * @param x
+	 * @param y
+	 * @return List<Point> with the path to the closest source
+	 */
 	public List<Point> getPathFrom(int x, int y) {
 		return getPathFrom(x, y, 0);
 	}
