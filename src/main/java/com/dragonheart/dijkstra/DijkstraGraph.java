@@ -178,7 +178,7 @@ public class DijkstraGraph {
 	private List<Point> getListOfVisitedPoints() {
 		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
 		for(Point point : listOfPoints) {
-			if(point.isVisited()) {
+			if(point.visited) {
 				listOfVisitedPoints.add(point);
 			}
 		}
@@ -189,7 +189,7 @@ public class DijkstraGraph {
 		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(Edge edge : listOfEdges) {
 			Point otherPoint = edge.getOtherPoint(startpoint);
-			if(otherPoint != null && !otherPoint.isVisited()) {
+			if(otherPoint != null && !otherPoint.visited) {
 				connectedEdges.add(edge);
 			}
 		}
@@ -220,7 +220,7 @@ public class DijkstraGraph {
 		Point currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
-			currentPoint.setVisited();
+			currentPoint.visited = true;
 			totalVisited++;
 		} while(totalVisited < listOfPoints.size());
 	}
@@ -234,16 +234,16 @@ public class DijkstraGraph {
 			return false;
 		}
 		for(Point point : listOfPoints) {
-			point.resetVisited();
+			point.visited = false;
 			point.edgeWithLowestCost = null;
 		}
 		totalVisited = 0;
 		for(Point point : sourcePoints) {
-			point.setVisited();
+			point.visited = true;
 			totalVisited++;
 		}
 		for(Point point : listOfPoints) {
-			if(!point.isVisited()) {
+			if(!point.visited) {
 				point.aggregateCost = null;
 			}
 		}
@@ -263,9 +263,9 @@ public class DijkstraGraph {
 		totalVisited = 0;
 		for(Point point : listOfPoints) {
 			point.edgeWithLowestCost = null;
-			point.resetVisited();
+			point.visited = false;
 			if(sourcePoints.contains(point)) {
-				point.setVisited();
+				point.visited = true;
 				totalVisited++;
 			}
 		}

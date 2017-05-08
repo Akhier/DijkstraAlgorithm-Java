@@ -10,16 +10,7 @@ public class Point implements Comparable<Point>{
 	public final int pointId;
 	private static int pointIdCount = -1;
 	public Edge edgeWithLowestCost;
-	private boolean visited;
-	public boolean isVisited() {
-		return visited;
-	}
-	public void setVisited() {
-		visited = true;
-	}
-	public void resetVisited() {
-		visited = false;
-	}
+	public boolean visited;
 
 	public Point(int x, int y, int z) {
 		this.X = x;
