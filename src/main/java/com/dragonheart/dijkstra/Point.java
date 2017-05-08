@@ -5,12 +5,15 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Point implements Comparable<Point>{
-	public final int X, Y, Z;
+	//the three that will matter
 	public Double aggregateCost;
-	public final int pointId;
-	private static int pointIdCount = -1;
 	public Edge edgeWithLowestCost;
 	public boolean visited;
+
+	public final int X, Y, Z;
+	//Id is purely for debugging as seen with toString being the only place it is called
+	public final int pointId;
+	private static int pointIdCount = -1;
 
 	public Point(int x, int y, int z) {
 		this.X = x;

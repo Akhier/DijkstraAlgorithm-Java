@@ -5,8 +5,11 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Edge implements Comparable<Edge>{
+	//The three that will matter
 	public Point A, B;
 	public Double cost;
+
+	//Id is purely for debugging as seen with toString being the only place it is called
 	public final int edgeId;
 	private static int edgeIdCount = -1;
 
