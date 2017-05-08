@@ -23,16 +23,6 @@ public class testPoint {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Point#TotalVisited}
-	 */
-	@Test
-	public final void testTotalVisited() {
-		int temp = Point.TotalVisited;
-		a.setVisited();
-		assertTrue(temp == Point.TotalVisited - 1);
-	}
-
-	/**
 	 * Test method for {@link com.dragonheart.dijkstra.Point#compareTo(Point)}
 	 */
 	@Test
