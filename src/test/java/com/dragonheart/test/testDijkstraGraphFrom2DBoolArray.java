@@ -1,10 +1,15 @@
 package com.dragonheart.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.dragonheart.dijkstra.*;
+
+import com.dragonheart.dijkstra.DijkstraGraph;
+import com.dragonheart.dijkstra.DijkstraGraphFactory;
+import com.dragonheart.dijkstra.Point;
 
 public class testDijkstraGraphFrom2DBoolArray {
 	private boolean[][] boolMap;

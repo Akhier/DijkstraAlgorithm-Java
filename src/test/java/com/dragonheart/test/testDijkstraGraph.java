@@ -1,13 +1,17 @@
 package com.dragonheart.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.dragonheart.dijkstra.Point;
-import com.dragonheart.dijkstra.Edge;
+
 import com.dragonheart.dijkstra.DijkstraGraph;
+import com.dragonheart.dijkstra.Edge;
+import com.dragonheart.dijkstra.Point;
 
 public class testDijkstraGraph {
 	private Point a, b, c, d, e, f;
