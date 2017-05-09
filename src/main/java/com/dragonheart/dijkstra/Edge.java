@@ -5,19 +5,13 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Edge implements Comparable<Edge>{
-	//The three that will matter
 	public Point A, B;
 	public Double cost;
-
-	//Id is purely for debugging as seen with toString being the only place it is called
-	public final int edgeId;
-	private static int edgeIdCount = -1;
 
 	public Edge(Point a, Point b, Double cost) {
 		this.A = a;
 		this.B = b;
 		this.cost = cost;
-		this.edgeId = ++edgeIdCount;
 	}
 
 	/**
@@ -38,10 +32,5 @@ public class Edge implements Comparable<Edge>{
 	@Override
 	public int compareTo(Edge otheredge) {
 		return cost.compareTo(otheredge.cost);
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Edge Id: %d connected to Point A(%d) and Point B(%d) at cost %f", edgeId, A.pointId, B.pointId, cost);
 	}
 }
