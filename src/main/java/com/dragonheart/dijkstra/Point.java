@@ -11,16 +11,12 @@ public class Point implements Comparable<Point>{
 	public boolean visited;
 
 	public final int X, Y, Z;
-	//Id is purely for debugging as seen with toString being the only place it is called
-	public final int pointId;
-	private static int pointIdCount = -1;
 
 	public Point(int x, int y, int z) {
 		this.X = x;
 		this.Y = y;
 		this.Z = z;
 		this.aggregateCost = null;
-		this.pointId = ++pointIdCount;
 		this.visited = false;
 		this.edgeWithLowestCost = null;
 	}

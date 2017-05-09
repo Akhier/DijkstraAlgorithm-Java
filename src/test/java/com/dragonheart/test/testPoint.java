@@ -17,14 +17,6 @@ public class testPoint {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Point#pointId}
-	 */
-	@Test
-	public final void testPointIdIncrement() {
-		assertTrue(a.pointId == b.pointId - 1);
-	}
-
-	/**
 	 * Test method for {@link com.dragonheart.dijkstra.Point#compareTo(Point)}
 	 */
 	@Test
