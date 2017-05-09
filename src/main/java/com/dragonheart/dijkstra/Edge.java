@@ -5,7 +5,6 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Edge implements Comparable<Edge>{
-	//The three that will matter
 	public Point A, B;
 	public Double cost;
 

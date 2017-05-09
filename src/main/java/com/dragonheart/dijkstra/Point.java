@@ -5,7 +5,6 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Point {
-	//the three that will matter
 	public Double aggregateCost;
 	public Edge edgeWithLowestCost;
 	public boolean visited;
