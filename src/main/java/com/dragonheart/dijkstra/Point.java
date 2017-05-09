@@ -33,9 +33,4 @@ public class Point implements Comparable<Point>{
 	public int compareTo(Point otherpoint) {
 		return aggregateCost.compareTo(otherpoint.aggregateCost);
 	}
-
-	@Override
-	public String toString() {
-		return String.format("Point Id: %d, X: %d, Y: %d, Z: %d, Aggregate Cost: %f;", pointId, X, Y, Z, aggregateCost);
-	}
 }

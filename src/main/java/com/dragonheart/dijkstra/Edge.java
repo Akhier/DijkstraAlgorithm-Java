@@ -39,9 +39,4 @@ public class Edge implements Comparable<Edge>{
 	public int compareTo(Edge otheredge) {
 		return cost.compareTo(otheredge.cost);
 	}
-
-	@Override
-	public String toString() {
-		return String.format("Edge Id: %d connected to Point A(%d) and Point B(%d) at cost %f", edgeId, A.pointId, B.pointId, cost);
-	}
 }
