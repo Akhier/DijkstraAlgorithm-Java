@@ -4,7 +4,7 @@ package com.dragonheart.dijkstra;
  * "Point" is a class made to represent a node on a dijkstra map
  * @author Akhier Dragonheart
  */
-public class Point implements Comparable<Point>{
+public class Point {
 	//the three that will matter
 	public Double aggregateCost;
 	public Edge edgeWithLowestCost;
@@ -23,10 +23,5 @@ public class Point implements Comparable<Point>{
 
 	public Point(int x, int y) {
 		this(x, y, 0);
-	}
-
-	@Override
-	public int compareTo(Point otherpoint) {
-		return aggregateCost.compareTo(otherpoint.aggregateCost);
 	}
 }
