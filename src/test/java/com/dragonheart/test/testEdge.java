@@ -22,14 +22,6 @@ public class testEdge {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Edge#edgeId}
-	 */
-	@Test
-	public final void testEdgeIdIncrement() {
-		assertTrue(A.edgeId == B.edgeId - 1);
-	}
-
-	/**
 	 * Test method for {@link com.dragonheart.dijkstra.Edge#getOtherPoint(Point)}
 	 */
 	@Test
