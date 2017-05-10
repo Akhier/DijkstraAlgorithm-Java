@@ -5,13 +5,14 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Point {
-	public Double aggregateCost;
-	public Edge edgeWithLowestCost;
+	public Double aggregateCost, cost;
+	public Point pointWithLowestCost;
 	public boolean visited;
 
 	public Point() {
 		this.aggregateCost = null;
+		this.cost = null;
 		this.visited = false;
-		this.edgeWithLowestCost = null;
+		this.pointWithLowestCost = null;
 	}
 }

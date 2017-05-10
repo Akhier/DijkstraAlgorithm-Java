@@ -122,7 +122,7 @@ public class DijkstraGraph {
 				if(otherPoint.aggregateCost == null ||
 						(visitedPoint.aggregateCost + connectedEdge.cost) < otherPoint.aggregateCost) {
 					otherPoint.aggregateCost = visitedPoint.aggregateCost + connectedEdge.cost;
-					otherPoint.edgeWithLowestCost = connectedEdge;
+					otherPoint.pointWithLowestCost = connectedEdge;
 				}
 				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {
 					nextBestPoint = otherPoint;
@@ -151,7 +151,7 @@ public class DijkstraGraph {
 		}
 		for(Point point : listOfPoints) {
 			point.visited = false;
-			point.edgeWithLowestCost = null;
+			point.pointWithLowestCost = null;
 		}
 		totalVisited = 0;
 		for(Point point : sourcePoints) {
@@ -178,7 +178,7 @@ public class DijkstraGraph {
 		}
 		totalVisited = 0;
 		for(Point point : listOfPoints) {
-			point.edgeWithLowestCost = null;
+			point.pointWithLowestCost = null;
 			point.visited = false;
 			if(sourcePoints.contains(point)) {
 				point.visited = true;
@@ -203,8 +203,8 @@ public class DijkstraGraph {
 			Point currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
-				if(currentPoint.edgeWithLowestCost != null) {
-					currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
+				if(currentPoint.pointWithLowestCost != null) {
+					currentPoint = currentPoint.pointWithLowestCost.getOtherPoint(currentPoint);
 					shortestPath.add(currentPoint);
 				} else {
 					ArrayList<Point> connectedPoints = new ArrayList<Point>();
