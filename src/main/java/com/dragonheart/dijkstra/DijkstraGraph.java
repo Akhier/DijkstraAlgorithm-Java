@@ -204,7 +204,7 @@ public class DijkstraGraph {
 			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
 				if(currentPoint.pointWithLowestCost != null) {
-					currentPoint = currentPoint.pointWithLowestCost.getOtherPoint(currentPoint);
+					currentPoint = currentPoint.pointWithLowestCost;
 					shortestPath.add(currentPoint);
 				} else {
 					ArrayList<Point> connectedPoints = new ArrayList<Point>();
