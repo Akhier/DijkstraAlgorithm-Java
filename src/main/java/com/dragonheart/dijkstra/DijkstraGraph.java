@@ -67,54 +67,12 @@ public class DijkstraGraph {
 	}
 
 	/**
-	 * Sets your source Point to a point determined by an xyz coord at cost 
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void setSource(int x, int y, int z, Double cost) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(x, y, z, cost);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xy coord at cost
-	 * @param x
-	 * @param y
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void setSource(int x, int y, Double cost) {
-		setSource(x, y, 0, cost);
-	}
-
-	/**
 	 * Sets your source Point to this Point
 	 * @param point is the Point that is the source you want
 	 */
 	public void setSource(Point point) {
 		sourcePoints = new ArrayList<Point>();
 		addSource(point, point.aggregateCost);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xyz coord
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	public void setSource(int x, int y, int z) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(x, y, z);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xy coord
-	 * @param x
-	 * @param y
-	 */
-	public void setSource(int x, int y) {
-		setSource(x, y, 0);
 	}
 
 	/**
