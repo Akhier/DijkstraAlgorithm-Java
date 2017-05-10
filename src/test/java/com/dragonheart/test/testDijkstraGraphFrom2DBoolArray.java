@@ -50,16 +50,17 @@ public class testDijkstraGraphFrom2DBoolArray {
 	 */
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
-		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, 1.0);
-		graph.setSource(6, 6, 0.0);
+		DijkstraGraph graph = new DijkstraGraph();
+		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, 1.0, graph);
+		graph.setSource(pointmap[6][6], 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(0, 0);
+		List<Point> path = graph.getPathFrom(pointmap[0][0]);
 		Point temp = path.get(1);
-		assertTrue(temp.X == 1 && temp.Y == 1);
+		assertTrue(temp == pointmap[1][1]);
 		temp = path.get(3);
-		assertTrue(temp.X == 2 && temp.Y == 3);
+		assertTrue(temp == pointmap[2][3]);
 		temp = path.get(path.size() - 2);
-		assertTrue(temp.X == 5 && temp.Y == 5);
+		assertTrue(temp == pointmap[5][5]);
 	}
 
 }
