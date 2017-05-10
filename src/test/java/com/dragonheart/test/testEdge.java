@@ -11,14 +11,13 @@ import com.dragonheart.dijkstra.Point;
 
 public class testEdge {
 	private Point a, b;
-	private Edge A, B;
+	private Edge A;
 
 	@Before
 	public void setUp() throws Exception {
 		a = new Point();
 		b = new Point();
 		A = new Edge(a, b, 1.0);
-		B = new Edge(a, b, 2.0);
 	}
 
 	/**
@@ -36,15 +35,5 @@ public class testEdge {
 	@Test
 	public final void testOtherPoint_ReturnOtherEdge() {
 		assertTrue(A.getOtherPoint(a) == b);
-	}
-
-	/**
-	 * Test method for {@link com.dragonheart.dijkstra.Edge#compareTo(Edge)}
-	 */
-	@Test
-	public final void testEdgeCompareTo() {
-		assertTrue(A.compareTo(A) == 0);
-		assertTrue(A.compareTo(B) < 0);
-		assertTrue(B.compareTo(A) > 0);
 	}
 }
