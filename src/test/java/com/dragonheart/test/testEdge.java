@@ -15,8 +15,8 @@ public class testEdge {
 
 	@Before
 	public void setUp() throws Exception {
-		a = new Point(0, 0);
-		b = new Point(1, 1);
+		a = new Point();
+		b = new Point();
 		A = new Edge(a, b, 1.0);
 		B = new Edge(a, b, 2.0);
 	}
@@ -26,7 +26,7 @@ public class testEdge {
 	 */
 	@Test
 	public final void testOtherPoint_WhenGivenPointNotOnEdge_ReturnNull() {
-		Point c = new Point(0, 0);
+		Point c = new Point();
 		assertNull(A.getOtherPoint(c));
 	}
 

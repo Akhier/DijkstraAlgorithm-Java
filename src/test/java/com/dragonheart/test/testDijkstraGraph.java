@@ -20,12 +20,12 @@ public class testDijkstraGraph {
 
 	@Before
 	public void setUp() throws Exception {
-		a = new Point(2, 0);
-		b = new Point(0, 2);
-		c = new Point(2, 2);
-		d = new Point(5, 2);
-		e = new Point(2, 5);
-		f = new Point(0, 5);
+		a = new Point();
+		b = new Point();
+		c = new Point();
+		d = new Point();
+		e = new Point();
+		f = new Point();
 		A = new Edge(a, b, 1.0);
 		B = new Edge(a, c, 3.0);
 		C = new Edge(a, d, 5.0);
@@ -89,7 +89,7 @@ public class testDijkstraGraph {
 		Point[][] points = new Point[width][height];
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				points[x][y] = new Point(x, y);
+				points[x][y] = new Point();
 				graph.addPoint(points[x][y]);
 				if(x != 0) { graph.addEdge(new Edge(points[x][y], points[x - 1][y], 1.0)); }
 				if(y != 0) { graph.addEdge(new Edge(points[x][y], points[x][y - 1], 1.0)); }
@@ -108,7 +108,7 @@ public class testDijkstraGraph {
 		int x = 6, y = 6;
 		List<Point> path = graph.getPathFrom(points[width - 1][height - 1]);
 		for(Point p : path) {
-			assertTrue(p.X == x-- && p.Y == y);
+			assertTrue(p == points[x--][y]);
 			if(x < 0) {
 				x = 0;
 				y--;

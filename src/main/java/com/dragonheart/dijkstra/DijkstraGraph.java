@@ -15,6 +15,12 @@ public class DijkstraGraph {
 		this.sourcePoints = new ArrayList<Point>();
 	}
 
+	protected void clear() {
+		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfPoints = new ArrayList<Point>();
+		this.sourcePoints = new ArrayList<Point>();
+	}
+
 	public void addPoint(Point point) {
 		listOfPoints.add(point);
 	}
@@ -36,31 +42,6 @@ public class DijkstraGraph {
 	}
 
 	/**
-	 * Add a Point onto the list found by the xyz coord with a starting cost
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void addSource(int x, int y, int z, Double cost) {
-		for(Point point : listOfPoints) {
-			if(point.X == x && point.Y == y && point.Z == z) {
-				addSource(point, cost);
-			}
-		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xy coord with a starting cost
-	 * @param x
-	 * @param y
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void addSource(int x, int y, Double cost) {
-		addSource(x, y, 0, cost);
-	}
-
-	/**
 	 * Add a Point onto the list
 	 * @param point is a Point that is the source you want to add
 	 */
@@ -68,29 +49,6 @@ public class DijkstraGraph {
 		if(listOfPoints.contains(point)) {
 			sourcePoints.add(point);
 		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xyz coord
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	public void addSource(int x, int y, int z) {
-		for(Point point : listOfPoints) {
-			if(point.X == x && point.Y == y && point.Z == z) {
-				addSource(point);
-			}
-		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xy coord
-	 * @param x
-	 * @param y
-	 */
-	public void addSource(int x, int y) {
-		addSource(x, y, 0);
 	}
 
 	/**
@@ -115,54 +73,12 @@ public class DijkstraGraph {
 	}
 
 	/**
-	 * Sets your source Point to a point determined by an xyz coord at cost 
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void setSource(int x, int y, int z, Double cost) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(x, y, z, cost);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xy coord at cost
-	 * @param x
-	 * @param y
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void setSource(int x, int y, Double cost) {
-		setSource(x, y, 0, cost);
-	}
-
-	/**
 	 * Sets your source Point to this Point
 	 * @param point is the Point that is the source you want
 	 */
 	public void setSource(Point point) {
 		sourcePoints = new ArrayList<Point>();
 		addSource(point, point.aggregateCost);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xyz coord
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	public void setSource(int x, int y, int z) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(x, y, z);
-	}
-
-	/**
-	 * Sets your source Point to a point determined by an xy coord
-	 * @param x
-	 * @param y
-	 */
-	public void setSource(int x, int y) {
-		setSource(x, y, 0);
 	}
 
 	/**
@@ -314,33 +230,5 @@ public class DijkstraGraph {
 			}
 		}
 		return shortestPath;
-	}
-
-	/**
-	 * Gets the path from the target to the closest source
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return List<Point> with the path to the closest source
-	 */
-	public List<Point> getPathFrom(int x, int y, int z) {
-		Point targetpoint = null;
-		for(Point p : listOfPoints) {
-			if(p.X == x && p.Y == y && p.Z == z) {
-				targetpoint = p;
-				break;
-			}
-		}
-		return getPathFrom(targetpoint);
-	}
-
-	/**
-	 * Gets the path from the target to the closest source
-	 * @param x
-	 * @param y
-	 * @return List<Point> with the path to the closest source
-	 */
-	public List<Point> getPathFrom(int x, int y) {
-		return getPathFrom(x, y, 0);
 	}
 }
