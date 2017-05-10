@@ -113,24 +113,23 @@ public class DijkstraGraph {
 		return listOfVisitedPoints;
 	}
 
-	private Queue<Edge> getConnectedEdges(Point startpoint) {
-		Queue<Edge> connectedEdges = new LinkedList<Edge>();
-		for(Edge edge : listOfEdges) {
-			Point otherPoint = edge.getOtherPoint(startpoint);
+	private Queue<Point> getConnectedPoints(Point startpoint) {
+		Queue<Point> connectedPoints = new LinkedList<Point>();
+		for(Point[] connection : listOfConnections) {
+			Point otherPoint = getOtherPoint(startpoint, connection);
 			if(otherPoint != null && !otherPoint.visited) {
-				connectedEdges.add(edge);
+				connectedPoints.add(otherPoint);
 			}
 		}
-		return connectedEdges;
+		return connectedPoints;
 	}
 
 	private Point getNextBestPoint() {
 		Point nextBestPoint = null;
 		for(Point visitedPoint : getListOfVisitedPoints()) {
-			Queue<Edge> connectedEdges = getConnectedEdges(visitedPoint);
-			while(connectedEdges.size() > 0) {
-				Edge connectedEdge = connectedEdges.remove();
-				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
+			Queue<Point> connectedPoints = getConnectedPoints(visitedPoint);
+			while(connectedPoints.size() > 0) {
+				Point otherPoint = connectedPoints.remove();
 				if(otherPoint.aggregateCost == null ||
 						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
 					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter;
