@@ -16,7 +16,7 @@ public class DijkstraGraphFactory {
 			for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
 					if(boolmap[x][y]) {
-						pointmap[x][y] = new Point(x, y);
+						pointmap[x][y] = new Point();
 						output.addPoint(pointmap[x][y]);
 						if(diagonalcost > 0) {
 							if(x != 0 && y != 0 && boolmap[x - 1][y - 1]) {
