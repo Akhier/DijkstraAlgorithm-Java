@@ -1,8 +1,9 @@
 package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class DijkstraGraph {
 	private ArrayList<Edge> listOfEdges;
@@ -101,8 +102,8 @@ public class DijkstraGraph {
 		return listOfVisitedPoints;
 	}
 
-	private PriorityQueue<Edge> getConnectedEdges(Point startpoint) {
-		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
+	private Queue<Edge> getConnectedEdges(Point startpoint) {
+		Queue<Edge> connectedEdges = new LinkedList<Edge>();
 		for(Edge edge : listOfEdges) {
 			Point otherPoint = edge.getOtherPoint(startpoint);
 			if(otherPoint != null && !otherPoint.visited) {
@@ -115,12 +116,14 @@ public class DijkstraGraph {
 	private Point getNextBestPoint() {
 		Point nextBestPoint = null;
 		for(Point visitedPoint : getListOfVisitedPoints()) {
-			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedPoint);
+			Queue<Edge> connectedEdges = getConnectedEdges(visitedPoint);
 			while(connectedEdges.size() > 0) {
 				Edge connectedEdge = connectedEdges.remove();
 				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
 				if(otherPoint.aggregateCost == null ||
 						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
+					System.out.println(visitedPoint.aggregateCost);
+					System.out.println(otherPoint.costToEnter);
 					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter;
 					otherPoint.pointWithLowestCost = visitedPoint;
 				}
