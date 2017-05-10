@@ -33,7 +33,7 @@ public class testDijkstraGraphFrom2DBoolArray {
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
 		DijkstraGraph graph = new DijkstraGraph(); 
-		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, graph);
+		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, false, graph);
 		graph.setSource(pointmap[6][6], 0.0);
 		assertTrue(graph.processGraph());
 		List<Point> path = graph.getPathFrom(pointmap[0][0]);
@@ -51,7 +51,7 @@ public class testDijkstraGraphFrom2DBoolArray {
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
 		DijkstraGraph graph = new DijkstraGraph();
-		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, 1.0, graph);
+		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, true, graph);
 		graph.setSource(pointmap[6][6], 0.0);
 		assertTrue(graph.processGraph());
 		List<Point> path = graph.getPathFrom(pointmap[0][0]);

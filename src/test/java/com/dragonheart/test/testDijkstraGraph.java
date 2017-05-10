@@ -10,45 +10,31 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dragonheart.dijkstra.DijkstraGraph;
-import com.dragonheart.dijkstra.Edge;
 import com.dragonheart.dijkstra.Point;
 
 public class testDijkstraGraph {
-	private Point a, b, c, d, e, f;
-	private Edge A, B, C, D, E, F, G, H;
+	private Point[][] points;
 	private DijkstraGraph graph;
 
 	@Before
 	public void setUp() throws Exception {
-		a = new Point();
-		b = new Point();
-		c = new Point();
-		d = new Point();
-		e = new Point();
-		f = new Point();
-		A = new Edge(a, b, 1.0);
-		B = new Edge(a, c, 3.0);
-		C = new Edge(a, d, 5.0);
-		D = new Edge(b, c, 1.0);
-		E = new Edge(b, e, 3.0);
-		F = new Edge(c, e, 1.0);
-		G = new Edge(d, e, 1.0);
-		H = new Edge(b, f, 1.0);
+		points = new Point[6][2];
 		graph = new DijkstraGraph();
-		graph.addPoint(a);
-		graph.addPoint(b);
-		graph.addPoint(c);
-		graph.addPoint(d);
-		graph.addPoint(e);
-		graph.addPoint(f);
-		graph.addEdge(A);
-		graph.addEdge(B);
-		graph.addEdge(C);
-		graph.addEdge(D);
-		graph.addEdge(E);
-		graph.addEdge(F);
-		graph.addEdge(G);
-		graph.addEdge(H);
+		for(int y = 0; y < 2; y++) {
+			for(int x = 0; x < 6; x++) {
+				points[x][y] = new Point(1.0);
+				graph.addPoint(points[x][y]);
+				if(y != 0) {
+					graph.addEdge(points[x][y], points[x][y - 1]);
+				}
+				if(x != 0) {
+					graph.addEdge(points[x][y], points[x - 1][y]);
+				}
+			}
+		}
+		points[0][1].costToEnter = 2.0;
+		points[2][0].costToEnter = 4.0;
+		points[4][1].costToEnter = 4.0;
 	}
 
 	/**
@@ -64,7 +50,7 @@ public class testDijkstraGraph {
 	 */
 	@Test
 	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
-		graph.setSource(a, 0.0);
+		graph.setSource(points[0][0], 0.0);
 		assertTrue(graph.processGraph());
 	}
 
@@ -73,10 +59,11 @@ public class testDijkstraGraph {
 	 */
 	@Test
 	public final void testProcessGraph_BasicResults() {
-		graph.setSource(e, 0.0);
+		graph.setSource(points[5][1], 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(a);
-		assertTrue(path.get(0).aggregateCost == 3);
+		List<Point> path = graph.getPathFrom(points[0][0]);
+		assertTrue(path.size() == 9);
+		assertTrue(path.get(0).aggregateCost == 8.0);
 	}
 
 	/**
@@ -86,18 +73,18 @@ public class testDijkstraGraph {
 	public final void testProcessGraph_GenericFleeResults() {
 		graph = new DijkstraGraph();
 		int width = 7, height = 7;
-		Point[][] points = new Point[width][height];
+		points = new Point[width][height];
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				points[x][y] = new Point();
+				points[x][y] = new Point(1.0);
 				graph.addPoint(points[x][y]);
-				if(x != 0) { graph.addEdge(new Edge(points[x][y], points[x - 1][y], 1.0)); }
-				if(y != 0) { graph.addEdge(new Edge(points[x][y], points[x][y - 1], 1.0)); }
+				if(x != 0) { graph.addEdge(points[x][y], points[x - 1][y]); }
+				if(y != 0) { graph.addEdge(points[x][y], points[x][y - 1]); }
 				if(x != 0 && y != 0) {
-					graph.addEdge(new Edge(points[x][y], points[x - 1][y - 1], 1.2));
+					graph.addEdge(points[x][y], points[x - 1][y - 1]);
 				}
 				if(x != width - 1 && y != 0) {
-					graph.addEdge(new Edge(points[x][y], points[x + 1][y - 1], 1.2));
+					graph.addEdge(points[x][y], points[x + 1][y - 1]);
 				}
 			}
 		}
@@ -121,13 +108,14 @@ public class testDijkstraGraph {
 	 */
 	@Test
 	public final void testGetPathFrom_WithSingleSourceNode() {
-		graph.setSource(e, 0.0);
+		graph.setSource(points[5][1], 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(a);
-		assertTrue(path.get(0) == a);
-		assertTrue(path.get(1) == b);
-		assertTrue(path.get(2) == c);
-		assertTrue(path.get(3) == e);
+		List<Point> path = graph.getPathFrom(points[0][0]);
+		assertTrue(path.get(0) == points[0][0]);
+		assertTrue(path.get(1) == points[1][0]);
+		assertTrue(path.get(4) == points[3][1]);
+		assertTrue(path.get(7) == points[5][0]);
+		assertTrue(path.get(8) == points[5][1]);
 	}
 
 	/**
@@ -136,13 +124,13 @@ public class testDijkstraGraph {
 	@Test
 	public final void testGetPathFrom_WithMultipleSourceNodes() {
 		ArrayList<Point> nodes = new ArrayList<Point>();
-		nodes.add(e);
-		nodes.add(f);
+		nodes.add(points[5][1]);
+		nodes.add(points[5][0]);
 		graph.setSources(nodes, 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(a);
-		assertTrue(path.get(0) == a);
-		assertTrue(path.get(1) == b);
-		assertTrue(path.get(2) == f);
+		List<Point> path = graph.getPathFrom(points[0][0]);
+		assertTrue(path.get(0) == points[0][0]);
+		assertTrue(path.get(1) == points[1][0]);
+		assertTrue(path.get(path.size() - 1) == points[5][0]);
 	}
 }

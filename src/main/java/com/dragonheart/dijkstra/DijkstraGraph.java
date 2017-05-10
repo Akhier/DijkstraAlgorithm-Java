@@ -1,22 +1,23 @@
 package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class DijkstraGraph {
-	private ArrayList<Edge> listOfEdges;
+	private ArrayList<Point[]> listOfConnections;
 	private ArrayList<Point> listOfPoints, sourcePoints;
 	private int totalVisited = 0;
 
 	public DijkstraGraph() {
-		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfConnections = new ArrayList<Point[]>();
 		this.listOfPoints = new ArrayList<Point>();
 		this.sourcePoints = new ArrayList<Point>();
 	}
 
 	protected void clear() {
-		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfConnections = new ArrayList<Point[]>();
 		this.listOfPoints = new ArrayList<Point>();
 		this.sourcePoints = new ArrayList<Point>();
 	}
@@ -25,8 +26,9 @@ public class DijkstraGraph {
 		listOfPoints.add(point);
 	}
 
-	public void addEdge(Edge edge) {
-		listOfEdges.add(edge);
+	public void addEdge(Point pointA, Point pointB) {
+		Point[] connection = {pointA, pointB};
+		listOfConnections.add(connection);
 	}
 
 	/**
@@ -91,6 +93,16 @@ public class DijkstraGraph {
 		addSources(points, cost);
 	}
 
+	private Point getOtherPoint(Point basepoint, Point[] connection) {
+		if(basepoint == connection[0]) {
+			return connection[1];
+		} else if (basepoint == connection[1]) {
+			return connection[0];
+		} else {
+			return null;
+		}
+	}
+
 	private List<Point> getListOfVisitedPoints() {
 		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
 		for(Point point : listOfPoints) {
@@ -101,28 +113,27 @@ public class DijkstraGraph {
 		return listOfVisitedPoints;
 	}
 
-	private PriorityQueue<Edge> getConnectedEdges(Point startpoint) {
-		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
-		for(Edge edge : listOfEdges) {
-			Point otherPoint = edge.getOtherPoint(startpoint);
+	private Queue<Point> getConnectedPoints(Point startpoint) {
+		Queue<Point> connectedPoints = new LinkedList<Point>();
+		for(Point[] connection : listOfConnections) {
+			Point otherPoint = getOtherPoint(startpoint, connection);
 			if(otherPoint != null && !otherPoint.visited) {
-				connectedEdges.add(edge);
+				connectedPoints.add(otherPoint);
 			}
 		}
-		return connectedEdges;
+		return connectedPoints;
 	}
 
 	private Point getNextBestPoint() {
 		Point nextBestPoint = null;
 		for(Point visitedPoint : getListOfVisitedPoints()) {
-			PriorityQueue<Edge> connectedEdges = getConnectedEdges(visitedPoint);
-			while(connectedEdges.size() > 0) {
-				Edge connectedEdge = connectedEdges.remove();
-				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
+			Queue<Point> connectedPoints = getConnectedPoints(visitedPoint);
+			while(connectedPoints.size() > 0) {
+				Point otherPoint = connectedPoints.remove();
 				if(otherPoint.aggregateCost == null ||
-						(visitedPoint.aggregateCost + connectedEdge.cost) < otherPoint.aggregateCost) {
-					otherPoint.aggregateCost = visitedPoint.aggregateCost + connectedEdge.cost;
-					otherPoint.edgeWithLowestCost = connectedEdge;
+						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
+					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter;
+					otherPoint.pointWithLowestCost = visitedPoint;
 				}
 				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {
 					nextBestPoint = otherPoint;
@@ -151,7 +162,7 @@ public class DijkstraGraph {
 		}
 		for(Point point : listOfPoints) {
 			point.visited = false;
-			point.edgeWithLowestCost = null;
+			point.pointWithLowestCost = null;
 		}
 		totalVisited = 0;
 		for(Point point : sourcePoints) {
@@ -178,7 +189,7 @@ public class DijkstraGraph {
 		}
 		totalVisited = 0;
 		for(Point point : listOfPoints) {
-			point.edgeWithLowestCost = null;
+			point.pointWithLowestCost = null;
 			point.visited = false;
 			if(sourcePoints.contains(point)) {
 				point.visited = true;
@@ -203,13 +214,13 @@ public class DijkstraGraph {
 			Point currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
-				if(currentPoint.edgeWithLowestCost != null) {
-					currentPoint = currentPoint.edgeWithLowestCost.getOtherPoint(currentPoint);
+				if(currentPoint.pointWithLowestCost != null) {
+					currentPoint = currentPoint.pointWithLowestCost;
 					shortestPath.add(currentPoint);
 				} else {
 					ArrayList<Point> connectedPoints = new ArrayList<Point>();
-					for(Edge edge : listOfEdges) {
-						Point otherPoint = edge.getOtherPoint(currentPoint);
+					for(Point[] connection : listOfConnections) {
+						Point otherPoint = getOtherPoint(currentPoint, connection);
 						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
 							connectedPoints.add(otherPoint);
 						}
