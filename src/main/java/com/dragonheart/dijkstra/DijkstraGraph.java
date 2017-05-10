@@ -225,32 +225,4 @@ public class DijkstraGraph {
 		}
 		return shortestPath;
 	}
-
-	/**
-	 * Gets the path from the target to the closest source
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return List<Point> with the path to the closest source
-	 */
-	public List<Point> getPathFrom(int x, int y, int z) {
-		Point targetpoint = null;
-		for(Point p : listOfPoints) {
-			if(p.X == x && p.Y == y && p.Z == z) {
-				targetpoint = p;
-				break;
-			}
-		}
-		return getPathFrom(targetpoint);
-	}
-
-	/**
-	 * Gets the path from the target to the closest source
-	 * @param x
-	 * @param y
-	 * @return List<Point> with the path to the closest source
-	 */
-	public List<Point> getPathFrom(int x, int y) {
-		return getPathFrom(x, y, 0);
-	}
 }
