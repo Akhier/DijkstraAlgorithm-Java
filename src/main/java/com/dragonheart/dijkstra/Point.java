@@ -5,13 +5,13 @@ package com.dragonheart.dijkstra;
  * @author Akhier Dragonheart
  */
 public class Point {
-	public Double aggregateCost, cost;
+	public Double aggregateCost, costToEnter;
 	public Point pointWithLowestCost;
 	public boolean visited;
 
 	public Point() {
 		this.aggregateCost = null;
-		this.cost = null;
+		this.costToEnter = null;
 		this.visited = false;
 		this.pointWithLowestCost = null;
 	}

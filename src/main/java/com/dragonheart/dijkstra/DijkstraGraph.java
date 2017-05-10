@@ -120,7 +120,7 @@ public class DijkstraGraph {
 				Edge connectedEdge = connectedEdges.remove();
 				Point otherPoint = connectedEdge.getOtherPoint(visitedPoint);
 				if(otherPoint.aggregateCost == null ||
-						(visitedPoint.aggregateCost + connectedEdge.cost) < otherPoint.aggregateCost) {
+						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
 					otherPoint.aggregateCost = visitedPoint.aggregateCost + connectedEdge.cost;
 					otherPoint.pointWithLowestCost = connectedEdge;
 				}
