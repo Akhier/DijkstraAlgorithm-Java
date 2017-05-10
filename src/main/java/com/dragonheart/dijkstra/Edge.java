@@ -7,7 +7,7 @@ package com.dragonheart.dijkstra;
 public class Edge {
 	public Point A, B;
 
-	public Edge(Point a, Point b, Double cost) {
+	public Edge(Point a, Point b) {
 		this.A = a;
 		this.B = b;
 	}

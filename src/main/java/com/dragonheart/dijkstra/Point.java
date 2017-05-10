@@ -9,7 +9,7 @@ public class Point {
 	public Point pointWithLowestCost;
 	public boolean visited;
 
-	public Point() {
+	public Point(Double costtoenter) {
 		this.aggregateCost = null;
 		this.costToEnter = null;
 		this.visited = false;
