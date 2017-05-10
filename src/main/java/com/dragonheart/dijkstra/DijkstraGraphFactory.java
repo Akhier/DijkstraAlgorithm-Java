@@ -21,17 +21,17 @@ public class DijkstraGraphFactory {
 						emptygraph.addPoint(pointmap[x][y]);
 						if(allowdiagonal) {
 							if(x != 0 && y != 0 && boolmap[x - 1][y - 1]) {
-								emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y - 1]));
+								emptygraph.addEdge(pointmap[x][y], pointmap[x - 1][y - 1]);
 							}
 							if(x != width - 1 && y != 0 && boolmap[x + 1][y - 1]) {
-								emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x + 1][y - 1]));
+								emptygraph.addEdge(pointmap[x][y], pointmap[x + 1][y - 1]);
 							}
 						}
 						if(x != 0 && boolmap[x - 1][y]) {
-							emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y]));
+							emptygraph.addEdge(pointmap[x][y], pointmap[x - 1][y]);
 						}
 						if(y != 0 && boolmap[x][y - 1]) {
-							emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x][y - 1]));
+							emptygraph.addEdge(pointmap[x][y], pointmap[x][y - 1]);
 						}
 					}
 				}

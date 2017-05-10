@@ -219,8 +219,8 @@ public class DijkstraGraph {
 					shortestPath.add(currentPoint);
 				} else {
 					ArrayList<Point> connectedPoints = new ArrayList<Point>();
-					for(Edge edge : listOfConnections) {
-						Point otherPoint = edge.getOtherPoint(currentPoint);
+					for(Point[] connection : listOfConnections) {
+						Point otherPoint = getOtherPoint(currentPoint, connection);
 						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
 							connectedPoints.add(otherPoint);
 						}

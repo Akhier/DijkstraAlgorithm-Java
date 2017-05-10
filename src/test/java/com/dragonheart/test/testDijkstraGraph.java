@@ -10,30 +10,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dragonheart.dijkstra.DijkstraGraph;
-import com.dragonheart.dijkstra.Edge;
 import com.dragonheart.dijkstra.Point;
 
 public class testDijkstraGraph {
 	private Point[][] points;
-	private List<Edge> edges;
 	private DijkstraGraph graph;
 
 	@Before
 	public void setUp() throws Exception {
 		points = new Point[6][2];
-		edges = new ArrayList<Edge>();
 		graph = new DijkstraGraph();
 		for(int y = 0; y < 2; y++) {
 			for(int x = 0; x < 6; x++) {
 				points[x][y] = new Point(1.0);
 				graph.addPoint(points[x][y]);
 				if(y != 0) {
-					edges.add(new Edge(points[x][y], points[x][y - 1]));
-					graph.addEdge(edges.get(edges.size() - 1));
+					graph.addEdge(points[x][y], points[x][y - 1]);
 				}
 				if(x != 0) {
-					edges.add(new Edge(points[x][y], points[x - 1][y]));
-					graph.addEdge(edges.get(edges.size() - 1));
+					graph.addEdge(points[x][y], points[x - 1][y]);
 				}
 			}
 		}
@@ -83,13 +78,13 @@ public class testDijkstraGraph {
 			for(int x = 0; x < width; x++) {
 				points[x][y] = new Point(1.0);
 				graph.addPoint(points[x][y]);
-				if(x != 0) { graph.addEdge(new Edge(points[x][y], points[x - 1][y])); }
-				if(y != 0) { graph.addEdge(new Edge(points[x][y], points[x][y - 1])); }
+				if(x != 0) { graph.addEdge(points[x][y], points[x - 1][y]); }
+				if(y != 0) { graph.addEdge(points[x][y], points[x][y - 1]); }
 				if(x != 0 && y != 0) {
-					graph.addEdge(new Edge(points[x][y], points[x - 1][y - 1]));
+					graph.addEdge(points[x][y], points[x - 1][y - 1]);
 				}
 				if(x != width - 1 && y != 0) {
-					graph.addEdge(new Edge(points[x][y], points[x + 1][y - 1]));
+					graph.addEdge(points[x][y], points[x + 1][y - 1]);
 				}
 			}
 		}
