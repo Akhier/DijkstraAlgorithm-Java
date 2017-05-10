@@ -101,15 +101,15 @@ public class DijkstraGraph {
 		return listOfVisitedPoints;
 	}
 
-	private PriorityQueue<Point> getConnectedEdges(Point startpoint) {
-		PriorityQueue<Point> connectedPoints = new PriorityQueue<Point>();
+	private PriorityQueue<Edge> getConnectedEdges(Point startpoint) {
+		PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
 		for(Edge edge : listOfEdges) {
 			Point otherPoint = edge.getOtherPoint(startpoint);
 			if(otherPoint != null && !otherPoint.visited) {
-				connectedPoints.add(otherPoint);
+				connectedEdges.add(edge);
 			}
 		}
-		return connectedPoints;
+		return connectedEdges;
 	}
 
 	private Point getNextBestPoint() {
