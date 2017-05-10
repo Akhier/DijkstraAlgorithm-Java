@@ -36,31 +36,6 @@ public class DijkstraGraph {
 	}
 
 	/**
-	 * Add a Point onto the list found by the xyz coord with a starting cost
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void addSource(int x, int y, int z, Double cost) {
-		for(Point point : listOfPoints) {
-			if(point.X == x && point.Y == y && point.Z == z) {
-				addSource(point, cost);
-			}
-		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xy coord with a starting cost
-	 * @param x
-	 * @param y
-	 * @param cost is a Double with what this source starts at
-	 */
-	public void addSource(int x, int y, Double cost) {
-		addSource(x, y, 0, cost);
-	}
-
-	/**
 	 * Add a Point onto the list
 	 * @param point is a Point that is the source you want to add
 	 */
@@ -68,29 +43,6 @@ public class DijkstraGraph {
 		if(listOfPoints.contains(point)) {
 			sourcePoints.add(point);
 		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xyz coord
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	public void addSource(int x, int y, int z) {
-		for(Point point : listOfPoints) {
-			if(point.X == x && point.Y == y && point.Z == z) {
-				addSource(point);
-			}
-		}
-	}
-
-	/**
-	 * Add a Point onto the list found by the xy coord
-	 * @param x
-	 * @param y
-	 */
-	public void addSource(int x, int y) {
-		addSource(x, y, 0);
 	}
 
 	/**
