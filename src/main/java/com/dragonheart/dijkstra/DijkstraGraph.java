@@ -93,6 +93,16 @@ public class DijkstraGraph {
 		addSources(points, cost);
 	}
 
+	private Point getOtherPoint(Point basepoint, Point[] connection) {
+		if(basepoint == connection[0]) {
+			return connection[1];
+		} else if (basepoint == connection[1]) {
+			return connection[0];
+		} else {
+			return null;
+		}
+	}
+
 	private List<Point> getListOfVisitedPoints() {
 		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
 		for(Point point : listOfPoints) {
