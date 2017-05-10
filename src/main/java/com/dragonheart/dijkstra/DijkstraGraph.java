@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Queue;
 
 public class DijkstraGraph {
-	private ArrayList<Edge> listOfEdges;
+	private ArrayList<Point[]> listOfConnections;
 	private ArrayList<Point> listOfPoints, sourcePoints;
 	private int totalVisited = 0;
 
 	public DijkstraGraph() {
-		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfConnections = new ArrayList<Point[]>();
 		this.listOfPoints = new ArrayList<Point>();
 		this.sourcePoints = new ArrayList<Point>();
 	}
 
 	protected void clear() {
-		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfConnections = new ArrayList<Point[]>();
 		this.listOfPoints = new ArrayList<Point>();
 		this.sourcePoints = new ArrayList<Point>();
 	}
@@ -26,8 +26,9 @@ public class DijkstraGraph {
 		listOfPoints.add(point);
 	}
 
-	public void addEdge(Edge edge) {
-		listOfEdges.add(edge);
+	public void addEdge(Point pointA, Point pointB) {
+		Point[] connection = {pointA, pointB};
+		listOfConnections.add(connection);
 	}
 
 	/**
@@ -209,7 +210,7 @@ public class DijkstraGraph {
 					shortestPath.add(currentPoint);
 				} else {
 					ArrayList<Point> connectedPoints = new ArrayList<Point>();
-					for(Edge edge : listOfEdges) {
+					for(Edge edge : listOfConnections) {
 						Point otherPoint = edge.getOtherPoint(currentPoint);
 						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
 							connectedPoints.add(otherPoint);
