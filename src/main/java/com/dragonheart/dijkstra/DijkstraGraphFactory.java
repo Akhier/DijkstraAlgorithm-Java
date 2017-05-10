@@ -8,8 +8,8 @@ public class DijkstraGraphFactory {
 	 * @param diagonalcost is a positive Double that represents the cost to move in a diagonal direction
 	 * @return DijkstraGraph
 	 */
-	public static DijkstraGraph dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double cardinalcost, Double diagonalcost) {
-		DijkstraGraph output = new DijkstraGraph();
+	public static Point[][] dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double cardinalcost, Double diagonalcost, DijkstraGraph emptygraph) {
+		emptygraph = new DijkstraGraph();
 		if(cardinalcost > 0) {
 			int width = boolmap.length, height = boolmap[0].length;
 			Point[][] pointmap = new Point[width][height];
@@ -17,26 +17,27 @@ public class DijkstraGraphFactory {
 				for(int x = 0; x < width; x++) {
 					if(boolmap[x][y]) {
 						pointmap[x][y] = new Point();
-						output.addPoint(pointmap[x][y]);
+						emptygraph.addPoint(pointmap[x][y]);
 						if(diagonalcost > 0) {
 							if(x != 0 && y != 0 && boolmap[x - 1][y - 1]) {
-								output.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y - 1], diagonalcost));
+								emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y - 1], diagonalcost));
 							}
 							if(x != width - 1 && y != 0 && boolmap[x + 1][y - 1]) {
-								output.addEdge(new Edge(pointmap[x][y], pointmap[x + 1][y - 1], diagonalcost));
+								emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x + 1][y - 1], diagonalcost));
 							}
 						}
 						if(x != 0 && boolmap[x - 1][y]) {
-							output.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y], cardinalcost));
+							emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x - 1][y], cardinalcost));
 						}
 						if(y != 0 && boolmap[x][y - 1]) {
-							output.addEdge(new Edge(pointmap[x][y], pointmap[x][y - 1], cardinalcost));
+							emptygraph.addEdge(new Edge(pointmap[x][y], pointmap[x][y - 1], cardinalcost));
 						}
 					}
 				}
 			}
+			return pointmap;
 		}
-		return output;
+		return null;
 	}
 
 	/**
