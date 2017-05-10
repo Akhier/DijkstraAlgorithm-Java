@@ -15,6 +15,12 @@ public class DijkstraGraph {
 		this.sourcePoints = new ArrayList<Point>();
 	}
 
+	protected void clear() {
+		this.listOfEdges = new ArrayList<Edge>();
+		this.listOfPoints = new ArrayList<Point>();
+		this.sourcePoints = new ArrayList<Point>();
+	}
+
 	public void addPoint(Point point) {
 		listOfPoints.add(point);
 	}

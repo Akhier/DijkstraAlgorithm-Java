@@ -10,7 +10,7 @@ public class DijkstraGraphFactory {
 	 * @return Point[][]
 	 */
 	public static Point[][] dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double cardinalcost, Double diagonalcost, DijkstraGraph emptygraph) {
-		emptygraph = new DijkstraGraph();
+		emptygraph.clear();
 		if(cardinalcost > 0) {
 			int width = boolmap.length, height = boolmap[0].length;
 			Point[][] pointmap = new Point[width][height];
