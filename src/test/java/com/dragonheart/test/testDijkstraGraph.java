@@ -15,14 +15,26 @@ import com.dragonheart.dijkstra.Point;
 
 public class testDijkstraGraph {
 	private Point[][] points;
+	private List<Edge> edges;
 	private DijkstraGraph graph;
 
 	@Before
 	public void setUp() throws Exception {
 		points = new Point[6][2];
+		edges = new ArrayList<Edge>();
+		graph = new DijkstraGraph();
 		for(int y = 0; y < 2; y++) {
 			for(int x = 0; x < 6; x++) {
 				points[x][y] = new Point(1.0);
+				graph.addPoint(points[x][y]);
+				if(y != 0) {
+					edges.add(new Edge(points[x][y], points[x][y - 1]));
+					graph.addEdge(edges.get(edges.size() - 1));
+				}
+				if(x != 0) {
+					edges.add(new Edge(points[x][y], points[x - 1][y]));
+					graph.addEdge(edges.get(edges.size() - 1));
+				}
 			}
 		}
 		points[0][1].costToEnter = 2.0;
@@ -55,7 +67,8 @@ public class testDijkstraGraph {
 		graph.setSource(points[5][1], 0.0);
 		graph.processGraph();
 		List<Point> path = graph.getPathFrom(points[0][0]);
-		assertTrue(path.get(path.size()).aggregateCost == 9);
+		assertTrue(path.size() == 9);
+		assertTrue(path.get(0).aggregateCost == 8.0);
 	}
 
 	/**

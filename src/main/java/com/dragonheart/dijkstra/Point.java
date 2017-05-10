@@ -11,7 +11,7 @@ public class Point {
 
 	public Point(Double costtoenter) {
 		this.aggregateCost = null;
-		this.costToEnter = null;
+		this.costToEnter = costtoenter;
 		this.visited = false;
 		this.pointWithLowestCost = null;
 	}
