@@ -9,18 +9,9 @@ public class Point {
 	public Edge edgeWithLowestCost;
 	public boolean visited;
 
-	public final int X, Y, Z;
-
-	public Point(int x, int y, int z) {
-		this.X = x;
-		this.Y = y;
-		this.Z = z;
+	public Point() {
 		this.aggregateCost = null;
 		this.visited = false;
 		this.edgeWithLowestCost = null;
-	}
-
-	public Point(int x, int y) {
-		this(x, y, 0);
 	}
 }
