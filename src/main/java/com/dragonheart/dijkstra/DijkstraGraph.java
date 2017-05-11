@@ -93,8 +93,8 @@ public class DijkstraGraph {
 	 * @param point is the Point that is the source you want
 	 * @param cost is a Double with what this source starts at
 	 */
-	public void setSource(Point point, Double cost) {
-		sourcePoints = new ArrayList<Point>();
+	public void setSource(DijkstraPoint point, Double cost) {
+		sourcePoints = new ArrayList<DijkstraPoint>();
 		addSource(point, cost);
 	}
 
