@@ -28,7 +28,10 @@ public class DijkstraGraph {
 
 	public void addEdge(Point pointA, Point pointB) {
 		Point[] connection = {pointA, pointB};
-		listOfConnections.add(connection);
+		Point[] otherConnection = {pointB, pointA};
+		if(!listOfConnections.contains(connection) && !listOfConnections.contains(otherConnection)) {
+			listOfConnections.add(connection);
+		}
 	}
 
 	/**
