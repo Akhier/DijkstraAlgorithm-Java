@@ -185,16 +185,16 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.visited = false;
 			point.pointWithLowestCost = null;
 		}
 		totalVisited = 0;
-		for(Point point : sourcePoints) {
-			point.visited = true;
+		for(DijkstraPoint point : sourcePoints) {
+			listOfPoints.get(point).visited = true;
 			totalVisited++;
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			if(!point.visited) {
 				point.aggregateCost = null;
 			}
