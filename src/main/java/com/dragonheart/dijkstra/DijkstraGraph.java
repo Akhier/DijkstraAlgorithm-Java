@@ -1,43 +1,58 @@
 package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 public class DijkstraGraph {
-	private ArrayList<Point[]> listOfConnections;
-	private ArrayList<Point> listOfPoints, sourcePoints;
+	private ArrayList<DijkstraPoint[]> listOfConnections;
+	private ArrayList<DijkstraPoint> sourcePoints;
+	private HashMap<DijkstraPoint, PointData> listOfPoints;
 	private int totalVisited = 0;
 
+	private class PointData {
+		public Double aggregateCost;
+		public DijkstraPoint pointWithLowestCost;
+		public boolean visited;
+
+		private PointData() {
+			this.aggregateCost = null;
+			this.pointWithLowestCost = null;
+			this.visited = false;
+		}
+	}
+
 	public DijkstraGraph() {
-		this.listOfConnections = new ArrayList<Point[]>();
-		this.listOfPoints = new ArrayList<Point>();
-		this.sourcePoints = new ArrayList<Point>();
+		this.listOfConnections = new ArrayList<DijkstraPoint[]>();
+		this.listOfPoints = new HashMap<DijkstraPoint, PointData>();
+		this.sourcePoints = new ArrayList<DijkstraPoint>();
 	}
 
 	protected void clear() {
-		this.listOfConnections = new ArrayList<Point[]>();
-		this.listOfPoints = new ArrayList<Point>();
-		this.sourcePoints = new ArrayList<Point>();
+		this.listOfConnections = new ArrayList<DijkstraPoint[]>();
+		this.listOfPoints = new HashMap<DijkstraPoint, PointData>();
+		this.sourcePoints = new ArrayList<DijkstraPoint>();
 	}
 
-	public void addPoint(Point point) {
-		listOfPoints.add(point);
+	public void addPoint(DijkstraPoint point) {
+		listOfPoints.put(point, new PointData());
 	}
 
-	public void addConnection(Point pointA, Point pointB) {
-		Point[] connection = {pointA, pointB};
-		Point[] otherConnection = {pointB, pointA};
+	public void addConnection(DijkstraPoint pointA, DijkstraPoint pointB) {
+		DijkstraPoint[] connection = {pointA, pointB};
+		DijkstraPoint[] otherConnection = {pointB, pointA};
 		if(!listOfConnections.contains(connection) && !listOfConnections.contains(otherConnection)) {
 			listOfConnections.add(connection);
 		}
 	}
 
-	public void removeConnection(Point pointA, Point pointB) {
-		Point[] connection = {pointA, pointB};
+	public void removeConnection(DijkstraPoint pointA, DijkstraPoint pointB) {
+		DijkstraPoint[] connection = {pointA, pointB};
 		listOfConnections.remove(connection);
-		Point[] otherConnection = {pointB, pointA};
+		DijkstraPoint[] otherConnection = {pointB, pointA};
 		listOfConnections.remove(otherConnection);
 	}
 
@@ -46,9 +61,9 @@ public class DijkstraGraph {
 	 * @param point is a Point that is the source you want to add
 	 * @param cost is a Double with what this source starts at
 	 */
-	public void addSource(Point point, Double cost) {
-		if(listOfPoints.contains(point)) {
-			point.aggregateCost = cost;
+	public void addSource(DijkstraPoint point, Double cost) {
+		if(listOfPoints.containsKey(point)) {
+			listOfPoints.get(point).aggregateCost = cost;
 			sourcePoints.add(point);
 		}
 	}
@@ -57,8 +72,8 @@ public class DijkstraGraph {
 	 * Add a Point onto the list
 	 * @param point is a Point that is the source you want to add
 	 */
-	public void addSource(Point point) {
-		if(listOfPoints.contains(point)) {
+	public void addSource(DijkstraPoint point) {
+		if(listOfPoints.containsKey(point)) {
 			sourcePoints.add(point);
 		}
 	}
@@ -68,8 +83,8 @@ public class DijkstraGraph {
 	 * @param points is a List<Point> containing the points you want to add to your sources
 	 * @param cost is a Double with what these sources start at
 	 */
-	public void addSources(List<Point> points, Double cost) {
-		for(Point point : points) {
+	public void addSources(List<DijkstraPoint> points, Double cost) {
+		for(DijkstraPoint point : points) {
 			addSource(point, cost);
 		}
 	}
@@ -79,8 +94,8 @@ public class DijkstraGraph {
 	 * @param point is the Point that is the source you want
 	 * @param cost is a Double with what this source starts at
 	 */
-	public void setSource(Point point, Double cost) {
-		sourcePoints = new ArrayList<Point>();
+	public void setSource(DijkstraPoint point, Double cost) {
+		sourcePoints = new ArrayList<DijkstraPoint>();
 		addSource(point, cost);
 	}
 
@@ -88,9 +103,9 @@ public class DijkstraGraph {
 	 * Sets your source Point to this Point
 	 * @param point is the Point that is the source you want
 	 */
-	public void setSource(Point point) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(point, point.aggregateCost);
+	public void setSource(DijkstraPoint point) {
+		sourcePoints = new ArrayList<DijkstraPoint>();
+		addSource(point, listOfPoints.get(point).aggregateCost);
 	}
 
 	/**
@@ -98,12 +113,12 @@ public class DijkstraGraph {
 	 * @param points is a List<Point> containing the points you want to set your sources to
 	 * @param cost is a Double with what these sources start at
 	 */
-	public void setSources(List<Point> points, Double cost) {
-		sourcePoints = new ArrayList<Point>();
+	public void setSources(List<DijkstraPoint> points, Double cost) {
+		sourcePoints = new ArrayList<DijkstraPoint>();
 		addSources(points, cost);
 	}
 
-	private Point getOtherPoint(Point basepoint, Point[] connection) {
+	private DijkstraPoint getOtherPoint(DijkstraPoint basepoint, DijkstraPoint[] connection) {
 		if(basepoint == connection[0]) {
 			return connection[1];
 		} else if (basepoint == connection[1]) {
@@ -113,39 +128,39 @@ public class DijkstraGraph {
 		}
 	}
 
-	private List<Point> getListOfVisitedPoints() {
-		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
-		for(Point point : listOfPoints) {
-			if(point.visited) {
-				listOfVisitedPoints.add(point);
+	private List<DijkstraPoint> getListOfVisitedPoints() {
+		ArrayList<DijkstraPoint> listOfVisitedPoints = new ArrayList<DijkstraPoint>();
+		for(Map.Entry<DijkstraPoint, PointData> point : listOfPoints.entrySet()) {
+			if(point.getValue().visited) {
+				listOfVisitedPoints.add(point.getKey());
 			}
 		}
 		return listOfVisitedPoints;
 	}
 
-	private Queue<Point> getConnectedPoints(Point startpoint) {
-		Queue<Point> connectedPoints = new LinkedList<Point>();
-		for(Point[] connection : listOfConnections) {
-			Point otherPoint = getOtherPoint(startpoint, connection);
-			if(otherPoint != null && !otherPoint.visited) {
+	private Queue<DijkstraPoint> getConnectedPoints(DijkstraPoint startpoint) {
+		Queue<DijkstraPoint> connectedPoints = new LinkedList<DijkstraPoint>();
+		for(DijkstraPoint[] connection : listOfConnections) {
+			DijkstraPoint otherPoint = getOtherPoint(startpoint, connection);
+			if(otherPoint != null && !listOfPoints.get(otherPoint).visited) {
 				connectedPoints.add(otherPoint);
 			}
 		}
 		return connectedPoints;
 	}
 
-	private Point getNextBestPoint() {
-		Point nextBestPoint = null;
-		for(Point visitedPoint : getListOfVisitedPoints()) {
-			Queue<Point> connectedPoints = getConnectedPoints(visitedPoint);
+	private DijkstraPoint getNextBestPoint() {
+		DijkstraPoint nextBestPoint = null;
+		for(DijkstraPoint visitedPoint : getListOfVisitedPoints()) {
+			Queue<DijkstraPoint> connectedPoints = getConnectedPoints(visitedPoint);
 			while(connectedPoints.size() > 0) {
-				Point otherPoint = connectedPoints.remove();
-				if(otherPoint.aggregateCost == null ||
-						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
-					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter;
-					otherPoint.pointWithLowestCost = visitedPoint;
+				DijkstraPoint otherPoint = connectedPoints.remove();
+				if(listOfPoints.get(otherPoint).aggregateCost == null ||
+						(listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter()) < listOfPoints.get(otherPoint).aggregateCost) {
+					listOfPoints.get(otherPoint).aggregateCost = listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter();
+					listOfPoints.get(otherPoint).pointWithLowestCost = visitedPoint;
 				}
-				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {
+				if(nextBestPoint == null || listOfPoints.get(otherPoint).aggregateCost < listOfPoints.get(nextBestPoint).aggregateCost) {
 					nextBestPoint = otherPoint;
 				}
 			}
@@ -154,10 +169,12 @@ public class DijkstraGraph {
 	}
 
 	private void performCalculationForAllPoints() {
-		Point currentPoint = null;
+		DijkstraPoint currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
-			currentPoint.visited = true;
+			if(currentPoint != null) {
+				listOfPoints.get(currentPoint).visited = true;
+			}
 			totalVisited++;
 		} while(totalVisited < listOfPoints.size());
 	}
@@ -170,16 +187,16 @@ public class DijkstraGraph {
 		if(sourcePoints.isEmpty()) {
 			return false;
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.visited = false;
 			point.pointWithLowestCost = null;
 		}
 		totalVisited = 0;
-		for(Point point : sourcePoints) {
-			point.visited = true;
+		for(DijkstraPoint point : sourcePoints) {
+			listOfPoints.get(point).visited = true;
 			totalVisited++;
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			if(!point.visited) {
 				point.aggregateCost = null;
 			}
@@ -198,7 +215,7 @@ public class DijkstraGraph {
 			return false;
 		}
 		totalVisited = 0;
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.pointWithLowestCost = null;
 			point.visited = false;
 			if(sourcePoints.contains(point)) {
@@ -206,7 +223,7 @@ public class DijkstraGraph {
 				totalVisited++;
 			}
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.aggregateCost = point.aggregateCost * multiplierforaggregatecosts;
 		}
 		performCalculationForAllPoints();
@@ -218,19 +235,19 @@ public class DijkstraGraph {
 	 * @param targetpoint is the Point you want the path to go from
 	 * @return List<Point> with the path to the closest source
 	 */
-	public List<Point> getPathFrom(Point targetpoint) {
-		ArrayList<Point> shortestPath = new ArrayList<Point>();
+	public List<DijkstraPoint> getPathFrom(DijkstraPoint targetpoint) {
+		ArrayList<DijkstraPoint> shortestPath = new ArrayList<DijkstraPoint>();
 		if(targetpoint != null) {
-			Point currentPoint = targetpoint;
+			DijkstraPoint currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
-				if(currentPoint.pointWithLowestCost != null) {
-					currentPoint = currentPoint.pointWithLowestCost;
+				if(listOfPoints.get(currentPoint).pointWithLowestCost != null) {
+					currentPoint = listOfPoints.get(currentPoint).pointWithLowestCost;
 					shortestPath.add(currentPoint);
 				} else {
-					ArrayList<Point> connectedPoints = new ArrayList<Point>();
-					for(Point[] connection : listOfConnections) {
-						Point otherPoint = getOtherPoint(currentPoint, connection);
+					ArrayList<DijkstraPoint> connectedPoints = new ArrayList<DijkstraPoint>();
+					for(DijkstraPoint[] connection : listOfConnections) {
+						DijkstraPoint otherPoint = getOtherPoint(currentPoint, connection);
 						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
 							connectedPoints.add(otherPoint);
 						}
@@ -238,10 +255,10 @@ public class DijkstraGraph {
 					if(connectedPoints.isEmpty()) {
 						break;
 					}
-					Point newPoint = connectedPoints.get(0);
+					DijkstraPoint newPoint = connectedPoints.get(0);
 					connectedPoints.remove(0);
-					for(Point point : connectedPoints) {
-						if(point.aggregateCost < newPoint.aggregateCost) {
+					for(DijkstraPoint point : connectedPoints) {
+						if(listOfPoints.get(point).aggregateCost < listOfPoints.get(newPoint).aggregateCost) {
 							newPoint = point;
 						}
 					}

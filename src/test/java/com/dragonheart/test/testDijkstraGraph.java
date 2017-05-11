@@ -10,9 +10,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dragonheart.dijkstra.DijkstraGraph;
-import com.dragonheart.dijkstra.Point;
+import com.dragonheart.dijkstra.DijkstraPoint;
 
 public class testDijkstraGraph {
+	private class Point implements DijkstraPoint {
+		public Double entryCost;
+		public Point(Double entrycost) {
+			this.entryCost = entrycost;
+		}
+		@Override
+		public Double costToEnter() {
+			return entryCost;
+		}
+		@Override
+		public void setEntryCost(Double cost) {
+			this.entryCost = cost;
+		}
+	}
 	private Point[][] points;
 	private DijkstraGraph graph;
 
@@ -32,9 +46,9 @@ public class testDijkstraGraph {
 				}
 			}
 		}
-		points[0][1].costToEnter = 2.0;
-		points[2][0].costToEnter = 4.0;
-		points[4][1].costToEnter = 4.0;
+		points[0][1].entryCost = 2.0;
+		points[2][0].entryCost = 4.0;
+		points[4][1].entryCost = 4.0;
 	}
 
 	/**
@@ -61,9 +75,9 @@ public class testDijkstraGraph {
 	public final void testProcessGraph_BasicResults() {
 		graph.setSource(points[5][1], 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(points[0][0]);
+		List<DijkstraPoint> path = graph.getPathFrom(points[0][0]);
 		assertTrue(path.size() == 9);
-		assertTrue(path.get(0).aggregateCost == 8.0);
+		assertTrue(path.get(0) == points[0][0]);
 	}
 
 	/**
@@ -93,8 +107,8 @@ public class testDijkstraGraph {
 		graph.setSource(points[0][0]);
 		graph.processGraph(-1.2);
 		int x = 6, y = 6;
-		List<Point> path = graph.getPathFrom(points[width - 1][height - 1]);
-		for(Point p : path) {
+		List<DijkstraPoint> path = graph.getPathFrom(points[width - 1][height - 1]);
+		for(DijkstraPoint p : path) {
 			assertTrue(p == points[x--][y]);
 			if(x < 0) {
 				x = 0;
@@ -110,7 +124,7 @@ public class testDijkstraGraph {
 	public final void testGetPathFrom_WithSingleSourceNode() {
 		graph.setSource(points[5][1], 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(points[0][0]);
+		List<DijkstraPoint> path = graph.getPathFrom(points[0][0]);
 		assertTrue(path.get(0) == points[0][0]);
 		assertTrue(path.get(1) == points[1][0]);
 		assertTrue(path.get(4) == points[3][1]);
@@ -123,12 +137,12 @@ public class testDijkstraGraph {
 	 */
 	@Test
 	public final void testGetPathFrom_WithMultipleSourceNodes() {
-		ArrayList<Point> nodes = new ArrayList<Point>();
+		ArrayList<DijkstraPoint> nodes = new ArrayList<DijkstraPoint>();
 		nodes.add(points[5][1]);
 		nodes.add(points[5][0]);
 		graph.setSources(nodes, 0.0);
 		graph.processGraph();
-		List<Point> path = graph.getPathFrom(points[0][0]);
+		List<DijkstraPoint> path = graph.getPathFrom(points[0][0]);
 		assertTrue(path.get(0) == points[0][0]);
 		assertTrue(path.get(1) == points[1][0]);
 		assertTrue(path.get(path.size() - 1) == points[5][0]);

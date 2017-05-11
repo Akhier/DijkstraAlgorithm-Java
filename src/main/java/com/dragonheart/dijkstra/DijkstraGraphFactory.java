@@ -2,42 +2,39 @@ package com.dragonheart.dijkstra;
 
 public class DijkstraGraphFactory {
 	/**
-	 * Create a dijkstra graph from a boolean[][] where true is walkable tiles and you can choose if you allow diagonally movement
-	 * @param boolmap is a boolean[][] containing data on what tiles are walkable
-	 * @param costtoenter is a positive Double that represents the cost to move in a direction
-	 * @param allowdiagonal
-	 * @param emtpygraph is a DijkstraGraph which will be the constructed graph
-	 * @return Point[][]
+	 * Create a DijkstraGraph from a 2D array of points that implements DijkstraPoint were null in the array means a tile that isn't walkable
+	 * @param pointmap is a 2D array of points that implements DijkstraPoint
+	 * @param costtoenter is a Double representing how much tiles cost to enter
+	 * @param allowdiagonal is a boolean of if diagonal movement is allowed
+	 * @return DijkstraGraph
 	 */
-	public static Point[][] dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double costtoenter, boolean allowdiagonal, DijkstraGraph emptygraph) {
-		emptygraph.clear();
+	public static DijkstraGraph dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, Double costtoenter, boolean allowdiagonal) {
+		DijkstraGraph graph = new DijkstraGraph();
 		if(costtoenter > 0) {
-			int width = boolmap.length, height = boolmap[0].length;
-			Point[][] pointmap = new Point[width][height];
+			int width = pointmap.length, height = pointmap[0].length;
 			for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
-					if(boolmap[x][y]) {
-						pointmap[x][y] = new Point(costtoenter);
-						emptygraph.addPoint(pointmap[x][y]);
+					if(pointmap[x][y] != null) {
+						pointmap[x][y].setEntryCost(costtoenter);
+						graph.addPoint(pointmap[x][y]);
 						if(allowdiagonal) {
-							if(x != 0 && y != 0 && boolmap[x - 1][y - 1]) {
-								emptygraph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
+							if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {
+								graph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
 							}
-							if(x != width - 1 && y != 0 && boolmap[x + 1][y - 1]) {
-								emptygraph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
+							if(x != width - 1 && y != 0 && pointmap[x + 1][y - 1] != null) {
+								graph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
 							}
 						}
-						if(x != 0 && boolmap[x - 1][y]) {
-							emptygraph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
+						if(x != 0 && pointmap[x - 1][y] != null) {
+							graph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
 						}
-						if(y != 0 && boolmap[x][y - 1]) {
-							emptygraph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
+						if(y != 0 && pointmap[x][y - 1] != null) {
+							graph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
 						}
 					}
 				}
 			}
-			return pointmap;
 		}
-		return null;
+		return graph;
 	}
 }
