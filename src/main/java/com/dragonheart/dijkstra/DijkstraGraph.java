@@ -172,7 +172,9 @@ public class DijkstraGraph {
 		DijkstraPoint currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
-			listOfPoints.get(currentPoint).visited = true;
+			if(currentPoint != null) {
+				listOfPoints.get(currentPoint).visited = true;
+			}
 			totalVisited++;
 		} while(totalVisited < listOfPoints.size());
 	}
