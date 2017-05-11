@@ -149,18 +149,18 @@ public class DijkstraGraph {
 		return connectedPoints;
 	}
 
-	private Point getNextBestPoint() {
-		Point nextBestPoint = null;
-		for(Point visitedPoint : getListOfVisitedPoints()) {
-			Queue<Point> connectedPoints = getConnectedPoints(visitedPoint);
+	private DijkstraPoint getNextBestPoint() {
+		DijkstraPoint nextBestPoint = null;
+		for(DijkstraPoint visitedPoint : getListOfVisitedPoints()) {
+			Queue<DijkstraPoint> connectedPoints = getConnectedPoints(visitedPoint);
 			while(connectedPoints.size() > 0) {
-				Point otherPoint = connectedPoints.remove();
-				if(otherPoint.aggregateCost == null ||
-						(visitedPoint.aggregateCost + otherPoint.costToEnter()) < otherPoint.aggregateCost) {
-					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter();
-					otherPoint.pointWithLowestCost = visitedPoint;
+				DijkstraPoint otherPoint = connectedPoints.remove();
+				if(listOfPoints.get(otherPoint).aggregateCost == null ||
+						(listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter()) < listOfPoints.get(otherPoint).aggregateCost) {
+					listOfPoints.get(otherPoint).aggregateCost = listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter();
+					listOfPoints.get(otherPoint).pointWithLowestCost = visitedPoint;
 				}
-				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {
+				if(nextBestPoint == null || listOfPoints.get(otherPoint).aggregateCost < listOfPoints.get(nextBestPoint).aggregateCost) {
 					nextBestPoint = otherPoint;
 				}
 			}
