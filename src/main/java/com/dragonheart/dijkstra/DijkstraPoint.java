@@ -6,5 +6,9 @@ public interface DijkstraPoint {
 	 * @return Double with the entry cost
 	 */
 	public Double costToEnter();
+	/**
+	 * Sets the cost to enter the point
+	 * @param cost is a Double of how much it costs to enter the point
+	 */
 	public void setEntryCost(Double cost);
 }
