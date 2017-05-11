@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 public class DijkstraGraph {
@@ -127,11 +128,11 @@ public class DijkstraGraph {
 		}
 	}
 
-	private List<Point> getListOfVisitedPoints() {
-		ArrayList<Point> listOfVisitedPoints = new ArrayList<Point>();
-		for(Point point : listOfPoints) {
-			if(point.visited) {
-				listOfVisitedPoints.add(point);
+	private List<DijkstraPoint> getListOfVisitedPoints() {
+		ArrayList<DijkstraPoint> listOfVisitedPoints = new ArrayList<DijkstraPoint>();
+		for(Map.Entry<DijkstraPoint, PointData> point : listOfPoints.entrySet()) {
+			if(point.getValue().visited) {
+				listOfVisitedPoints.add(point.getKey());
 			}
 		}
 		return listOfVisitedPoints;
