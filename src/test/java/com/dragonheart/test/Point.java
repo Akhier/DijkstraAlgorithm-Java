@@ -3,8 +3,8 @@ package com.dragonheart.test;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
 class Point implements DijkstraPoint{
-	public Double entryCost;
-	public Point(Double entrycost) {
+	public double entryCost;
+	public Point(double entrycost) {
 		this.entryCost = entrycost;
 	}
 	@Override
@@ -12,7 +12,7 @@ class Point implements DijkstraPoint{
 		return entryCost;
 	}
 	@Override
-	public void setEntryCost(Double cost) {
+	public void setEntryCost(double cost) {
 		this.entryCost = cost;
 	}
 }
