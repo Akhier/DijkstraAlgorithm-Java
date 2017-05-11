@@ -213,7 +213,7 @@ public class DijkstraGraph {
 			return false;
 		}
 		totalVisited = 0;
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.pointWithLowestCost = null;
 			point.visited = false;
 			if(sourcePoints.contains(point)) {
@@ -221,7 +221,7 @@ public class DijkstraGraph {
 				totalVisited++;
 			}
 		}
-		for(Point point : listOfPoints) {
+		for(PointData point : listOfPoints.values()) {
 			point.aggregateCost = point.aggregateCost * multiplierforaggregatecosts;
 		}
 		performCalculationForAllPoints();
