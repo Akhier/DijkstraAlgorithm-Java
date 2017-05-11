@@ -233,19 +233,19 @@ public class DijkstraGraph {
 	 * @param targetpoint is the Point you want the path to go from
 	 * @return List<Point> with the path to the closest source
 	 */
-	public List<Point> getPathFrom(Point targetpoint) {
-		ArrayList<Point> shortestPath = new ArrayList<Point>();
+	public List<DijkstraPoint> getPathFrom(DijkstraPoint targetpoint) {
+		ArrayList<DijkstraPoint> shortestPath = new ArrayList<DijkstraPoint>();
 		if(targetpoint != null) {
-			Point currentPoint = targetpoint;
+			DijkstraPoint currentPoint = targetpoint;
 			shortestPath.add(currentPoint);
 			while(!sourcePoints.contains(currentPoint)) {
-				if(currentPoint.pointWithLowestCost != null) {
-					currentPoint = currentPoint.pointWithLowestCost;
+				if(listOfPoints.get(currentPoint).pointWithLowestCost != null) {
+					currentPoint = listOfPoints.get(currentPoint).pointWithLowestCost;
 					shortestPath.add(currentPoint);
 				} else {
-					ArrayList<Point> connectedPoints = new ArrayList<Point>();
-					for(Point[] connection : listOfConnections) {
-						Point otherPoint = getOtherPoint(currentPoint, connection);
+					ArrayList<DijkstraPoint> connectedPoints = new ArrayList<DijkstraPoint>();
+					for(DijkstraPoint[] connection : listOfConnections) {
+						DijkstraPoint otherPoint = getOtherPoint(currentPoint, connection);
 						if(otherPoint != null && !shortestPath.contains(otherPoint)) {
 							connectedPoints.add(otherPoint);
 						}
@@ -253,10 +253,10 @@ public class DijkstraGraph {
 					if(connectedPoints.isEmpty()) {
 						break;
 					}
-					Point newPoint = connectedPoints.get(0);
+					DijkstraPoint newPoint = connectedPoints.get(0);
 					connectedPoints.remove(0);
-					for(Point point : connectedPoints) {
-						if(point.aggregateCost < newPoint.aggregateCost) {
+					for(DijkstraPoint point : connectedPoints) {
+						if(listOfPoints.get(point).aggregateCost < listOfPoints.get(newPoint).aggregateCost) {
 							newPoint = point;
 						}
 					}
