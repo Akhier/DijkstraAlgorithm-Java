@@ -141,8 +141,8 @@ public class DijkstraGraph {
 			while(connectedPoints.size() > 0) {
 				Point otherPoint = connectedPoints.remove();
 				if(otherPoint.aggregateCost == null ||
-						(visitedPoint.aggregateCost + otherPoint.costToEnter) < otherPoint.aggregateCost) {
-					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter;
+						(visitedPoint.aggregateCost + otherPoint.costToEnter()) < otherPoint.aggregateCost) {
+					otherPoint.aggregateCost = visitedPoint.aggregateCost + otherPoint.costToEnter();
 					otherPoint.pointWithLowestCost = visitedPoint;
 				}
 				if(nextBestPoint == null || otherPoint.aggregateCost < nextBestPoint.aggregateCost) {

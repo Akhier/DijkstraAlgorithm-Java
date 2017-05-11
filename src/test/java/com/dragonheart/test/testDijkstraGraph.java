@@ -32,9 +32,9 @@ public class testDijkstraGraph {
 				}
 			}
 		}
-		points[0][1].costToEnter = 2.0;
-		points[2][0].costToEnter = 4.0;
-		points[4][1].costToEnter = 4.0;
+		points[0][1].entryCost = 2.0;
+		points[2][0].entryCost = 4.0;
+		points[4][1].entryCost = 4.0;
 	}
 
 	/**
