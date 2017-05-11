@@ -1,43 +1,57 @@
 package com.dragonheart.dijkstra;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class DijkstraGraph {
-	private ArrayList<Point[]> listOfConnections;
-	private ArrayList<Point> listOfPoints, sourcePoints;
+	private ArrayList<DijkstraPoint[]> listOfConnections;
+	private ArrayList<DijkstraPoint> sourcePoints;
+	private HashMap<DijkstraPoint, PointData> listOfPoints;
 	private int totalVisited = 0;
 
+	private class PointData {
+		public Double aggregateCost;
+		public DijkstraPoint pointWithLowestCost;
+		public boolean visited;
+
+		private PointData() {
+			this.aggregateCost = null;
+			this.pointWithLowestCost = null;
+			this.visited = false;
+		}
+	}
+
 	public DijkstraGraph() {
-		this.listOfConnections = new ArrayList<Point[]>();
-		this.listOfPoints = new ArrayList<Point>();
-		this.sourcePoints = new ArrayList<Point>();
+		this.listOfConnections = new ArrayList<DijkstraPoint[]>();
+		this.listOfPoints = new HashMap<DijkstraPoint, PointData>();
+		this.sourcePoints = new ArrayList<DijkstraPoint>();
 	}
 
 	protected void clear() {
-		this.listOfConnections = new ArrayList<Point[]>();
-		this.listOfPoints = new ArrayList<Point>();
-		this.sourcePoints = new ArrayList<Point>();
+		this.listOfConnections = new ArrayList<DijkstraPoint[]>();
+		this.listOfPoints = new HashMap<DijkstraPoint, PointData>();
+		this.sourcePoints = new ArrayList<DijkstraPoint>();
 	}
 
 	public void addPoint(Point point) {
 		listOfPoints.add(point);
 	}
 
-	public void addConnection(Point pointA, Point pointB) {
-		Point[] connection = {pointA, pointB};
-		Point[] otherConnection = {pointB, pointA};
+	public void addConnection(DijkstraPoint pointA, DijkstraPoint pointB) {
+		DijkstraPoint[] connection = {pointA, pointB};
+		DijkstraPoint[] otherConnection = {pointB, pointA};
 		if(!listOfConnections.contains(connection) && !listOfConnections.contains(otherConnection)) {
 			listOfConnections.add(connection);
 		}
 	}
 
-	public void removeConnection(Point pointA, Point pointB) {
-		Point[] connection = {pointA, pointB};
+	public void removeConnection(DijkstraPoint pointA, DijkstraPoint pointB) {
+		DijkstraPoint[] connection = {pointA, pointB};
 		listOfConnections.remove(connection);
-		Point[] otherConnection = {pointB, pointA};
+		DijkstraPoint[] otherConnection = {pointB, pointA};
 		listOfConnections.remove(otherConnection);
 	}
 
