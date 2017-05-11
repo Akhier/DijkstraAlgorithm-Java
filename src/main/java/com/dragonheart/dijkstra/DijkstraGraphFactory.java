@@ -8,30 +8,32 @@ public class DijkstraGraphFactory {
 	 * @param allowdiagonal is a boolean of if diagonal movement is allowed
 	 * @return DijkstraGraph
 	 */
-	public static DijkstraGraph dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, Double costtoenter, boolean allowdiagonal) {
+	public static DijkstraGraph dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, double costtoenter, boolean allowdiagonal) {
 		DijkstraGraph graph = new DijkstraGraph();
-		if(costtoenter > 0) {
-			int width = pointmap.length, height = pointmap[0].length;
-			for(int y = 0; y < height; y++) {
-				for(int x = 0; x < width; x++) {
-					if(pointmap[x][y] != null) {
-						pointmap[x][y].setEntryCost(costtoenter);
-						graph.addPoint(pointmap[x][y]);
-						if(allowdiagonal) {
-							if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {
-								graph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
-							}
-							if(x != width - 1 && y != 0 && pointmap[x + 1][y - 1] != null) {
-								graph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
-							}
-						}
-						if(x != 0 && pointmap[x - 1][y] != null) {
-							graph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
-						}
-						if(y != 0 && pointmap[x][y - 1] != null) {
-							graph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
-						}
+		if(costtoenter <= 0) {
+			return graph;
+		}
+		int width = pointmap.length, height = pointmap[0].length;
+		for(int y = 0; y < height; y++) {
+			for(int x = 0; x < width; x++) {
+				if(pointmap[x][y] == null) {
+					continue;
+				}
+				pointmap[x][y].setEntryCost(costtoenter);
+				graph.addPoint(pointmap[x][y]);
+				if(allowdiagonal) {
+					if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {
+						graph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
 					}
+					if(x != width - 1 && y != 0 && pointmap[x + 1][y - 1] != null) {
+						graph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
+					}
+				}
+				if(x != 0 && pointmap[x - 1][y] != null) {
+					graph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
+				}
+				if(y != 0 && pointmap[x][y - 1] != null) {
+					graph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
 				}
 			}
 		}
@@ -49,22 +51,23 @@ public class DijkstraGraphFactory {
 		int width = pointmap.length, height = pointmap[0].length;
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				if(pointmap[x][y] != null && pointmap[x][y].costToEnter() > 0) {
-					graph.addPoint(pointmap[x][y]);
-					if(allowdiagonal) {
-						if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {
-							graph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
-						}
-						if(x != width - 1 && y != 0 && pointmap[x + 1][y - 1] != null) {
-							graph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
-						}
+				if(pointmap[x][y] == null || pointmap[x][y].costToEnter() <= 0) {
+					continue;
+				}
+				graph.addPoint(pointmap[x][y]);
+				if(allowdiagonal) {
+					if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {
+						graph.addConnection(pointmap[x][y], pointmap[x - 1][y - 1]);
 					}
-					if(x != 0 && pointmap[x - 1][y] != null) {
-						graph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
+					if(x != width - 1 && y != 0 && pointmap[x + 1][y - 1] != null) {
+						graph.addConnection(pointmap[x][y], pointmap[x + 1][y - 1]);
 					}
-					if(y != 0 && pointmap[x][y - 1] != null) {
-						graph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
-					}
+				}
+				if(x != 0 && pointmap[x - 1][y] != null) {
+					graph.addConnection(pointmap[x][y], pointmap[x - 1][y]);
+				}
+				if(y != 0 && pointmap[x][y - 1] != null) {
+					graph.addConnection(pointmap[x][y], pointmap[x][y - 1]);
 				}
 			}
 		}
