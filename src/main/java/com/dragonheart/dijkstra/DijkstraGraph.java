@@ -138,11 +138,11 @@ public class DijkstraGraph {
 		return listOfVisitedPoints;
 	}
 
-	private Queue<Point> getConnectedPoints(Point startpoint) {
-		Queue<Point> connectedPoints = new LinkedList<Point>();
-		for(Point[] connection : listOfConnections) {
-			Point otherPoint = getOtherPoint(startpoint, connection);
-			if(otherPoint != null && !otherPoint.visited) {
+	private Queue<DijkstraPoint> getConnectedPoints(DijkstraPoint startpoint) {
+		Queue<DijkstraPoint> connectedPoints = new LinkedList<DijkstraPoint>();
+		for(DijkstraPoint[] connection : listOfConnections) {
+			DijkstraPoint otherPoint = getOtherPoint(startpoint, connection);
+			if(otherPoint != null && !listOfPoints.get(otherPoint).visited) {
 				connectedPoints.add(otherPoint);
 			}
 		}
