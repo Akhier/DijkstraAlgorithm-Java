@@ -9,15 +9,15 @@ public class DijkstraGraphFactory {
 	 * @param emtpygraph is a DijkstraGraph which will be the constructed graph
 	 * @return Point[][]
 	 */
-	public static Point[][] dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double costtoenter, boolean allowdiagonal, DijkstraGraph emptygraph) {
+	public static DijkstraPoint[][] dijkstraGraphFrom2DBoolArray(boolean[][] boolmap, Double costtoenter, boolean allowdiagonal, DijkstraGraph emptygraph) {
 		emptygraph.clear();
 		if(costtoenter > 0) {
 			int width = boolmap.length, height = boolmap[0].length;
-			Point[][] pointmap = new Point[width][height];
+			DijkstraPoint[][] pointmap = new DijkstraPoint[width][height];
 			for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
 					if(boolmap[x][y]) {
-						pointmap[x][y] = new Point(costtoenter);
+						pointmap[x][y].setEntryCost(costtoenter);
 						emptygraph.addPoint(pointmap[x][y]);
 						if(allowdiagonal) {
 							if(x != 0 && y != 0 && boolmap[x - 1][y - 1]) {

@@ -6,4 +6,5 @@ public interface DijkstraPoint {
 	 * @return Double with the entry cost
 	 */
 	public Double costToEnter();
+	public void setEntryCost(Double cost);
 }

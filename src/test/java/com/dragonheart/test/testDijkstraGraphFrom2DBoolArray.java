@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.dragonheart.dijkstra.DijkstraGraph;
 import com.dragonheart.dijkstra.DijkstraGraphFactory;
-import com.dragonheart.dijkstra.Point;
+import com.dragonheart.dijkstra.DijkstraPoint;
 
 public class testDijkstraGraphFrom2DBoolArray {
 	private boolean[][] boolMap;
@@ -33,11 +33,11 @@ public class testDijkstraGraphFrom2DBoolArray {
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
 		DijkstraGraph graph = new DijkstraGraph(); 
-		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, false, graph);
+		DijkstraPoint[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, false, graph);
 		graph.setSource(pointmap[6][6], 0.0);
 		assertTrue(graph.processGraph());
-		List<Point> path = graph.getPathFrom(pointmap[0][0]);
-		Point temp = path.get(1);
+		List<DijkstraPoint> path = graph.getPathFrom(pointmap[0][0]);
+		DijkstraPoint temp = path.get(1);
 		assertTrue(temp == pointmap[1][0]);
 		temp = path.get(2);
 		assertTrue(temp == pointmap[1][1]);
@@ -51,11 +51,11 @@ public class testDijkstraGraphFrom2DBoolArray {
 	@Test
 	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
 		DijkstraGraph graph = new DijkstraGraph();
-		Point[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, true, graph);
+		DijkstraPoint[][] pointmap = DijkstraGraphFactory.dijkstraGraphFrom2DBoolArray(boolMap, 1.0, true, graph);
 		graph.setSource(pointmap[6][6], 0.0);
 		assertTrue(graph.processGraph());
-		List<Point> path = graph.getPathFrom(pointmap[0][0]);
-		Point temp = path.get(1);
+		List<DijkstraPoint> path = graph.getPathFrom(pointmap[0][0]);
+		DijkstraPoint temp = path.get(1);
 		assertTrue(temp == pointmap[1][1]);
 		temp = path.get(3);
 		assertTrue(temp == pointmap[2][3]);

@@ -22,6 +22,10 @@ public class testDijkstraGraph {
 		public Double costToEnter() {
 			return entryCost;
 		}
+		@Override
+		public void setEntryCost(Double cost) {
+			this.entryCost = cost;
+		}
 	}
 	private Point[][] points;
 	private DijkstraGraph graph;
