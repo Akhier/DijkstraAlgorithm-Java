@@ -9,17 +9,17 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dragonheart.dijkstra.DijkstraGraph;
+import com.dragonheart.dijkstra.DijkstraMap;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
-public class testDijkstraGraph {
+public class testDijkstraMap {
 	private Point[][] points;
-	private DijkstraGraph graph;
+	private DijkstraMap graph;
 
 	@Before
 	public void setUp() throws Exception {
 		points = new Point[6][2];
-		graph = new DijkstraGraph();
+		graph = new DijkstraMap();
 		for(int y = 0; y < 2; y++) {
 			for(int x = 0; x < 6; x++) {
 				points[x][y] = new Point(1.0);
@@ -38,7 +38,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#processGraph()}
 	 */
 	@Test
 	public final void testProcessGraph_WhenNoSourcesNodes_ReturnFalse() {
@@ -46,7 +46,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#processGraph()}
 	 */
 	@Test
 	public final void testProcessGraph_WithSourceNodes_ReturnTrue() {
@@ -55,7 +55,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#processGraph()}
 	 */
 	@Test
 	public final void testProcessGraph_BasicResults() {
@@ -67,11 +67,11 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#processGraph()}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#processGraph()}
 	 */
 	@Test
 	public final void testProcessGraph_GenericFleeResults() {
-		graph = new DijkstraGraph();
+		graph = new DijkstraMap();
 		int width = 7, height = 7;
 		points = new Point[width][height];
 		for(int y = 0; y < height; y++) {
@@ -104,7 +104,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(DijkstraPoint)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#getPathFrom(DijkstraPoint)}
 	 */
 	@Test
 	public final void testGetPathFrom_WithSingleSourceNode() {
@@ -119,7 +119,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(DijkstraPoint)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMap#getPathFrom(DijkstraPoint)}
 	 */
 	@Test
 	public final void testGetPathFrom_WithMultipleSourceNodes() {

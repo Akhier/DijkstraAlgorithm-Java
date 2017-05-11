@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class DijkstraGraph {
+public class DijkstraMap {
 	private ArrayList<DijkstraPoint[]> listOfConnections;
 	private ArrayList<DijkstraPoint> sourcePoints;
 	private HashMap<DijkstraPoint, PointData> listOfPoints;
@@ -25,7 +25,7 @@ public class DijkstraGraph {
 		}
 	}
 
-	public DijkstraGraph() {
+	public DijkstraMap() {
 		this.listOfConnections = new ArrayList<DijkstraPoint[]>();
 		this.listOfPoints = new HashMap<DijkstraPoint, PointData>();
 		this.sourcePoints = new ArrayList<DijkstraPoint>();

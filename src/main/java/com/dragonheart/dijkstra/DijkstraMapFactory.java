@@ -1,15 +1,15 @@
 package com.dragonheart.dijkstra;
 
-public class DijkstraGraphFactory {
+public class DijkstraMapFactory {
 	/**
-	 * Create a DijkstraGraph from a 2D array of points that implements DijkstraPoint where null in the array means a tile that isn't walkable
+	 * Create a DijkstraMap from a 2D array of points that implements DijkstraPoint where null in the array means a tile that isn't walkable
 	 * @param pointmap is a 2D array of points that implements DijkstraPoint
 	 * @param costtoenter is a Double representing how much tiles cost to enter
 	 * @param allowdiagonal is a boolean of if diagonal movement is allowed
-	 * @return DijkstraGraph
+	 * @return DijkstraMap
 	 */
-	public static DijkstraGraph dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, double costtoenter, boolean allowdiagonal) {
-		DijkstraGraph graph = new DijkstraGraph();
+	public static DijkstraMap dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, double costtoenter, boolean allowdiagonal) {
+		DijkstraMap graph = new DijkstraMap();
 		if(costtoenter <= 0) {
 			return graph;
 		}
@@ -41,13 +41,13 @@ public class DijkstraGraphFactory {
 	}
 
 	/**
-	 * Create a DijkstraGraph from a 2D array of points that implements DijkstraPoint with pre-existing entry cost where null means the point isn't walkable
+	 * Create a DijkstraMap from a 2D array of points that implements DijkstraPoint with pre-existing entry cost where null means the point isn't walkable
 	 * @param pointmap is a 2D array of points that implements DijkstraPoint and the points have a pre-set entry cost to them
 	 * @param allowdiagonal is a boolean of if diagonal movement is allowed
-	 * @return DijkstraGraph
+	 * @return DijkstraMap
 	 */
-	public static DijkstraGraph dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, boolean allowdiagonal) {
-		DijkstraGraph graph = new DijkstraGraph();
+	public static DijkstraMap dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][] pointmap, boolean allowdiagonal) {
+		DijkstraMap graph = new DijkstraMap();
 		int width = pointmap.length, height = pointmap[0].length;
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {

@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dragonheart.dijkstra.DijkstraGraph;
-import com.dragonheart.dijkstra.DijkstraGraphFactory;
+import com.dragonheart.dijkstra.DijkstraMap;
+import com.dragonheart.dijkstra.DijkstraMapFactory;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
-public class testDijkstraGraphFactory {
+public class testDijkstraMapFactory {
 	private Point[][] pointMap;
 
 	@Before
@@ -28,11 +28,11 @@ public class testDijkstraGraphFactory {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMapFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
 	 */
 	@Test
 	public final void testDijkstraGraphFrom2DDijkstraPointArray_NoDiagonalMovement() {
-		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, false);
+		DijkstraMap graph = DijkstraMapFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, false);
 		graph.setSource(pointMap[6][6], 0.0);
 		assertTrue(graph.processGraph());
 		List<DijkstraPoint> path = graph.getPathFrom(pointMap[0][0]);
@@ -45,11 +45,11 @@ public class testDijkstraGraphFactory {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMapFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
 	 */
 	@Test
 	public final void testDijkstraGraphFrom2DDijkstraPointArray_DiagonalMovement() {
-		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, true);
+		DijkstraMap graph = DijkstraMapFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, true);
 		graph.setSource(pointMap[6][6], 0.0);
 		assertTrue(graph.processGraph());
 		List<DijkstraPoint> path = graph.getPathFrom(pointMap[0][0]);
@@ -62,11 +62,11 @@ public class testDijkstraGraphFactory {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], boolean)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraMapFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], boolean)}
 	 */
 	@Test
 	public final void testDijkstraGraphFrom2DDijkstraPointArray_PreExistingCosts_WithDiagonalMovement() {
-		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, true);
+		DijkstraMap graph = DijkstraMapFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, true);
 		graph.setSource(pointMap[6][6], 0.0);
 		assertTrue(graph.processGraph());
 		List<DijkstraPoint> path = graph.getPathFrom(pointMap[0][0]);
