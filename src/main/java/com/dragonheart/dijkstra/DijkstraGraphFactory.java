@@ -49,7 +49,7 @@ public class DijkstraGraphFactory {
 		int width = pointmap.length, height = pointmap[0].length;
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				if(pointmap[x][y] != null && pointmap[x][y].costToEnter() > 0 && pointmap[x][y].costToEnter() != null) {
+				if(pointmap[x][y] != null && pointmap[x][y].costToEnter() > 0) {
 					graph.addPoint(pointmap[x][y]);
 					if(allowdiagonal) {
 						if(x != 0 && y != 0 && pointmap[x - 1][y - 1] != null) {

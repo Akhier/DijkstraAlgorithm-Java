@@ -8,7 +8,7 @@ class Point implements DijkstraPoint{
 		this.entryCost = entrycost;
 	}
 	@Override
-	public Double costToEnter() {
+	public double costToEnter() {
 		return entryCost;
 	}
 	@Override
