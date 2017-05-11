@@ -71,8 +71,8 @@ public class DijkstraGraph {
 	 * Add a Point onto the list
 	 * @param point is a Point that is the source you want to add
 	 */
-	public void addSource(Point point) {
-		if(listOfPoints.contains(point)) {
+	public void addSource(DijkstraPoint point) {
+		if(listOfPoints.containsKey(point)) {
 			sourcePoints.add(point);
 		}
 	}
