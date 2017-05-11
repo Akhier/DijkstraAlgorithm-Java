@@ -4,15 +4,20 @@ package com.dragonheart.dijkstra;
  * "Point" is a class made to represent a node on a dijkstra map
  * @author Akhier Dragonheart
  */
-public class Point {
-	public Double aggregateCost, costToEnter;
+public class Point implements DijkstraPoint {
+	public Double aggregateCost, entryCost;
 	public Point pointWithLowestCost;
 	public boolean visited;
 
 	public Point(Double costtoenter) {
 		this.aggregateCost = null;
-		this.costToEnter = costtoenter;
+		this.entryCost = costtoenter;
 		this.visited = false;
 		this.pointWithLowestCost = null;
+	}
+
+	@Override
+	public Double costToEnter() {
+		return entryCost;
 	}
 }
