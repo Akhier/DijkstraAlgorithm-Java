@@ -45,7 +45,7 @@ public class testDijkstraGraphFactory {
 	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
 	 */
 	@Test
-	public final void testDijkstraMapFrom2DBoolArray_NoDiagonalMovement() {
+	public final void testDijkstraGraphFrom2DDijkstraPointArray_NoDiagonalMovement() {
 		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, false);
 		graph.setSource(pointMap[6][6], 0.0);
 		assertTrue(graph.processGraph());
@@ -62,7 +62,7 @@ public class testDijkstraGraphFactory {
 	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], Double, boolean)}
 	 */
 	@Test
-	public final void testDijkstraMapFrom2DBoolArray_DiagonalMovement() {
+	public final void testDijkstraGraphFrom2DDijkstraPointArray_DiagonalMovement() {
 		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, 1.0, true);
 		graph.setSource(pointMap[6][6], 0.0);
 		assertTrue(graph.processGraph());
@@ -75,4 +75,20 @@ public class testDijkstraGraphFactory {
 		assertTrue(temp == pointMap[5][5]);
 	}
 
+	/**
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraphFactory#dijkstraGraphFrom2DDijkstraPointArray(DijkstraPoint[][], boolean)}
+	 */
+	@Test
+	public final void testDijkstraGraphFrom2DDijkstraPointArray_PreExistingCosts_WithDiagonalMovement() {
+		DijkstraGraph graph = DijkstraGraphFactory.dijkstraGraphFrom2DDijkstraPointArray(pointMap, true);
+		graph.setSource(pointMap[6][6], 0.0);
+		assertTrue(graph.processGraph());
+		List<DijkstraPoint> path = graph.getPathFrom(pointMap[0][0]);
+		DijkstraPoint temp = path.get(1);
+		assertTrue(temp == pointMap[1][1]);
+		temp = path.get(3);
+		assertTrue(temp == pointMap[2][3]);
+		temp = path.get(path.size() - 2);
+		assertTrue(temp == pointMap[5][5]);
+	}
 }
