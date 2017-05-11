@@ -11,7 +11,7 @@ import com.dragonheart.dijkstra.DijkstraGraph;
 import com.dragonheart.dijkstra.DijkstraGraphFactory;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
-public class testDijkstraGraphFrom2DBoolArray {
+public class testDijkstraGraphFrom2DDijkstraPointArray {
 	private class Point implements DijkstraPoint {
 		public Double entryCost;
 		@Override
