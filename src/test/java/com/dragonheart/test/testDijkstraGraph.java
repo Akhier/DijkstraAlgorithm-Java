@@ -13,20 +13,6 @@ import com.dragonheart.dijkstra.DijkstraGraph;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
 public class testDijkstraGraph {
-	private class Point implements DijkstraPoint {
-		public Double entryCost;
-		public Point(Double entrycost) {
-			this.entryCost = entrycost;
-		}
-		@Override
-		public Double costToEnter() {
-			return entryCost;
-		}
-		@Override
-		public void setEntryCost(Double cost) {
-			this.entryCost = cost;
-		}
-	}
 	private Point[][] points;
 	private DijkstraGraph graph;
 

@@ -12,20 +12,6 @@ import com.dragonheart.dijkstra.DijkstraGraphFactory;
 import com.dragonheart.dijkstra.DijkstraPoint;
 
 public class testDijkstraGraphFactory {
-	private class Point implements DijkstraPoint {
-		public Double entryCost;
-		public Point(Double cost) {
-			this.entryCost = cost;
-		}
-		@Override
-		public Double costToEnter() {
-			return entryCost;
-		}
-		@Override
-		public void setEntryCost(Double cost) {
-			this.entryCost = cost;
-		}
-	}
 	private Point[][] pointMap;
 
 	@Before
