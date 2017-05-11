@@ -118,7 +118,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(Point)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(DijkstraPoint)}
 	 */
 	@Test
 	public final void testGetPathFrom_WithSingleSourceNode() {
@@ -133,7 +133,7 @@ public class testDijkstraGraph {
 	}
 
 	/**
-	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(Point)}
+	 * Test method for {@link com.dragonheart.dijkstra.DijkstraGraph#getPathFrom(DijkstraPoint)}
 	 */
 	@Test
 	public final void testGetPathFrom_WithMultipleSourceNodes() {
