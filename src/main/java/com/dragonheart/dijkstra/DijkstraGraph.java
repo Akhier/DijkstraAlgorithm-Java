@@ -117,7 +117,7 @@ public class DijkstraGraph {
 		addSources(points, cost);
 	}
 
-	private Point getOtherPoint(Point basepoint, Point[] connection) {
+	private DijkstraPoint getOtherPoint(DijkstraPoint basepoint, DijkstraPoint[] connection) {
 		if(basepoint == connection[0]) {
 			return connection[1];
 		} else if (basepoint == connection[1]) {
