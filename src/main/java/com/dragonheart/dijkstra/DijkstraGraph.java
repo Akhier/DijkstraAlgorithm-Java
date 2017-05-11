@@ -60,9 +60,9 @@ public class DijkstraGraph {
 	 * @param point is a Point that is the source you want to add
 	 * @param cost is a Double with what this source starts at
 	 */
-	public void addSource(Point point, Double cost) {
-		if(listOfPoints.contains(point)) {
-			point.aggregateCost = cost;
+	public void addSource(DijkstraPoint point, Double cost) {
+		if(listOfPoints.containsKey(point)) {
+			listOfPoints.get(point).aggregateCost = cost;
 			sourcePoints.add(point);
 		}
 	}
