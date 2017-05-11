@@ -169,10 +169,10 @@ public class DijkstraGraph {
 	}
 
 	private void performCalculationForAllPoints() {
-		Point currentPoint = null;
+		DijkstraPoint currentPoint = null;
 		do {
 			currentPoint = getNextBestPoint();
-			currentPoint.visited = true;
+			listOfPoints.get(currentPoint).visited = true;
 			totalVisited++;
 		} while(totalVisited < listOfPoints.size());
 	}
