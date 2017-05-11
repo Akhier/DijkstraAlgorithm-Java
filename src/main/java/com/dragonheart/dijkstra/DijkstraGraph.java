@@ -82,8 +82,8 @@ public class DijkstraGraph {
 	 * @param points is a List<Point> containing the points you want to add to your sources
 	 * @param cost is a Double with what these sources start at
 	 */
-	public void addSources(List<Point> points, Double cost) {
-		for(Point point : points) {
+	public void addSources(List<DijkstraPoint> points, Double cost) {
+		for(DijkstraPoint point : points) {
 			addSource(point, cost);
 		}
 	}
