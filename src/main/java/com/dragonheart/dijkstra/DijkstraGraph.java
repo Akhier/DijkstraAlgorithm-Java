@@ -26,12 +26,19 @@ public class DijkstraGraph {
 		listOfPoints.add(point);
 	}
 
-	public void addEdge(Point pointA, Point pointB) {
+	public void addConnection(Point pointA, Point pointB) {
 		Point[] connection = {pointA, pointB};
 		Point[] otherConnection = {pointB, pointA};
 		if(!listOfConnections.contains(connection) && !listOfConnections.contains(otherConnection)) {
 			listOfConnections.add(connection);
 		}
+	}
+
+	public void removeConnection(Point pointA, Point pointB) {
+		Point[] connection = {pointA, pointB};
+		listOfConnections.remove(connection);
+		Point[] otherConnection = {pointB, pointA};
+		listOfConnections.remove(otherConnection);
 	}
 
 	/**

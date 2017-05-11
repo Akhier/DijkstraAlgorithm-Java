@@ -25,10 +25,10 @@ public class testDijkstraGraph {
 				points[x][y] = new Point(1.0);
 				graph.addPoint(points[x][y]);
 				if(y != 0) {
-					graph.addEdge(points[x][y], points[x][y - 1]);
+					graph.addConnection(points[x][y], points[x][y - 1]);
 				}
 				if(x != 0) {
-					graph.addEdge(points[x][y], points[x - 1][y]);
+					graph.addConnection(points[x][y], points[x - 1][y]);
 				}
 			}
 		}
@@ -78,13 +78,13 @@ public class testDijkstraGraph {
 			for(int x = 0; x < width; x++) {
 				points[x][y] = new Point(1.0);
 				graph.addPoint(points[x][y]);
-				if(x != 0) { graph.addEdge(points[x][y], points[x - 1][y]); }
-				if(y != 0) { graph.addEdge(points[x][y], points[x][y - 1]); }
+				if(x != 0) { graph.addConnection(points[x][y], points[x - 1][y]); }
+				if(y != 0) { graph.addConnection(points[x][y], points[x][y - 1]); }
 				if(x != 0 && y != 0) {
-					graph.addEdge(points[x][y], points[x - 1][y - 1]);
+					graph.addConnection(points[x][y], points[x - 1][y - 1]);
 				}
 				if(x != width - 1 && y != 0) {
-					graph.addEdge(points[x][y], points[x + 1][y - 1]);
+					graph.addConnection(points[x][y], points[x + 1][y - 1]);
 				}
 			}
 		}
