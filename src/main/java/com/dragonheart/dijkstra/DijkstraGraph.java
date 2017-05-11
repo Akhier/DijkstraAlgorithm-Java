@@ -36,8 +36,8 @@ public class DijkstraGraph {
 		this.sourcePoints = new ArrayList<DijkstraPoint>();
 	}
 
-	public void addPoint(Point point) {
-		listOfPoints.add(point);
+	public void addPoint(DijkstraPoint point) {
+		listOfPoints.put(point, new PointData());
 	}
 
 	public void addConnection(DijkstraPoint pointA, DijkstraPoint pointB) {
