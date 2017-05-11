@@ -102,9 +102,9 @@ public class DijkstraGraph {
 	 * Sets your source Point to this Point
 	 * @param point is the Point that is the source you want
 	 */
-	public void setSource(Point point) {
-		sourcePoints = new ArrayList<Point>();
-		addSource(point, point.aggregateCost);
+	public void setSource(DijkstraPoint point) {
+		sourcePoints = new ArrayList<DijkstraPoint>();
+		addSource(point, listOfPoints.get(point).aggregateCost);
 	}
 
 	/**
