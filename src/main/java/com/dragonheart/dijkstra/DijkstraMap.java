@@ -14,12 +14,12 @@ public class DijkstraMap {
 	private int totalVisited = 0;
 
 	private class PointData {
-		public Double aggregateCost;
+		public double aggregateCost;
 		public DijkstraPoint pointWithLowestCost;
 		public boolean visited;
 
 		private PointData() {
-			this.aggregateCost = null;
+			this.aggregateCost = Double.NEGATIVE_INFINITY;
 			this.pointWithLowestCost = null;
 			this.visited = false;
 		}
@@ -155,7 +155,7 @@ public class DijkstraMap {
 			Queue<DijkstraPoint> connectedPoints = getConnectedPoints(visitedPoint);
 			while(connectedPoints.size() > 0) {
 				DijkstraPoint otherPoint = connectedPoints.remove();
-				if(listOfPoints.get(otherPoint).aggregateCost == null ||
+				if(Double.isInfinite(listOfPoints.get(otherPoint).aggregateCost) ||
 						(listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter()) < listOfPoints.get(otherPoint).aggregateCost) {
 					listOfPoints.get(otherPoint).aggregateCost = listOfPoints.get(visitedPoint).aggregateCost + otherPoint.costToEnter();
 					listOfPoints.get(otherPoint).pointWithLowestCost = visitedPoint;
@@ -198,7 +198,7 @@ public class DijkstraMap {
 		}
 		for(PointData point : listOfPoints.values()) {
 			if(!point.visited) {
-				point.aggregateCost = null;
+				point.aggregateCost = Double.NEGATIVE_INFINITY;
 			}
 		}
 		performCalculationForAllPoints();
