@@ -19,3 +19,7 @@ dependencies {
 jar {
 	baseName 'dragonheart.dijkstra'
 }
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.5'
+}

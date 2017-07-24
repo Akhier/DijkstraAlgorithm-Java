@@ -78,3 +78,8 @@ hs_err_pid*
 
 # IDEA config files
 .idea
+
+### Gradle ###
+
+# gradle wrapper jar
+!/gradle/wrapper/gradle-wrapper.jar
