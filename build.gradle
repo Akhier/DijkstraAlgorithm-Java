@@ -4,8 +4,12 @@ plugins {
 
 defaultTasks 'clean', 'build'
 
-version = '4.0.0'
+version = '4.0.6'
 group = 'com.dragonheart.dijkstra'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.5'
+}
 
 repositories {
     mavenCentral()
